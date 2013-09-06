@@ -1,0 +1,18 @@
+<h1>obsqure.me</h1>
+<p>describe what this page is all about</p>
+
+<%= form_for :user do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.submit "Login" %>
+  </p>
+<% end %>
