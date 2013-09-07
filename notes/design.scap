@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ScappleDocument Version="1.1" ID="373E7218-6D3D-436C-965B-D5D2306058F5">
+    <Notes>
+        <Note ID="0" FontSize="12.0" Position="401.515625,215.183594" Width="107.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>user@obsqure.me</String>
+            <ConnectedNoteIDs>1, 3, 10, 13-15</ConnectedNoteIDs>
+        </Note>
+        <Note ID="1" FontSize="12.0" Position="486.902344,267.0" Width="60.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>password</String>
+            <ConnectedNoteIDs>0</ConnectedNoteIDs>
+        </Note>
+        <Note ID="2" FontSize="12.0" Position="694.0,158.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2" Style="Square"></Border>
+            </Appearance>
+            <String>Alias</String>
+            <ConnectedNoteIDs>4, 12-13</ConnectedNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,5</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="3" FontSize="12.0" Position="437.0,168.0" Width="35.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2" Style="Square"></Border>
+            </Appearance>
+            <String>User</String>
+            <ConnectedNoteIDs>0</ConnectedNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,4</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="4" FontSize="12.0" Position="691.957031,221.082031" Width="51.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>address</String>
+            <ConnectedNoteIDs>2</ConnectedNoteIDs>
+        </Note>
+        <Note ID="9" FontSize="12.0" Position="201.0,172.0" Width="53.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>0.966844 0.153536 0.098563</TextColor>
+                <Border Weight="2" Style="Square"></Border>
+            </Appearance>
+            <String>Domain</String>
+            <ConnectedNoteIDs>10-11</ConnectedNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,6</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="10" FontSize="12.0" Position="236.242188,217.804688" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>0.966844 0.153536 0.098563</TextColor>
+            </Appearance>
+            <String>owner</String>
+            <ConnectedNoteIDs>0, 9</ConnectedNoteIDs>
+        </Note>
+        <Note ID="11" FontSize="12.0" Position="181.070312,217.847656" Width="39.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>0.966844 0.153536 0.098563</TextColor>
+            </Appearance>
+            <String>name</String>
+            <ConnectedNoteIDs>9</ConnectedNoteIDs>
+        </Note>
+        <Note ID="12" FontSize="12.0" Position="761.0,219.277344" Width="65.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>redirect_to</String>
+            <ConnectedNoteIDs>2</ConnectedNoteIDs>
+        </Note>
+        <Note ID="13" FontSize="12.0" Position="628.0,218.960938" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>owner</String>
+            <ConnectedNoteIDs>0, 2</ConnectedNoteIDs>
+        </Note>
+        <Note ID="14" FontSize="12.0" Position="350.789062,269.710938" Width="95.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>1.0 0.0 0.0</TextColor>
+            </Appearance>
+            <String>subscribed_until</String>
+            <ConnectedNoteIDs>0</ConnectedNoteIDs>
+        </Note>
+        <Note ID="15" FontSize="12.0" Position="420.804688,305.304688" Width="80.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>1.0 0.0 0.0</TextColor>
+            </Appearance>
+            <String>account_type</String>
+            <ConnectedNoteIDs>0</ConnectedNoteIDs>
+        </Note>
+    </Notes>
+    <BackgroundShapes></BackgroundShapes>
+    <NoteStyles>
+        <Style Name="Title Text" ID="7FF13998-B70A-4278-8B42-35E409F4F927" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectFade="No">
+            <FontSize>28.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+        <Style Name="Red Text" ID="1FB9B841-9C40-484D-895C-6E5623DAA9B3" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectFade="No">
+            <TextColor>1.0 0.0 0.0</TextColor>
+        </Style>
+        <Style Name="Brown Bubble" ID="94ED896D-625C-4EA7-A58A-929A05F8AD3F" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.290055 0.1523 0.182215</BorderColor>
+            <FillColor>0.940019 0.892907 0.779716</FillColor>
+        </Style>
+        <Style Name="Yellow Bubble" ID="E58FFC6E-E85F-4D14-AF81-2217E723815F" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.756763 0.785592 0.373258</BorderColor>
+            <FillColor>0.906773 0.910625 0.634363</FillColor>
+        </Style>
+        <Style Name="Green Bubble" ID="ADE4B820-3ECB-42BA-860E-457792258376" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.331867 0.609932 0.356197</BorderColor>
+            <FillColor>0.790123 0.882327 0.80198</FillColor>
+        </Style>
+        <Style Name="Blue Bubble" ID="1B4BF082-A695-4C65-A0DF-4991B28D2E63" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.477193 0.557066 0.76433</BorderColor>
+            <FillColor>0.840969 0.866828 0.925903</FillColor>
+        </Style>
+        <Style Name="Pink Bubble" ID="E163328F-DAE9-4B05-B17B-6E97DD5A8A89" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.747881 0.366532 0.542813</BorderColor>
+            <FillColor>0.918452 0.807302 0.863467</FillColor>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>1.0 1.0 1.0</BackgroundColor>
+        <DefaultFont>Helvetica</DefaultFont>
+        <DefaultTextColor>0.0 0.0 0.0</DefaultTextColor>
+    </UISettings>
+    <PrintSettings PaperSize="595.0,842.0" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="iso-a4" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>
