@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907131939) do
+ActiveRecord::Schema.define(version: 20130907155019) do
+
+  create_table "aliases", force: true do |t|
+    t.integer  "user_id"
+    t.string   "address"
+    t.string   "redirect_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "aliases", ["address"], name: "index_aliases_on_address", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
