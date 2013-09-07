@@ -1,18 +1,9 @@
 <h1>obsqure.me</h1>
 <p>describe what this page is all about</p>
 
-<%= form_for :user do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-
-  <p>
-    <%= f.submit "Login" %>
-  </p>
+<% if user_signed_in? %>
+  <p><%= link_to "Log out", destroy_user_session_path, :method => :delete %></p>
+<% else %>
+  <p><%= link_to "Register", "users/sign_up" %></p>
+  <p><%= link_to "Sign In", "users/sign_in" %></p>
 <% end %>
