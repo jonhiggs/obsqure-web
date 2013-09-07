@@ -4,6 +4,7 @@
         <Note ID="0" FontSize="12.0" Position="401.515625,215.183594" Width="107.0">
             <Appearance>
                 <Alignment>Left</Alignment>
+                <TextColor>0.063 0.459 0.0</TextColor>
             </Appearance>
             <String>user@obsqure.me</String>
             <ConnectedNoteIDs>1, 3, 10, 13-15</ConnectedNoteIDs>
@@ -11,6 +12,7 @@
         <Note ID="1" FontSize="12.0" Position="486.902344,267.0" Width="60.0">
             <Appearance>
                 <Alignment>Left</Alignment>
+                <TextColor>0.063 0.459 0.0</TextColor>
             </Appearance>
             <String>password</String>
             <ConnectedNoteIDs>0</ConnectedNoteIDs>
@@ -21,7 +23,7 @@
                 <Border Weight="2" Style="Square"></Border>
             </Appearance>
             <String>Alias</String>
-            <ConnectedNoteIDs>4, 12-13</ConnectedNoteIDs>
+            <ConnectedNoteIDs>4, 12-13, 16</ConnectedNoteIDs>
             <Formatting>
                 <FormatRange Bold="Yes">0,5</FormatRange>
             </Formatting>
@@ -29,6 +31,7 @@
         <Note ID="3" FontSize="12.0" Position="437.0,168.0" Width="35.0">
             <Appearance>
                 <Alignment>Left</Alignment>
+                <TextColor>0.063 0.459 0.0</TextColor>
                 <Border Weight="2" Style="Square"></Border>
             </Appearance>
             <String>User</String>
@@ -101,6 +104,14 @@
             </Appearance>
             <String>account_type</String>
             <ConnectedNoteIDs>0</ConnectedNoteIDs>
+        </Note>
+        <Note ID="16" FontSize="12.0" Position="637.207031,250.0" Width="67.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>1.0 0.0 0.0</TextColor>
+            </Appearance>
+            <String>description</String>
+            <ConnectedNoteIDs>2</ConnectedNoteIDs>
         </Note>
     </Notes>
     <BackgroundShapes></BackgroundShapes>
