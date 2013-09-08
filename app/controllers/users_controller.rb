@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    #@aliases = Alias.find_all_by_user_id(1).address
+    redirect_to("/users/sign_in") unless user_signed_in?
     @aliases = Alias.find(:all, "user_id")
   end
 

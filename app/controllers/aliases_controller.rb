@@ -8,11 +8,15 @@ class AliasesController < ApplicationController
   end
 
   def destroy
+    redirect_to("/users/sign_in") unless user_signed_in?
+
     Alias.destroy(params[:id])
     redirect_to :controller => 'users', :action => 'index'
   end
 
   def new
+    redirect_to("/users/sign_in") unless user_signed_in?
+
     @user = User.find_by_id(current_user.id)
     @user.aliases.create
     redirect_to :controller => 'users', :action => 'index'
