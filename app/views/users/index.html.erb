@@ -1,7 +1,3 @@
-<p>you are logged in as <%= current_user.email %></p>
-<%= render :partial => "shared/login_logout" %>
-
-<p>
 <%= link_to "create new alias",
       :user_id => current_user.id,
       :controller => "aliases",
