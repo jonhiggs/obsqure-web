@@ -1,9 +1,5 @@
-<ul>
-  <li>give a logout link
-  <li>allow creation of new alias
-</ul>
-
 <p>you are logged in as <%= current_user.email %></p>
+<%= render :partial => "shared/login_logout" %>
 
 <p>
 <%= link_to "create new alias",
@@ -13,6 +9,8 @@
 %>
 
 <% @aliases.each do |a| %>
+  <p>
   <%= link_to a.address,  edit_user_alias_path(current_user.id,a.id) %>
   <%= link_to "delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+  </p>
 <% end %>
