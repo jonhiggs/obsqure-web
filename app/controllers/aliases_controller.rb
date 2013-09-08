@@ -7,6 +7,11 @@ class AliasesController < ApplicationController
   def edit
   end
 
+  def destroy
+    Alias.destroy(params[:id])
+    redirect_to :controller => 'users', :action => 'index'
+  end
+
   def resource_name
     :user
   end
