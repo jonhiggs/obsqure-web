@@ -5,6 +5,13 @@
 
 <p>you are logged in as <%= current_user.email %></p>
 
+<p>
+<%= link_to "create new alias",
+      :user_id => current_user.id,
+      :controller => "aliases",
+      :action => "new"
+%>
+
 <% @aliases.each do |a| %>
   <%= link_to a.address,  edit_user_alias_path(current_user.id,a.id) %>
   <%= link_to "delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete %>

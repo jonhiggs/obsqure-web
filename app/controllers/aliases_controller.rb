@@ -12,6 +12,12 @@ class AliasesController < ApplicationController
     redirect_to :controller => 'users', :action => 'index'
   end
 
+  def new
+    @user = User.find_by_id(current_user.id)
+    @user.aliases.create
+    redirect_to :controller => 'users', :action => 'index'
+  end
+
   def resource_name
     :user
   end
