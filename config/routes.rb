@@ -7,4 +7,6 @@ Obsqure::Application.routes.draw do
     resources :aliases
   end
 
+  resources :faq
+
 end
