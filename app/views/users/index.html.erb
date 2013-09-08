@@ -1,1 +1,8 @@
-this is where the app sits.
+<ul>
+  <li>give a logout link
+  <li>allow creation of new alias
+</ul>
+
+<% @aliases.each do |a| %>
+  <%= link_to a.address, edit_user_alias_path(current_user.id,a.id) %><br />
+<% end %>

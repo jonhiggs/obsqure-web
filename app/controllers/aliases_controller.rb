@@ -4,6 +4,9 @@ class AliasesController < ApplicationController
     @aliases = Alias.methods
   end
 
+  def edit
+  end
+
   def resource_name
     :user
   end
