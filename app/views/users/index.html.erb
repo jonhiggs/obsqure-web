@@ -1,12 +1,17 @@
-<%= link_to "create new alias",
+<%= link_to "Create New Alias",
       :user_id => current_user.id,
       :controller => "aliases",
       :action => "new"
 %>
 
-<% @aliases.each do |a| %>
-  <p>
-  <%= link_to a.address,  edit_user_alias_path(current_user.id,a.id) %>
-  <%= link_to "delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-  </p>
+<% if @aliases.empty? %>
+  <p>You have no aliases yet.</p>
 <% end %>
+
+<p>
+<% @aliases.each do |a| %>
+  <%= link_to a.address,  edit_user_alias_path(current_user.id,a.id) %>
+  <%= link_to "Delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+  <br />
+<% end %>
+</p>
