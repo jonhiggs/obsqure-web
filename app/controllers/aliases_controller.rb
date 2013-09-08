@@ -1,6 +1,7 @@
 class AliasesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
+    @aliases = Alias.methods
   end
 
   def resource_name

@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   # :trackable, :recoverable
   devise :database_authenticatable, :registerable, :validatable, :rememberable
   has_many :aliases
+
 end
