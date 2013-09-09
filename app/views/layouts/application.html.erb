@@ -5,11 +5,14 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "pure-min-0.2.1.css" %>
+  <%= stylesheet_link_tag "main.css" %>
 </head>
 <body>
 
-<%= render :partial => "shared/header" %>
-<%= yield %>
+<div class="content">
+  <%= render :partial => "shared/links" %>
+  <%= yield %>
 
 </body>
 </html>
