@@ -24,6 +24,13 @@ class AddressesController < ApplicationController
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
+  def verify
+    address = Address.find_by_id(params[:address_id])
+    address.verified = true
+    address.save
+    redirect_to :controller => 'addresses', :action => 'index'
+  end
+
   def show
     @address = Address.find_by_id(params[:id])
     redirect_to("/") unless @address.user_id.to_i == params[:user_id].to_i

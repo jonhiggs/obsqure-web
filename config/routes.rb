@@ -10,6 +10,7 @@ Obsqure::Application.routes.draw do
 
   resources :addresses do
     root 'addresses#index'
+    post 'verify', to: 'addresses#verify', as: :verify
   end
 
   resource :aliases do
