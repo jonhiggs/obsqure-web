@@ -7,6 +7,7 @@
       <li><%= link_to "FAQ", "/faq" %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Aliases", :controller => "users" %></li>
+        <li><%= link_to "Verified Addresses", "something" %></li>
         <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
       <% else %>
         <li><%= link_to "Register", "/users/sign_up" %></li>
