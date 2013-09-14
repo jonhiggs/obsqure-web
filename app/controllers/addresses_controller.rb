@@ -9,8 +9,7 @@ class AddressesController < ApplicationController
     redirect_to("/users/sign_in") unless user_signed_in?
     
     address = Address.new
-    address.user_id = current_user.id
-    address.to = params["address"]["to"]
+    address.address_id = params["address"]["id"]
     address.default = current_user.addresses.count.zero?
     address.save!
 
@@ -29,11 +28,4 @@ class AddressesController < ApplicationController
     redirect_to("/") unless @address.user_id.to_i == params[:user_id].to_i
   end
 
-  #def new
-  #  redirect_to("/users/sign_in") unless user_signed_in?
-
-  #  @address = User.find_by_id(current_user.id)
-  #  @user.addresses.create
-  #  redirect_to :controller => 'addresses', :action => 'index'
-  #end
 end

@@ -1,4 +1,41 @@
-<p>this is the aliases page.
-<p>number of aliases: <%= @aliases %>
+<div class="table">
+  <table class="pure-table">
+    <thead>
+      <tr>
+        <th>Alias</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
 
+    <% if @addresses.nil? %>
+      <tbody>
+        <td colspan="2">You have no aliases yet.</td>
+      </tbody>
+    <% end %>
 
+    <% @aliases.each do |a| %>
+      <tbody>
+        <tr>
+          <td><%= a.to %></td>
+          <td><%=  @addresses.select{|add| add.id == a.address_id}.first.to %></td>
+          <td style="white-space:nowrap">
+            <%= button_to "Edit",     edit_aliases_path, :method => :get, :class => "pure-button" %>
+            <%= button_to "Delete",   edit_aliases_path, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+            <%= button_to "Enable",   "/blah", :class => "pure-button" %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+
+<div class="pure-form">
+  <%= form_for @alias, url: {action: "create"} do |f| %>
+    <fieldset>
+      <legend>Create A New Alias</legend>
+      <%= collection_select("address", "to", @addresses, :id, :to) %>
+      <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
+    </fieldset>
+  <% end %>
+</div>

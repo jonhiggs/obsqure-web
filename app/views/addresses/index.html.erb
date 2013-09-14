@@ -22,8 +22,8 @@
               <%= a.aliases.count %>
             </td>
             <td>
-              <%= button_to "Edit",   user_address_path(current_user.id,a.id), :method => :get, :class => "pure-button" %>
-              <%= button_to "Delete",   user_address_path(current_user.id,a.id), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+              <%= button_to "Edit",   addresses_path(current_user.id,a.id), :method => :get, :class => "pure-button" %>
+              <%= button_to "Delete", addresses_path(current_user.id,a.id), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
             </td>
           </tr>
         </tbody>
