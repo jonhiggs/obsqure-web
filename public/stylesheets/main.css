@@ -28,6 +28,7 @@ h3 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    display: inline;
 }
 
 /* Firefox: Get rid of the inner focus border */

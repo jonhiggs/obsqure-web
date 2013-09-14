@@ -1,0 +1,22 @@
+form.button_to {
+    margin:0;
+    padding:0;
+    display:inline;
+}
+
+form.button_to div, form.button_to div input {
+    display:inline;
+}
+
+.inline div {
+  display:inline;
+}
+
+.content {
+  margin-top: 100px;
+  margin: 50px;
+}
+
+.content table {
+  margin-bottom: 5px;
+}
