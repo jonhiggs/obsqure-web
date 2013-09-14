@@ -3,7 +3,7 @@ class AliasesController < ApplicationController
     redirect_to("/users/sign_in") unless user_signed_in?
     user = User.find_by_id(current_user.id)
     @alias = Alias.new
-    @aliases = user.aliases.sort_by{|a| a.description}
+    @aliases = user.aliases.sort_by{|a| a.name}
     @addresses = user.addresses
   end
 
@@ -29,7 +29,7 @@ class AliasesController < ApplicationController
 
     @alias = Alias.new
     @address = Address.find_by_id(params["address"]["to"])
-    @alias.description = params["alias"]["description"]
+    @alias.name = params["alias"]["name"]
     @alias.address_id = @address.id
     @alias.save!
 

@@ -19,6 +19,9 @@ class AddressesController < ApplicationController
 
   def destroy
     redirect_to("/users/sign_in") unless user_signed_in?
+    redirect_to("/addresses") unless 
+
+    raise "cannot delete addresses that still have aliases" unless Alias.find_by_address_id(params[:id]).nil?
 
     Address.destroy(params[:id])
     redirect_to :controller => 'addresses', :action => 'index'
@@ -34,6 +37,9 @@ class AddressesController < ApplicationController
   def show
     @address = Address.find_by_id(params[:id])
     redirect_to("/") unless @address.user_id.to_i == params[:user_id].to_i
+  end
+
+  def edit
   end
 
 end

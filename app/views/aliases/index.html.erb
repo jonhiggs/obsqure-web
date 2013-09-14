@@ -7,8 +7,8 @@
       <fieldset>
         <legend>Create A New Alias</legend>
         <%= collection_select("address", "to", @addresses.select{|a| a if a.verified?}, :id, :to) %>
-        <%= f.label :description %>
-        <%= f.text_field :description %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
         <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
       </fieldset>
     <% end %>
@@ -36,7 +36,7 @@
         <% @aliases.each do |a| %>
           <tbody>
             <tr>
-              <td><%= a.description %></td>
+              <td><%= a.name %></td>
               <td><%= a.to %></td>
               <td><%= @addresses.select{|add| add.id == a.address_id}.first.to %></td>
               <td style="white-space:nowrap">

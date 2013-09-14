@@ -1,6 +1,7 @@
 class Alias < ActiveRecord::Base
   belongs_to :user
   before_save :save_defaults
+  validates :name, :presence => true
 
   def save_defaults
     self.to ||= generate_address

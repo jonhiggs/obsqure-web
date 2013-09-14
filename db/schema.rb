@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20130914093240) do
   create_table "aliases", force: true do |t|
     t.integer  "address_id"
     t.string   "to"
-    t.string   "description", null: false
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
