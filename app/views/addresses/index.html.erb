@@ -1,6 +1,4 @@
 <h1>Addresses</h1>
-<% unless @addresses.empty? %>
-
 <div class="pure-form">
   <%= form_for @address, url: {action: "create"} do |f| %>
     <fieldset>
@@ -11,6 +9,7 @@
   <% end %>
 </div>
 
+<% unless @addresses.empty? %>
   # TODO: add a title here
   <div class="table">
     <table class="pure-table">
