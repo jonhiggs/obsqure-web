@@ -1,2 +1,30 @@
-this is where you can edit an alias.
+<pre>
+  <%= params.inspect %>
+  <%= @alias.inspect %>
+</pre>
+
+<ul>
+  <li><%= @alias.address %>
+  <li><%= @alias.redirect_to %>
+</ul>
+
+<div class="pure-form pure-form-aligned">
+  <%= form_for @alias, url: {action: "edit"} do |f| %>
+    <div class="pure-control-group">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+
+    <div class="pure-control-group">
+      <%= f.label :redirect_to %>
+      <%= f.text_field :redirect_to %>
+    </div>
+
+    <div class="pure-controls inline">
+      <%= f.submit "Edit", :class => "pure-button pure-button-primary" %>
+  <% end %>
+      <%= button_to "Cancel", { :controller => "users" }, :class => "pure-button" %>
+    </div>
+</div>
+
 <p><%= link_to "Back", "/users/" %></p>
