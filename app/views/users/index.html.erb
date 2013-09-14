@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Aliases</th>
+      <th>Redirect To</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -15,8 +16,13 @@
   <% @aliases.each do |a| %>
     <tbody>
       <tr>
-        <td><%= link_to a.address,  edit_user_alias_path(current_user.id,a.id) %></td>
-        <td><%= button_to "Delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %></td>
+        <td><%= a.address %></td>
+        <td>someone@somewhere.com
+        <td style="white-space:nowrap">
+          <%= button_to "Edit",     edit_user_alias_path(current_user.id,a.id), :method => :get, :class => "pure-button" %>
+          <%= button_to "Delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+          <%= button_to "Enable",   "/blah", :class => "pure-button" %>
+        </td>
       </tr>
     </tbody>
   <% end %>
