@@ -35,8 +35,11 @@
               <% unless a.verified? %>
                 <%= button_to "Verify", { :controller => "addresses", :action => "verify", :address_id => a.id}, :method => :post, :class => "pure-button" %>
               <% end %>
-              <% if a.aliases.count.zero? %>
+              <% if a.aliases.count.zero? && !a.default? %>
                 <%= button_to "Delete", { :controller => "addresses", :action => "destroy", :id => a.id}, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+              <% end %>
+              <% unless a.default? %>
+                <%= button_to "Make Default", { :controller => "addresses", :action => "default", :address_id => a.id}, :method => :post, :class => "pure-button" %>
               <% end %>
             </td>
           </tr>

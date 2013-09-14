@@ -11,6 +11,7 @@ Obsqure::Application.routes.draw do
   resources :addresses do
     root 'addresses#index'
     post 'verify', to: 'addresses#verify', as: :verify
+    post 'default', to: 'addresses#default', as: :default
   end
 
   resource :aliases do
