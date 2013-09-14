@@ -1,5 +1,17 @@
 <h1>Addresses</h1>
 <% unless @addresses.empty? %>
+
+<div class="pure-form">
+  <%= form_for @address, url: {action: "create"} do |f| %>
+    <fieldset>
+      <legend>Add a new email address</legend>
+      <%= f.text_field :to, :placeholder => "Address" %>
+      <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
+    </fieldset>
+  <% end %>
+</div>
+
+  # TODO: add a title here
   <div class="table">
     <table class="pure-table">
       <thead>
@@ -13,10 +25,8 @@
       <% @addresses.each do |a| %>
         <tbody>
           <tr>
-            <td>
-              <% if a.default %><b><% end %>
+            <td class="<%= "not_verified" unless a.verified %> <%= "default" if a.default? %>">
               <%= a.to %>
-              <% if a.default %></b><% end %>
             </td>
             <td>
               <%= a.aliases.count %>
@@ -32,12 +42,3 @@
   </div>
 <% end %>
 
-<div class="pure-form">
-  <%= form_for @address, url: {action: "create"} do |f| %>
-    <fieldset>
-      <legend>Add a new email address</legend>
-      <%= f.text_field :to, :placeholder => "Address" %>
-      <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
-    </fieldset>
-  <% end %>
-</div>

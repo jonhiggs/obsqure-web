@@ -37,3 +37,11 @@ form.button_to div, form.button_to div input {
 .pure-button-xlarge {
   font-size: 125%;
 }
+
+.default {
+  font-weight: 600;
+}
+
+.not_verified {
+  color: #E50009;
+}

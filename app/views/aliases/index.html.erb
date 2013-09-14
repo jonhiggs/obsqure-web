@@ -2,6 +2,18 @@
 <% if @addresses.select{|a| a.verified?}.count.zero? %>
   You must verify an account before an alias can be created.
 <% else %>
+  <div class="pure-form">
+    <%= form_for @alias, url: {action: "create"} do |f| %>
+      <fieldset>
+        <legend>Create A New Alias</legend>
+        <%= collection_select("address", "to", @addresses.select{|a| a if a.verified?}, :id, :to) %>
+        <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
+      </fieldset>
+    <% end %>
+  </div>
+
+  # TODO: add a title here
+
   <div class="table">
     <table class="pure-table">
       <thead>
@@ -33,13 +45,4 @@
     </table>
   </div>
 
-  <div class="pure-form">
-    <%= form_for @alias, url: {action: "create"} do |f| %>
-      <fieldset>
-        <legend>Create A New Alias</legend>
-        <%= collection_select("address", "to", @addresses.select{|a| a if a.verified?}, :id, :to) %>
-        <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
-      </fieldset>
-    <% end %>
-  </div>
 <% end %>

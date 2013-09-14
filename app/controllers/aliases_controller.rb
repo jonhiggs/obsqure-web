@@ -27,7 +27,7 @@ class AliasesController < ApplicationController
     @alias.address_id = @address.id
     @alias.save!
 
-    redirect_to :controller => 'addresses', :action => 'index'
+    redirect_to :controller => 'aliases', :action => 'index'
   end
 
 
