@@ -9,7 +9,7 @@ class AliasesController < ApplicationController
 
   def edit
     @alias = Alias.find_by_id(params[:id])
-    redirect_to("/") unless current_user.id == params[:user_id].to_i
+    @address = Address.find_by_id(@alias.address_id)
   end
 
   def destroy

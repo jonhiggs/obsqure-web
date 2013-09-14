@@ -1,30 +1,13 @@
-<pre>
-  <%= params.inspect %>
-  <%= @alias.inspect %>
-</pre>
-
-<ul>
-  <li><%= @alias.address %>
-  <li><%= @alias.redirect_to %>
-</ul>
-
 <div class="pure-form pure-form-aligned">
   <%= form_for @alias, url: {action: "edit"} do |f| %>
     <div class="pure-control-group">
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </div>
-
-    <div class="pure-control-group">
-      <%= f.label :redirect_to %>
-      <%= f.text_field :redirect_to %>
+      <%= f.label :to %>
+      <%= f.text_field :to %>
     </div>
 
     <div class="pure-controls inline">
       <%= f.submit "Edit", :class => "pure-button pure-button-primary" %>
   <% end %>
-      <%= button_to "Cancel", { :controller => "users" }, :class => "pure-button" %>
+      <%= button_to "Cancel", { :controller => "aliases", :action => "index" }, :method => :get, :class => "pure-button" %>
     </div>
 </div>
-
-<p><%= link_to "Back", "/users/" %></p>
