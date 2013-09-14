@@ -14,9 +14,14 @@ class AliasesController < ApplicationController
 
   def destroy
     redirect_to("/users/sign_in") unless user_signed_in?
+    redirect_to("/aliases") unless 
+
+    @alias = Alias.find_by_id(params[:id])
+    owner = Address.find_by_id(@alias.address_id).user_id
+    redirect_to("/aliases") unless owner == current_user.id
 
     Alias.destroy(params[:id])
-    redirect_to :controller => 'users', :action => 'index'
+    redirect_to :controller => 'aliases', :action => 'index'
   end
 
   def create

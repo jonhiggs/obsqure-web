@@ -40,8 +40,8 @@
               <td><%= a.to %></td>
               <td><%= @addresses.select{|add| add.id == a.address_id}.first.to %></td>
               <td style="white-space:nowrap">
-                <%= button_to "Edit",     edit_aliases_path, :method => :get, :class => "pure-button" %>
-                <%= button_to "Delete",   edit_aliases_path, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+                <%= button_to "Edit",   { :controller => "aliases", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
+                <%= button_to "Delete", { :controller => "aliases", :action => "destroy", :id => a.id }, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
               </td>
             </tr>
           </tbody>
