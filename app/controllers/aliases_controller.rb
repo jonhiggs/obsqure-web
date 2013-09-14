@@ -5,6 +5,8 @@ class AliasesController < ApplicationController
   end
 
   def edit
+    @alias = Alias.find_by_id(params[:id])
+    redirect_to("/") unless @alias.user_id.to_i == params[:user_id].to_i
   end
 
   def destroy
