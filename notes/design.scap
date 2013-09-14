@@ -7,7 +7,7 @@
                 <TextColor>0.063 0.459 0.0</TextColor>
             </Appearance>
             <String>username</String>
-            <ConnectedNoteIDs>1, 3, 10, 13-15</ConnectedNoteIDs>
+            <ConnectedNoteIDs>1, 3, 10, 14-15, 24</ConnectedNoteIDs>
         </Note>
         <Note ID="1" FontSize="12.0" Position="486.902344,267.0" Width="60.0">
             <Appearance>
@@ -17,13 +17,13 @@
             <String>password</String>
             <ConnectedNoteIDs>0</ConnectedNoteIDs>
         </Note>
-        <Note ID="2" FontSize="12.0" Position="694.0,158.0" Width="37.0">
+        <Note ID="2" FontSize="12.0" Position="879.367188,156.03125" Width="37.0">
             <Appearance>
                 <Alignment>Left</Alignment>
                 <Border Weight="2" Style="Square"></Border>
             </Appearance>
             <String>Alias</String>
-            <ConnectedNoteIDs>4, 12-13, 16-17</ConnectedNoteIDs>
+            <ConnectedNoteIDs>12, 16, 26</ConnectedNoteIDs>
             <Formatting>
                 <FormatRange Bold="Yes">0,5</FormatRange>
             </Formatting>
@@ -39,13 +39,6 @@
             <Formatting>
                 <FormatRange Bold="Yes">0,4</FormatRange>
             </Formatting>
-        </Note>
-        <Note ID="4" FontSize="12.0" Position="691.957031,221.082031" Width="51.0">
-            <Appearance>
-                <Alignment>Left</Alignment>
-            </Appearance>
-            <String>address</String>
-            <ConnectedNoteIDs>2, 19</ConnectedNoteIDs>
         </Note>
         <Note ID="9" FontSize="12.0" Position="201.0,172.0" Width="53.0">
             <Appearance>
@@ -75,19 +68,12 @@
             <String>name</String>
             <ConnectedNoteIDs>9</ConnectedNoteIDs>
         </Note>
-        <Note ID="12" FontSize="12.0" Position="761.0,219.277344" Width="65.0">
+        <Note ID="12" FontSize="12.0" Position="801.851562,220.21875" Width="65.0">
             <Appearance>
                 <Alignment>Left</Alignment>
             </Appearance>
             <String>redirect_to</String>
-            <ConnectedNoteIDs>2, 20</ConnectedNoteIDs>
-        </Note>
-        <Note ID="13" FontSize="12.0" Position="628.0,218.960938" Width="41.0">
-            <Appearance>
-                <Alignment>Left</Alignment>
-            </Appearance>
-            <String>owner</String>
-            <ConnectedNoteIDs>0, 2</ConnectedNoteIDs>
+            <ConnectedNoteIDs>2, 25</ConnectedNoteIDs>
         </Note>
         <Note ID="14" FontSize="12.0" Position="350.789062,269.710938" Width="95.0">
             <Appearance>
@@ -105,19 +91,12 @@
             <String>account_type</String>
             <ConnectedNoteIDs>0</ConnectedNoteIDs>
         </Note>
-        <Note ID="16" FontSize="12.0" Position="637.207031,250.0" Width="67.0">
+        <Note ID="16" FontSize="12.0" Position="937.0,219.0" Width="67.0">
             <Appearance>
                 <Alignment>Left</Alignment>
                 <TextColor>1.0 0.0 0.0</TextColor>
             </Appearance>
             <String>description</String>
-            <ConnectedNoteIDs>2</ConnectedNoteIDs>
-        </Note>
-        <Note ID="17" FontSize="12.0" Position="740.445312,250.777344" Width="47.0">
-            <Appearance>
-                <Alignment>Left</Alignment>
-            </Appearance>
-            <String>verified</String>
             <ConnectedNoteIDs>2</ConnectedNoteIDs>
         </Note>
         <Note ID="18" FontSize="12.0" Position="678.296875,452.59375" Width="137.0">
@@ -131,19 +110,72 @@
                 <FormatRange Bold="Yes">0,23</FormatRange>
             </Formatting>
         </Note>
-        <Note ID="19" FontSize="12.0" Position="707.183594,373.960938" Width="27.0">
+        <Note ID="19" FontSize="12.0" Position="770.707031,373.261719" Width="27.0">
             <Appearance>
                 <Alignment>Left</Alignment>
             </Appearance>
             <String>key</String>
-            <ConnectedNoteIDs>4, 18</ConnectedNoteIDs>
+            <ConnectedNoteIDs>18, 26</ConnectedNoteIDs>
         </Note>
-        <Note ID="20" FontSize="12.0" Position="779.222656,375.035156" Width="37.0">
+        <Note ID="20" FontSize="12.0" Position="653.816406,372.777344" Width="37.0">
             <Appearance>
                 <Alignment>Left</Alignment>
             </Appearance>
             <String>value</String>
-            <ConnectedNoteIDs>12, 18</ConnectedNoteIDs>
+            <ConnectedNoteIDs>18, 23</ConnectedNoteIDs>
+        </Note>
+        <Note ID="21" FontSize="12.0" Position="622.222656,154.628906" Width="57.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2" Style="Square"></Border>
+            </Appearance>
+            <String>Address</String>
+            <ConnectedNoteIDs>22-25, 27</ConnectedNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,7</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="22" FontSize="12.0" Position="635.332031,214.558594" Width="54.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>verified</String>
+            <ConnectedNoteIDs>21</ConnectedNoteIDs>
+        </Note>
+        <Note ID="23" FontSize="12.0" Position="697.183594,216.886719" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>to</String>
+            <ConnectedNoteIDs>20-21</ConnectedNoteIDs>
+        </Note>
+        <Note ID="24" FontSize="12.0" Position="566.8125,215.296875" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>owner</String>
+            <ConnectedNoteIDs>0, 21</ConnectedNoteIDs>
+        </Note>
+        <Note ID="25" FontSize="12.0" Position="737.925781,218.445312" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>id</String>
+            <ConnectedNoteIDs>12, 21</ConnectedNoteIDs>
+        </Note>
+        <Note ID="26" FontSize="12.0" Position="881.484375,217.332031" Width="39.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>name</String>
+            <ConnectedNoteIDs>2, 19</ConnectedNoteIDs>
+        </Note>
+        <Note ID="27" FontSize="12.0" Position="597.515625,239.964844" Width="45.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>default</String>
+            <ConnectedNoteIDs>21</ConnectedNoteIDs>
         </Note>
     </Notes>
     <BackgroundShapes></BackgroundShapes>
