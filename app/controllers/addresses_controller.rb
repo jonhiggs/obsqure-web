@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
-    @addresses = Address.find(:all, "user_id")
+    @addresses = Address.find_all_by_user_id(current_user.id)
     @address = Address.new
   end
 
