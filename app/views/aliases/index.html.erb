@@ -14,39 +14,40 @@
     <% end %>
   </div>
 
-  # TODO: add a title here
-
-  <div class="table">
-    <table class="pure-table">
-      <thead>
-        <tr>
-          <th>Alias</th>
-          <th>Address</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
-      <% if @addresses.nil? %>
-        <tbody>
-          <td colspan="2">You have no aliases yet.</td>
-        </tbody>
-      <% end %>
-
-      <% @aliases.each do |a| %>
-        <tbody>
+  <% unless @aliases.count.zero? %>
+    # TODO: add a title here
+    <div class="table">
+      <table class="pure-table">
+        <thead>
           <tr>
-            <td><%= a.to %></td>
-            <td><%= @addresses.select{|add| add.id == a.address_id}.first.to %></td>
-            <td><%= a.description %></td>
-            <td style="white-space:nowrap">
-              <%= button_to "Edit",     edit_aliases_path, :method => :get, :class => "pure-button" %>
-              <%= button_to "Delete",   edit_aliases_path, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
-            </td>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Address</th>
+            <th>Actions</th>
           </tr>
-        </tbody>
-      <% end %>
-    </table>
-  </div>
+        </thead>
+
+        <% if @addresses.nil? %>
+          <tbody>
+            <td colspan="2">You have no aliases yet.</td>
+          </tbody>
+        <% end %>
+
+        <% @aliases.each do |a| %>
+          <tbody>
+            <tr>
+              <td><%= a.description %></td>
+              <td><%= a.to %></td>
+              <td><%= @addresses.select{|add| add.id == a.address_id}.first.to %></td>
+              <td style="white-space:nowrap">
+                <%= button_to "Edit",     edit_aliases_path, :method => :get, :class => "pure-button" %>
+                <%= button_to "Delete",   edit_aliases_path, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
 
 <% end %>
