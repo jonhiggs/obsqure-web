@@ -7,6 +7,8 @@
       <fieldset>
         <legend>Create A New Alias</legend>
         <%= collection_select("address", "to", @addresses.select{|a| a if a.verified?}, :id, :to) %>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
         <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
       </fieldset>
     <% end %>
@@ -20,6 +22,7 @@
         <tr>
           <th>Alias</th>
           <th>Address</th>
+          <th>Description</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -34,7 +37,8 @@
         <tbody>
           <tr>
             <td><%= a.to %></td>
-            <td><%=  @addresses.select{|add| add.id == a.address_id}.first.to %></td>
+            <td><%= @addresses.select{|add| add.id == a.address_id}.first.to %></td>
+            <td><%= a.description %></td>
             <td style="white-space:nowrap">
               <%= button_to "Edit",     edit_aliases_path, :method => :get, :class => "pure-button" %>
               <%= button_to "Delete",   edit_aliases_path, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>

@@ -24,6 +24,7 @@ class AliasesController < ApplicationController
 
     @alias = Alias.new
     @address = Address.find_by_id(params["address"]["to"])
+    @alias.description = params["alias"]["description"]
     @alias.address_id = @address.id
     @alias.save!
 
