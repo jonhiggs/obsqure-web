@@ -4,6 +4,14 @@ body {
     background-color: #ffffff;
 }
 
+h3 {
+  color: #535D63;
+}
+
+.action_box {
+  margin: 10px;
+}
+
 /* from PURE buttons-core.css */
 .pure-skin-mine .pure-button {
     /* Structure */

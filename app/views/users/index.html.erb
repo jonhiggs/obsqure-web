@@ -1,17 +1,27 @@
-<%= link_to "Create New Alias",
-      :user_id => current_user.id,
-      :controller => "aliases",
-      :action => "new"
-%>
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Aliases</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
 
-<% if @aliases.empty? %>
-  <p>You have no aliases yet.</p>
-<% end %>
+  <% if @aliases.empty? %>
+    <tbody>
+      <td colspan="2">You have no aliases yet.</td>
+    </tbody>
+  <% end %>
 
-<p>
-<% @aliases.each do |a| %>
-  <%= link_to a.address,  edit_user_alias_path(current_user.id,a.id) %>
-  <%= link_to "Delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-  <br />
-<% end %>
-</p>
+  <% @aliases.each do |a| %>
+    <tbody>
+      <tr>
+        <td><%= link_to a.address,  edit_user_alias_path(current_user.id,a.id) %></td>
+        <td><%= button_to "Delete",   user_alias_path(current_user.id,a), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<div class="action_box">
+  <%= button_to "Create New Alias", {:user_id => current_user.id, :controller => "aliases", :action => "new"}, :method => :get, :class => "pure-button pure-button-primary" %>
+</div>
