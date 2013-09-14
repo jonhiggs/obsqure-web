@@ -1,0 +1,39 @@
+class AddressesController < ApplicationController
+  def index
+    redirect_to("/users/sign_in") unless user_signed_in?
+    @addresses = Address.find(:all, "user_id")
+    @address = Address.new
+  end
+
+  def create
+    redirect_to("/users/sign_in") unless user_signed_in?
+    
+    address = Address.new
+    address.user_id = current_user.id
+    address.to = params["address"]["to"]
+    address.default = current_user.addresses.count.zero?
+    address.save!
+
+    redirect_to :controller => 'addresses', :action => 'index'
+  end
+
+  def destroy
+    redirect_to("/users/sign_in") unless user_signed_in?
+
+    Address.destroy(params[:id])
+    redirect_to :controller => 'addresses', :action => 'index'
+  end
+
+  def show
+    @address = Address.find_by_id(params[:id])
+    redirect_to("/") unless @address.user_id.to_i == params[:user_id].to_i
+  end
+
+  #def new
+  #  redirect_to("/users/sign_in") unless user_signed_in?
+
+  #  @address = User.find_by_id(current_user.id)
+  #  @user.addresses.create
+  #  redirect_to :controller => 'addresses', :action => 'index'
+  #end
+end

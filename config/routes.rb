@@ -5,8 +5,12 @@ Obsqure::Application.routes.draw do
   resources :users do
     root 'users#index'
     resources :aliases
+    resources :addresses
   end
 
   resources :faq
 
+  resources :addresses do
+    root 'addresses#index'
+  end
 end

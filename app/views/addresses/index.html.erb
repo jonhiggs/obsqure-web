@@ -1,0 +1,43 @@
+<h1>Your Addresses</h1>
+<% unless @addresses.empty? %>
+  <div class="table">
+    <table class="pure-table">
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Aliases</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <% @addresses.each do |a| %>
+        <tbody>
+          <tr>
+            <td>
+              <% if a.default %><b><% end %>
+              <%= a.to %>
+              <% if a.default %></b><% end %>
+            </td>
+            <td>
+              <%= a.aliases.count %>
+            </td>
+            <td>
+              <%= button_to "Edit",   user_address_path(current_user.id,a.id), :method => :get, :class => "pure-button" %>
+              <%= button_to "Delete",   user_address_path(current_user.id,a.id), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+
+<div class="pure-form">
+  <%= form_for @address, url: {action: "create"} do |f| %>
+    <fieldset>
+      <legend>Add a new email address</legend>
+      <%= f.text_field :to, :placeholder => "Address" %>
+      <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
+    </fieldset>
+  <% end %>
+</div>
