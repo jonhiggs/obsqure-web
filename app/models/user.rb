@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :aliases, through: :addresses
 
   def default_address
-    self.addresses.default(self.id).first
+    self.has_default_address? ? self.addresses.default(self.id).first : nil
   end
 
   def has_default_address?

@@ -6,7 +6,11 @@ class AliasesController < ApplicationController
     @aliases = user.aliases.sort_by{|a| a.name}
 
     @addresses = user.addresses.verified(current_user)
-    @default_address = user.default_address.id
+    if user.has_default_address?
+      @default_address = user.default_address.id
+    else
+      @default_address = nil
+    end
   end
 
   def edit
