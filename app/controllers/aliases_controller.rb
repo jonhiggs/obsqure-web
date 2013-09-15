@@ -34,19 +34,16 @@ class AliasesController < ApplicationController
   end
 
   def create
-    redirect_to("/users/sign_in") unless user_signed_in?
-
-    @alias = Alias.new
-    @address = Address.find_by_id(params["address"]["to"])
-    @alias.name = params["alias"]["name"]
-    @alias.address_id = @address.id
-    @alias.save!
-
-    flash[:notice] = "Created alias '#{@alias.to}'"
-
-    redirect_to :controller => 'aliases', :action => 'index'
+    if params["alias"]["name"].empty?
+      flash[:error] = "You must provide a name for your alias."
+      redirect_to :controller => 'aliases'
+    else
+      address_id = params["address"]["to"]
+      name = params["alias"]["name"]
+      flash[:notice] = "Created Alias #{self.save_alias(address_id,name)}"
+      redirect_to :controller => 'aliases', :action => 'index'
+    end
   end
-
 
   def resource_name
     :user
@@ -58,5 +55,15 @@ class AliasesController < ApplicationController
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+
+protected
+  def save_alias(address_id,alias_name)
+    @address = Address.find_by_id(address_id)
+    @alias = Alias.new
+    @alias.name = alias_name
+    @alias.address_id = @address.id
+    @alias.save!
+    @alias.to
   end
 end
