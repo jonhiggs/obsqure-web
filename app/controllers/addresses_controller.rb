@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
-    @addresses = Address.find_all_by_user_id(current_user.id).sort_by{|a| a.to}
+    @addresses = User.find_by_id(current_user.id).addresses.verified
     @address = Address.new
   end
 
@@ -46,16 +46,7 @@ class AddressesController < ApplicationController
   end
 
   def default
-    # TODO: make this less shit.
-    Address.find_all_by_user_id(current_user.id).map do |a|
-      a.default = false
-      a.save
-    end
-
-    new_default = Address.find_by_id(params[:address_id])
-    new_default.default = true
-    new_default.save
-    
+    User.find_by_id(current_user.id).default_address=params[:address_id]
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
