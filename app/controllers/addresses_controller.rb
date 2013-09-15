@@ -41,6 +41,19 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find_by_id(params[:id])
+  end
+
+  def update
+    address = Address.find_by_id(params[:id])
+    address.to = params[:address][:to]
+    if address.save
+      flash[:info] = "Address was updated."
+    else
+      flash[:error] = "Couldn't update the address."
+    end
+
+    redirect_to :controller => 'addresses'
   end
 
   def default
