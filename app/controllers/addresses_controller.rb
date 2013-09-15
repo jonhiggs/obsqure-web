@@ -7,7 +7,6 @@ class AddressesController < ApplicationController
 
   def create
     redirect_to("/users/sign_in") unless user_signed_in?
-    
     address = Address.new
     address.user_id = current_user.id
     address.to = params["address"]["to"]

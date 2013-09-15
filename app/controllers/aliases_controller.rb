@@ -26,7 +26,10 @@ class AliasesController < ApplicationController
     owner = Address.find_by_id(@alias.address_id).user_id
     redirect_to("/aliases") unless owner == current_user.id
 
+    flash[:notice] = "Deleted alias '#{@alias.to}'"
+
     Alias.destroy(params[:id])
+
     redirect_to :controller => 'aliases', :action => 'index'
   end
 
@@ -38,6 +41,8 @@ class AliasesController < ApplicationController
     @alias.name = params["alias"]["name"]
     @alias.address_id = @address.id
     @alias.save!
+
+    flash[:notice] = "Created alias '#{@alias.to}'"
 
     redirect_to :controller => 'aliases', :action => 'index'
   end
