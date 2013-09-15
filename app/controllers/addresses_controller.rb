@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
-    @addresses = User.find_by_id(current_user.id).addresses.verified
+    @addresses = User.find_by_id(current_user.id).addresses
     @address = Address.new
   end
 
