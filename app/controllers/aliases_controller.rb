@@ -4,7 +4,11 @@ class AliasesController < ApplicationController
     user = User.find_by_id(current_user.id)
     @alias = Alias.new
     @aliases = user.aliases.sort_by{|a| a.name}
-    @addresses = user.addresses
+
+    @addresses = user.addresses.sort_by{|a| a.to}
+    default_address = @addresses.select{|a| !!a.default? }
+    @addresses.delete(default_address)
+    @addresses.unshift(default_address).flatten!.uniq!
   end
 
   def edit
