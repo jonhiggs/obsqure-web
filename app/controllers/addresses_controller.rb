@@ -11,7 +11,7 @@ class AddressesController < ApplicationController
     address = Address.new
     address.user_id = current_user.id
     address.to = params["address"]["to"]
-    address.default = current_user.addresses.count.zero?
+    address.default = !User.find_by_id(current_user).has_default_address?
     address.save!
 
     redirect_to :controller => 'addresses', :action => 'index'
@@ -24,7 +24,6 @@ class AddressesController < ApplicationController
     address = Address.find_by_id(params[:id])
 
     raise "cannot delete addresses that still have aliases" unless Alias.find_by_address_id(params[:id]).nil?
-    raise "cannot delete the default address" if address.default?
 
     address.destroy
     redirect_to :controller => 'addresses', :action => 'index'

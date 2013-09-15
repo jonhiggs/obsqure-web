@@ -3,6 +3,18 @@ class Address < ActiveRecord::Base
   has_many :aliases
   validates :to, :presence => true, :email => true
 
-  scope :verified, :conditions => { :verified => true }
-  scope :default, :conditions => { :default => true }
+  scope :default, lambda {|user_id| { 
+    :conditions => {
+      :user_id => user_id,
+      :default => true
+    }
+  }} 
+
+  scope :verified, lambda {|user_id| { 
+    :conditions => {
+      :user_id => user_id,
+      :verified => true
+    }
+  }} 
+
 end

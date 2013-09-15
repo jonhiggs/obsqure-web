@@ -5,10 +5,8 @@ class AliasesController < ApplicationController
     @alias = Alias.new
     @aliases = user.aliases.sort_by{|a| a.name}
 
-    @addresses = user.addresses.sort_by{|a| a.to}
-    default_address = @addresses.select{|a| !!a.default? }
-    @addresses.delete(default_address)
-    @addresses.unshift(default_address).flatten!.uniq!
+    @addresses = user.addresses.verified(current_user)
+    @default_address = user.default_address.id
   end
 
   def edit
