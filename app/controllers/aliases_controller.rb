@@ -15,7 +15,8 @@ class AliasesController < ApplicationController
 
   def edit
     @alias = Alias.find_by_id(params[:id])
-    @address = Address.find_by_id(@alias.address_id)
+    user = User.find_by_id(current_user.id)
+    @addresses = user.addresses.verified(current_user)
   end
 
   def destroy
@@ -43,6 +44,19 @@ class AliasesController < ApplicationController
       flash[:notice] = "Created Alias #{self.save_alias(address_id,name)}"
       redirect_to :controller => 'aliases', :action => 'index'
     end
+  end
+
+  def update
+    a = Alias.find_by_id(params[:alias][:id])
+    a.address_id = params[:address][:to]
+    a.name = params[:alias][:name]
+    if a.save
+      flash[:info] = "Address was updated."
+    else
+      flash[:error] = "Couldn't update the address."
+    end
+
+    redirect_to :controller => 'aliases'
   end
 
   def resource_name

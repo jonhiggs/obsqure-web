@@ -1,8 +1,16 @@
 <div class="pure-form pure-form-aligned">
-  <%= form_for @alias, url: {action: "edit"} do |f| %>
+  <%= form_for @alias, url: {action: "update"} do |f| %>
+    <%= f.label :id %>
+    <%= f.hidden_field :id %>
+
     <div class="pure-control-group">
-      <%= f.label :to %>
-      <%= f.text_field :to %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="pure-control-group">
+      <%= f.label :address %>
+      <%= collection_select("address", "to", @addresses, :id, :to, {:selected => @alias.address_id } ) %>
     </div>
 
     <div class="pure-controls inline">
