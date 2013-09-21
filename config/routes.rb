@@ -2,6 +2,8 @@ Obsqure::Application.routes.draw do
   devise_for :users
   root to: 'welcome#index'
 
+  get 'account', to: 'users#account'
+
   # verification
   get 'verify', to: 'addresses#verify'
   get 'not_verified', to: 'addresses#not_verified'

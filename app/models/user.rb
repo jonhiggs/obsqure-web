@@ -45,12 +45,28 @@ class User < ActiveRecord::Base
     result
   end
 
+  def maximum_addresses
+    self.account_type == 0 ? "1" : "∞"
+  end
+
+  def maximum_aliases
+    self.account_type == 0 ? "5" : "∞"
+  end
+
+  def used_addresses
+    self.addresses.count
+  end
+
+  def used_aliases
+    self.aliases.count
+  end
+
   def has_maximum_addresses?
-    self.account_type == 0 && self.addresses.count >= 1
+    self.used_addresses.to_s >= self.maximum_addresses
   end
 
   def has_maximum_aliases?
-    self.account_type == 0 && self.aliases.count >= 5
+    self.used_aliases.to_s >= self.maximum_aliases
   end
 
   #  @addresses = user.addresses.verified(current_user)
