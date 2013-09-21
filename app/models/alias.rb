@@ -1,7 +1,7 @@
 class Alias < ActiveRecord::Base
   belongs_to :user
   validates :name, :presence => true
-  before_save :save_defaults
+  before_save :generate_address
   after_create :save_postfix_alias
   after_destroy :destroy_postfix_alias
 
@@ -10,10 +10,6 @@ class Alias < ActiveRecord::Base
   end
 
 protected
-  def save_defaults
-    self.to ||= generate_address
-  end
-
   def save_postfix_alias
     postfix_alias = PostfixAlias.new()
     postfix_alias.from = self.to
@@ -27,7 +23,8 @@ protected
 
 private
   def generate_address
-    address = nil
+    return true unless self.address.nil?
+
     attempt = 0
     while Alias.find_by_to(address) || address.nil?
       attempt += 1

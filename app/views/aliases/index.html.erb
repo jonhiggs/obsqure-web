@@ -37,7 +37,7 @@
           </tbody>
         <% end %>
 
-        <% @user.aliases.each do |a| %>
+        <% @user.aliases_sorted.each do |a| %>
           <tbody>
             <tr>
               <td><%= a.name %></td>

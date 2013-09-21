@@ -13,7 +13,6 @@ class AddressesController < ApplicationController
     address.to = params["address"]["to"]
     address.default = !current_user.has_default_address?
     address.save!
-
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
@@ -27,10 +26,23 @@ class AddressesController < ApplicationController
   end
 
   def verify
-    address = Address.find_by_id(params[:address_id])
-    address.verified = true
-    address.save
-    redirect_to :controller => 'addresses', :action => 'index'
+    token = params[:token]
+    address = Address.find_by_token(token)
+
+    if address.nil?
+      redirect_to :controller => 'addresses', :action => 'not_verified'
+    elsif address.verified
+      flash[:info] = "Your address '#{address.to}' was already verified"
+      redirect_to :controller => 'addresses', :action => 'index'
+    else
+      address.verified = true
+      address.save
+      flash[:info] = "Your address '#{address.to}' is now verified"
+      redirect_to :controller => 'addresses', :action => 'index'
+    end
+  end
+
+  def not_verified
   end
 
   def show
@@ -45,6 +57,7 @@ class AddressesController < ApplicationController
   def update
     address = Address.find_by_id(params[:id])
     address.to = params[:address][:to]
+    address.verified = false
     if address.save
       flash[:info] = "Address was updated."
     else

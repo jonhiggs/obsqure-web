@@ -2,6 +2,10 @@ Obsqure::Application.routes.draw do
   devise_for :users
   root to: 'welcome#index'
 
+  # verification
+  get 'verify', to: 'addresses#verify'
+  get 'not_verified', to: 'addresses#not_verified'
+
   resources :users do
     root 'users#index'
   end
@@ -10,7 +14,6 @@ Obsqure::Application.routes.draw do
 
   resources :addresses do
     root 'addresses#index'
-    post 'verify', to: 'addresses#verify', as: :verify
     post 'default', to: 'addresses#default', as: :default
   end
 

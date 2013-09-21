@@ -18,11 +18,13 @@ ActiveRecord::Schema.define(version: 20130921082441) do
     t.boolean  "default",    default: false
     t.boolean  "verified",   default: false
     t.string   "to"
+    t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "addresses", ["to"], name: "index_addresses_on_to", unique: true
+  add_index "addresses", ["token"], name: "index_addresses_on_token"
 
   create_table "aliases", force: true do |t|
     t.integer  "address_id"

@@ -3,6 +3,7 @@ class Address < ActiveRecord::Base
   has_many :aliases
   validates :to, :presence => true, :email => true
   before_destroy :check_for_aliases
+  after_create :generate_token
 
   def check_for_aliases
     if !aliases.count.zero?
@@ -11,18 +12,11 @@ class Address < ActiveRecord::Base
     end
   end
 
-#  scope :default, lambda {|user_id| { 
-#    :conditions => {
-#      :user_id => user_id,
-#      :default => true
-#    }
-#  }} 
-#
-#  scope :verified, lambda {|user_id| { 
-#    :conditions => {
-#      :user_id => user_id,
-#      :verified => true
-#    }
-#  }} 
+  def generate_token
+    self.verified = false
+    chars = (0..9).to_a + ("A".."Z").to_a + ("a".."z").to_a
+    self.token = 32.times.map{ (chars[rand(chars.size)].to_s) }.join
+    self.save
+  end
 
 end
