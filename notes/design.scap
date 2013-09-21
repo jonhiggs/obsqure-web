@@ -56,12 +56,12 @@
             <String>account_type</String>
             <ConnectedNoteIDs>3</ConnectedNoteIDs>
         </Note>
-        <Note ID="16" FontSize="12.0" Position="937.0,242.632812" Width="67.0">
+        <Note ID="16" FontSize="12.0" Position="937.0,243.0" Width="39.0">
             <Appearance>
                 <Alignment>Left</Alignment>
                 <TextColor>1.0 0.0 0.0</TextColor>
             </Appearance>
-            <String>description</String>
+            <String>name</String>
             <ConnectedNoteIDs>2</ConnectedNoteIDs>
         </Note>
         <Note ID="18" FontSize="12.0" Position="712.039062,492.964844" Width="137.0">
