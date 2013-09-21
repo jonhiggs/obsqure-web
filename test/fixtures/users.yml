@@ -1,9 +1,4 @@
-user1:
+one:
   id: 1
   email: addr1@domain.com
-  encrypted_password: xxx
-
-user_with_fake_email:
-  id: 2
-  email: fake
   encrypted_password: xxx
