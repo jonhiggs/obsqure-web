@@ -1,16 +1,8 @@
 class AliasesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
-    user = User.find_by_id(current_user.id)
+    @user = User.find_by_id(current_user.id)
     @alias = Alias.new
-    @aliases = user.aliases.sort_by{|a| a.name}
-
-    @addresses = user.addresses.verified(current_user)
-    if user.has_default_address?
-      @default_address = user.default_address.id
-    else
-      @default_address = nil
-    end
   end
 
   def edit

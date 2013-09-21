@@ -1,12 +1,12 @@
 <h1>Aliases</h1>
-<% if @addresses.select{|a| a.verified?}.count.zero? %>
+<% if @user.has_verified_address? %>
   You must verify an account before an alias can be created.
 <% else %>
   <div class="pure-form">
     <%= form_for @alias, url: {action: "create"} do |f| %>
       <fieldset>
         <legend>Create A New Alias</legend>
-        <%= collection_select("address", "to", @addresses, :id, :to, {:selected => @default_address } ) %>
+        <%= collection_select("address", "to", @user.addresses, :id, :to, {:selected => @user.default_address } ) %>
         <%= f.label :name %>
         <%= f.text_field :name %>
         <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
@@ -14,7 +14,7 @@
     <% end %>
   </div>
 
-  <% unless @aliases.count.zero? %>
+  <% unless @user.has_aliases? %>
     # TODO: add a title here
     <div class="table">
       <table class="pure-table">
@@ -27,18 +27,18 @@
           </tr>
         </thead>
 
-        <% if @addresses.nil? %>
+        <% if @user.addresses.nil? %>
           <tbody>
             <td colspan="2">You have no aliases yet.</td>
           </tbody>
         <% end %>
 
-        <% @aliases.each do |a| %>
+        <% @user.aliases.each do |a| %>
           <tbody>
             <tr>
               <td><%= a.name %></td>
               <td><%= a.to %></td>
-              <td><%= @addresses.select{|add| add.id == a.address_id}.first.to %></td>
+              <td><%= @user.addresses.select{|add| add.id == a.address_id}.first.to %></td>
               <td style="white-space:nowrap">
                 <%= button_to "Edit",   { :controller => "aliases", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
                 <%= button_to "Delete", { :controller => "aliases", :action => "destroy", :id => a.id }, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>

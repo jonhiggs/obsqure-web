@@ -11,15 +11,38 @@ class User < ActiveRecord::Base
   end
 
   def has_default_address?
-    !self.addresses.default(self.id).empty?
+    self.default_address.empty?
   end
 
-  def default_address=(id)
-    self.unset_default_address(id) if self.has_default_address?
-    address = Address.find_by_id(id)
-    address.default=true
-    address.save
+  def has_verified_address?
+    self.verified_addresses.empty?
   end
+
+  def has_aliases?
+    self.aliases.empty?
+  end
+
+  def default_address
+    defaults = self.addresses.map{|a| a if a.default}
+    defaults.empty? ? nil : defaults.first
+  end
+
+  def aliases_sorted
+    self.aliases.sort_by{|a| a.name}
+  end
+
+  def verified_addresses
+    self.addresses.map{|a| a if a.verified}
+  end
+
+
+  #  @addresses = user.addresses.verified(current_user)
+  #  if user.has_default_address?
+  #    @default_address = user.default_address.id
+  #  else
+  #    @default_address = nil
+  #  end
+  #end
 
 protected
   def unset_default_address(id)
