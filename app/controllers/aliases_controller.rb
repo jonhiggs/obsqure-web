@@ -1,22 +1,20 @@
 class AliasesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
-    @user = User.find_by_id(current_user.id)
+    @user = current_user
     @alias = Alias.new
   end
 
   def edit
-    user = User.find_by_id(current_user.id)
-    @alias = user.alias(params[:id])
-    @addresses = user.verified_addresses
+    @alias = current_user.alias(params[:id])
+    @addresses = current_user.verified_addresses
   end
 
   def destroy
     redirect_to("/users/sign_in") unless user_signed_in?
     redirect_to("/aliases") unless 
 
-    user = User.find_by_id(current_user.id)
-    a = user.alias(params[:id])
+    a = current_user.alias(params[:id])
 
     if a.nil?
       flash[:notice] = "Alias doesn't exist."
@@ -40,9 +38,10 @@ class AliasesController < ApplicationController
   end
 
   def update
-    a = Alias.find_by_id(params[:alias][:id])
+    a = current_user.alias(params[:alias][:id])
     a.address_id = params[:address][:to]
     a.name = params[:alias][:name]
+
     if a.save
       flash[:info] = "Address was updated."
     else
@@ -66,7 +65,7 @@ class AliasesController < ApplicationController
 
 protected
   def save_alias(address_id,alias_name)
-    @address = Address.find_by_id(address_id)
+    @address = User.address(address_id)
     @alias = Alias.new
     @alias.name = alias_name
     @alias.address_id = @address.id
