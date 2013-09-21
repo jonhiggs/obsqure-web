@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def has_verified_address?
-    self.verified_addresses.empty?
+    self.verified_addresses.is_a?(Array)
   end
 
   def has_aliases?
@@ -40,9 +40,18 @@ class User < ActiveRecord::Base
   end
 
   def verified_addresses
-    self.addresses.map{|a| a if a.verified}
+    result = self.addresses.map{|a| a if a.verified}
+    return false if result.compact.empty?
+    result
   end
 
+  def has_maximum_addresses?
+    self.account_type == 0 && self.addresses.count >= 1
+  end
+
+  def has_maximum_aliases?
+    self.account_type == 0 && self.aliases.count >= 5
+  end
 
   #  @addresses = user.addresses.verified(current_user)
   #  if user.has_default_address?

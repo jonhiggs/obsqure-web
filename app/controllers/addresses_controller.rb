@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
+    @max_addresses = current_user.has_maximum_addresses?
     @addresses = current_user.addresses
     @address = Address.new
   end

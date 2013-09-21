@@ -1,18 +1,22 @@
 <h1>Aliases</h1>
-<% if @user.has_verified_address? %>
+<% unless @user.has_verified_address? %>
   You must verify an account before an alias can be created.
 <% else %>
-  <div class="pure-form">
-    <%= form_for @alias, url: {action: "create"} do |f| %>
-      <fieldset>
-        <legend>Create A New Alias</legend>
-        <%= collection_select("address", "to", @user.addresses, :id, :to, {:selected => @user.default_address } ) %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
-      </fieldset>
-    <% end %>
-  </div>
+  <% unless @user.has_maximum_aliases? %>
+    <div class="pure-form">
+      <%= form_for @alias, url: {action: "create"} do |f| %>
+        <fieldset>
+          <legend>Create A New Alias</legend>
+          <%= collection_select("address", "to", @user.verified_addresses, :id, :to, {:selected => @user.default_address } ) %>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+          <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
+        </fieldset>
+      <% end %>
+    </div>
+  <% else %>
+    <div>__add an upgrade partial__</div>
+  <% end %>
 
   <% unless @user.has_aliases? %>
     # TODO: add a title here
