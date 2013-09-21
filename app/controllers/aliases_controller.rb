@@ -15,14 +15,15 @@ class AliasesController < ApplicationController
     redirect_to("/users/sign_in") unless user_signed_in?
     redirect_to("/aliases") unless 
 
-    @alias = Alias.find_by_id(params[:id])
-    owner = Address.find_by_id(@alias.address_id).user_id
-    redirect_to("/aliases") unless owner == current_user.id
+    user = User.find_by_id(current_user.id)
+    a = user.alias(params[:id])
 
-    flash[:notice] = "Deleted alias '#{@alias.to}'"
-
-    Alias.destroy(params[:id])
-
+    if a.nil?
+      flash[:notice] = "Alias doesn't exist."
+    else
+      Alias.destroy(a.id)
+      flash[:notice] = "Deleted alias '#{a.to}'"
+    end
     redirect_to :controller => 'aliases', :action => 'index'
   end
 
