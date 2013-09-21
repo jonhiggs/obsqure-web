@@ -6,9 +6,9 @@ class AliasesController < ApplicationController
   end
 
   def edit
-    @alias = Alias.find_by_id(params[:id])
     user = User.find_by_id(current_user.id)
-    @addresses = user.addresses.verified(current_user)
+    @alias = user.alias(params[:id])
+    @addresses = user.verified_addresses
   end
 
   def destroy

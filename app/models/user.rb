@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     self.aliases.empty?
   end
 
+  def alias(id)
+    self.aliases.select{|a| a.id.to_i == id.to_i }.first
+  end
+
   def default_address
     defaults = self.addresses.map{|a| a if a.default}
     defaults.empty? ? nil : defaults.first
