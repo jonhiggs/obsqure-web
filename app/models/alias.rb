@@ -1,10 +1,28 @@
 class Alias < ActiveRecord::Base
   belongs_to :user
-  before_save :save_defaults
   validates :name, :presence => true
+  before_save :save_defaults
+  after_create :save_postfix_alias
+  after_destroy :destroy_postfix_alias
 
+  def address
+    Address.find_by_id(self.address_id).to
+  end
+
+protected
   def save_defaults
     self.to ||= generate_address
+  end
+
+  def save_postfix_alias
+    postfix_alias = PostfixAlias.new()
+    postfix_alias.from = self.to
+    postfix_alias.to = self.address
+    postfix_alias.save
+  end
+
+  def destroy_postfix_alias
+    PostfixAlias.where(:from => self.to).delete_all
   end
 
 private
@@ -22,4 +40,5 @@ private
     end
     address
   end
+
 end
