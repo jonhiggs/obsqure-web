@@ -65,7 +65,7 @@ class AliasesController < ApplicationController
 
 protected
   def save_alias(address_id,alias_name)
-    @address = User.address(address_id)
+    @address = current_user.address(address_id)
     @alias = Alias.new
     @alias.name = alias_name
     @alias.address_id = @address.id

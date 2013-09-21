@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   end
 
   def has_default_address?
-    self.default_address.empty?
+    !self.default_address.nil?
   end
 
   def has_verified_address?

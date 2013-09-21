@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
-    @addresses = User.find_by_id(current_user.id).addresses
+    @addresses = current_user.addresses
     @address = Address.new
   end
 
@@ -10,7 +10,7 @@ class AddressesController < ApplicationController
     address = Address.new
     address.user_id = current_user.id
     address.to = params["address"]["to"]
-    address.default = !User.find_by_id(current_user).has_default_address?
+    address.default = !current_user.has_default_address?
     address.save!
 
     redirect_to :controller => 'addresses', :action => 'index'
@@ -20,11 +20,8 @@ class AddressesController < ApplicationController
     redirect_to("/users/sign_in") unless user_signed_in?
     redirect_to("/addresses") unless 
 
-    address = Address.find_by_id(params[:id])
-
-    raise "cannot delete addresses that still have aliases" unless Alias.find_by_address_id(params[:id]).nil?
-
-    address.destroy
+    address = current_user.address(params[:id])
+    Address.find_by_id(address.id).destroy
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
