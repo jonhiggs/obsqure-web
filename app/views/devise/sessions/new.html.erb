@@ -4,8 +4,8 @@
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <fieldset>
       <div class="pure-control-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, :autofocus => true %>
+        <%= f.label :username %>
+        <%= f.text_field :username, :autofocus => true %>
       </div>
 
       <div class="pure-control-group">

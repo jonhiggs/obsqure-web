@@ -1,5 +1,5 @@
 u = User.new(
-  :email => "admin@obsqure.net",
+  :username => "admin",
   :password => 'adminadmin'
 )
 u.save!(:validate => false)

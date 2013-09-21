@@ -2,9 +2,16 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # :trackable, :recoverable
-  devise :database_authenticatable, :registerable, :validatable, :rememberable
+  devise :database_authenticatable, :registerable, :validatable, :rememberable,
+         :authentication_keys => [:username]
+
+  validates :username, :uniqueness => { :case_sensitive => false }
   has_many :addresses
   has_many :aliases, through: :addresses
+
+  def email_required?
+    false
+  end
 
   def default_address
     self.has_default_address? ? self.addresses.default(self.id).first : nil
@@ -68,14 +75,6 @@ class User < ActiveRecord::Base
   def has_maximum_aliases?
     self.used_aliases.to_s >= self.maximum_aliases
   end
-
-  #  @addresses = user.addresses.verified(current_user)
-  #  if user.has_default_address?
-  #    @default_address = user.default_address.id
-  #  else
-  #    @default_address = nil
-  #  end
-  #end
 
 protected
   def unset_default_address(id)
