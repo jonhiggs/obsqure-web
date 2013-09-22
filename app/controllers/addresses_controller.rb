@@ -12,11 +12,6 @@ class AddressesController < ApplicationController
     address.to = params["address"]["to"]
     address.save!
 
-    if current_user.email.empty?
-      current_user.email = address.to
-      current_user.save!
-    end
-
     redirect_to :controller => 'addresses', :action => 'index'
   end
 

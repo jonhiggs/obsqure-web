@@ -1,5 +1,5 @@
 u = User.new(
   :username => "admin",
-  :password => 'adminadmin'
+  :password => "adminadmin"
 )
 u.save!(:validate => false)

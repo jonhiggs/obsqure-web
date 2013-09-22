@@ -1,10 +1,50 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-
-  test "test a user" do
-    user = User.find_by_email("addr1@domain.com")
-    assert user.id == 1
+  setup do
+    @user1 = User.find_by_id(1)
+    @user2 = User.find_by_id(2)
   end
+
+  test "email_required? false for devise" do
+    assert !@user1.email_required?
+  end
+
+  test "for an id" do
+    assert @user1.id == 1
+  end
+
+  test "addresses" do
+    assert !@user1.addresses.empty?
+    assert @user2.addresses.empty?
+  end
+
+  test "address" do
+    address_id = @user1.addresses.first.id
+    assert @user1.address(address_id).id == address_id, "should get address by id"
+  end
+
+  test "email" do
+    assert @user1.email==0, "user1 should not have an email address"
+    assert @user2.email==0, "user2 should not have an email address"
+  end
+
+  test "has_email?" do
+    assert !@user1.has_email?, "user1 shouldn't have an email address"
+    assert @user1.email = @user1.addresses.first.id
+    assert @user1.has_email?, "user1 should now have an email address"
+  end
+
+  test "default_address" do
+    assert @user1.default_address=="", "should start with empty address"
+    new_default_address = @user1.addresses.first
+    @user1.email = new_default_address.id
+    assert @user1.default_address == new_default_address, "should be what we set it."
+  end
+
+  #test "email without email" do
+  #  raise @user.email.inspect
+  #  assert @user.email.nil?
+  #end
 
 end

@@ -1,4 +1,11 @@
 one:
+  username: one
   id: 1
-  email: addr1@domain.com
+  email: nil
+  encrypted_password: xxx
+
+two:
+  username: two
+  id: 2
+  email: nil
   encrypted_password: xxx

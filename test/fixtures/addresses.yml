@@ -1,5 +1,4 @@
 one:
-  user_id: "one"
-  default: true
+  user_id: 1
   verified: true
   to: "real@domain.com"

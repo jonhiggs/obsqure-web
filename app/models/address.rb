@@ -4,11 +4,21 @@ class Address < ActiveRecord::Base
   validates :to, :presence => true, :email => true
   before_destroy :check_for_aliases
   after_create :generate_token
+  after_save :update_default_email
 
   def check_for_aliases
     if !aliases.count.zero?
       flash[:error] = "Cannot delete addresses that have aliases."
       false
+    end
+  end
+  
+  def update_default_email
+    user = User.find_by_id(self.user_id)
+
+    if !user.has_email?
+      user.email = self.id
+      user.save!
     end
   end
 

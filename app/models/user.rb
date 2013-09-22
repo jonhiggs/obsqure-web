@@ -5,7 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :validatable, :rememberable,
          :authentication_keys => [:username]
 
-  validates :username, :uniqueness => { :case_sensitive => false }
+  validates :username, :uniqueness => {
+    :case_sensitive => false,
+    :allow_nil => false,
+    :allow_blank => false
+  }
+
   has_many :addresses
   has_many :aliases, through: :addresses
 
@@ -14,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def has_email?
-    !self.email.empty?
+    self.email != 0
   end
 
   def has_verified_address?
@@ -31,6 +36,10 @@ class User < ActiveRecord::Base
 
   def address(id)
     self.addresses.select{|a| a.id.to_i == id.to_i }.first
+  end
+
+  def default_address
+    self.address(self.email) || ""
   end
 
   def aliases_sorted
