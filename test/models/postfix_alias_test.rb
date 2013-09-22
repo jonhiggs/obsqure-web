@@ -30,7 +30,7 @@ class PostfixAliasTest < ActiveSupport::TestCase
     assert !PostfixAlias.find_by_from(a.to), "should no longer exist in postfix_alias"
   end
 
-  test "invalidating address" do
+  test "unverifing address" do
     address = Address.first
     a = Alias.new
     a.address_id = address.id
@@ -40,5 +40,21 @@ class PostfixAliasTest < ActiveSupport::TestCase
     address.verified = false
     assert address.save!, "should unverify the alias"
     assert !PostfixAlias.find_by_from(a.to), "should no longer exist in postfix_alias"
+  end
+
+  test "verifing address" do
+    address = Address.first
+    address.verified = false
+    assert address.save!, "should unverify address"
+
+    a = Alias.new
+    a.address_id = address.id
+    a.name = "new alias"
+    assert a.save!, "should save address that is unverified"
+    assert !PostfixAlias.find_by_from(a.to), "should not have postfix_alias"
+
+    address.verified = true
+    assert address.save!, "should verify address"
+    assert PostfixAlias.find_by_from(a.to), "should have postfix_alias"
   end
 end

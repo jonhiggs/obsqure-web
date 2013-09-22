@@ -15,6 +15,7 @@ class Alias < ActiveRecord::Base
 
 protected
   def save_postfix_alias
+    return true unless self.verified?
     postfix_alias = PostfixAlias.new()
     postfix_alias.from = self.to
     postfix_alias.to = self.address.to

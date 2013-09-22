@@ -6,6 +6,7 @@ class Address < ActiveRecord::Base
   after_create :generate_token
   after_save :update_default_email
   after_save :unverify_if_address_changed
+  after_save :verify_aliases_if_validated
 
   def check_for_aliases
     if !aliases.count.zero?
@@ -18,7 +19,18 @@ class Address < ActiveRecord::Base
     self.verified = false if self.to_changed?
     PostfixAlias.where(:to => self.to).delete_all
   end
-  
+
+  def verify_aliases_if_validated
+    if self.verified?
+      self.aliases.each do |a|
+        pfa = PostfixAlias.new
+        pfa.from = a.to
+        pfa.to = self.to
+        pfa.save!
+      end
+    end
+  end
+
   def update_default_email
     user = User.find_by_id(self.user_id)
 
