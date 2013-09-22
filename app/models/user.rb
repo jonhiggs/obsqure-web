@@ -47,9 +47,11 @@ class User < ActiveRecord::Base
   end
 
   def verified_addresses
-    result = self.addresses.map{|a| a if a.verified}
-    return false if result.compact.empty?
-    result
+    result = self.addresses.map{|a| a if a.verified?}
+  end
+
+  def verified_aliases
+    result = self.aliases.map{|a| a if a.verified?}
   end
 
   def maximum_addresses

@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   setup do
     @user1 = User.find_by_id(1)
     @user2 = User.find_by_id(2)
+    @user3 = User.find_by_id(3)
   end
 
   test "email_required? false for devise" do
@@ -42,9 +43,9 @@ class UserTest < ActiveSupport::TestCase
     assert @user1.default_address == new_default_address, "should be what we set it."
   end
 
-  #test "email without email" do
-  #  raise @user.email.inspect
-  #  assert @user.email.nil?
-  #end
+  test "verified_aliases" do
+    assert @user1.verified_aliases.empty?
+    assert !@user3.verified_aliases.empty?
+  end
 
 end

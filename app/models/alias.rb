@@ -6,7 +6,11 @@ class Alias < ActiveRecord::Base
   after_destroy :destroy_postfix_alias
 
   def address
-    Address.find_by_id(self.address_id).to
+    Address.find_by_id(self.address_id)
+  end
+
+  def verified?
+    address.verified?
   end
 
 protected

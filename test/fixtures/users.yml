@@ -9,3 +9,8 @@ two:
   id: 2
   email: nil
   encrypted_password: xxx
+
+three:
+  id: 3
+  username: three
+  encrypted_password: xxx
