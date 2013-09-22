@@ -4,8 +4,6 @@ class Address < ActiveRecord::Base
   validates :to, :presence => true, :email => true
   before_destroy :check_for_aliases
   after_save :update_default_email
-  after_save :unverify_if_address_changed
-  after_save :verify_aliases_if_validated
   before_save :unverify_if_email_changed
 
   def check_for_aliases
@@ -15,14 +13,6 @@ class Address < ActiveRecord::Base
     end
   end
 
-  def verify_aliases_if_validated
-    if self.verified?
-      self.aliases.each do |a|
-        pfa = PostfixAlias.new
-        pfa.from = a.to
-        pfa.to = self.to
-        pfa.save!
-      end
   def unverify_if_email_changed
     if self.to_changed?
       self.unverify
@@ -44,10 +34,17 @@ class Address < ActiveRecord::Base
 
   def verify
     self.token = nil
+    self.aliases.each do |a|
+      pfa = PostfixAlias.new
+      pfa.from = a.to
+      pfa.to = self.to
+      pfa.save!
+    end
   end
 
   def unverify
     self.token = self.generate_token
+    PostfixAlias.where(:to => self.to).delete_all
   end
 
 protected
