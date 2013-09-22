@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'valid_email'
+gem 'single_test'
 
 group :doc do
   gem 'sdoc', require: false
