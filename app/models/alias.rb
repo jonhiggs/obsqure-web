@@ -23,19 +23,19 @@ protected
 
 private
   def generate_address
-    return true unless self.address.nil?
+    return true unless self.to.nil?
 
     attempt = 0
-    while Alias.find_by_to(address) || address.nil?
+    found_address = nil
+    while Alias.find_by_to(found_address) || found_address.nil?
       attempt += 1
       length = 6
       chars = (0..9).to_a + ("A".."Z").to_a
       name = length.times.map{ (chars[rand(chars.size)].to_s) }.join
-      address = "#{name}@obsqure.me"
-      puts "attempt number: #{attempt}".inspect
+      found_address = "#{name}@obsqure.me"
       raise "alias namespace is getting exhausted" if attempt > 20
     end
-    address
+    self.to = found_address
   end
 
 end
