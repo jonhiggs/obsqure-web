@@ -14,11 +14,13 @@ class AliasTest < ActiveSupport::TestCase
     assert !a.to.match(/[A-Z0-9]{6}@obsqure.me/).nil?, "should have valid address"
   end
 
-  test "should show if alias is verified" do
-    address = @user3.verified_addresses.first
+  test "verified?" do
+    address = @user3.addresses.first
+    address.verify
+    assert address.save!, "should save with verify set to true"
     alias1 = address.aliases.first
-    assert alias1.verified?
-    address.verified = false
+    assert alias1.verified?, "should have verified alias"
+    address.unverify
     assert address.save!, "should save address as unverified"
     assert !alias1.verified?
   end

@@ -15,8 +15,6 @@ ActiveRecord::Schema.define(version: 20130921164844) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
-    t.boolean  "default",    default: false
-    t.boolean  "verified",   default: false
     t.string   "to"
     t.string   "token"
     t.datetime "created_at"

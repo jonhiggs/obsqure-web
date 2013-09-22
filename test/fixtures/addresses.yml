@@ -1,10 +1,8 @@
 one:
   user_id: 1
-  verified: true
   to: "real@domain.com"
 
 three_one:
   id: 32
   user_id: 3
-  verified: true
   to: "three@one.com"

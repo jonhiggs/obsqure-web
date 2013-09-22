@@ -33,10 +33,11 @@ class AddressTest < ActiveSupport::TestCase
     address = Address.new
     address.user_id = @user1.id
     address.to = "sjfoseijf@blah.com"
+    address.unverify
     assert address.save!, "should save new address"
     assert !address.verified?, "should not be verified"
 
-    address.verified = true
+    address.verify
     assert address.save!, "should save new address"
     assert address.verified?, "should be verified"
 
@@ -54,8 +55,10 @@ class AddressTest < ActiveSupport::TestCase
     address = Address.new
     address.user_id = @user1.id
     address.to = "boisjefo@bsoeifj.com"
-    address.verified = true
     assert address.save!, "should save new address"
+    address.verify
+    address.save!
+    assert !address.token?, "should have an address without a token"
 
     alias1 = Alias.new
     alias1.address_id = address.id
@@ -63,20 +66,11 @@ class AddressTest < ActiveSupport::TestCase
     assert alias1.save!, "should save alias1"
     assert alias1.verified?, "should have verified alias1"
 
-    address.verified = false
+    address.unverify
     assert address.save!, "should save address as unverified"
-    assert Alias.find_by_id(alias1.id).verified?, "should have unverified alias1"
-  end
-
-  test "verifing address should delete token" do
-    address = Address.first
-    address.verified = false
-    assert address.save!, "should save unverified address"
-    assert !address.token.nil?, "should have a token"
-
-    address.verified = true
-    assert address.save!, "should save verified address"
-    assert address.token.nil?, "should have a token"
+    assert !address.verified?, "should not have a verified address"
+    assert address.token?, "should have an address with a token"
+    assert !alias1.verified?, "should not have a verified alias1"
   end
 
 end

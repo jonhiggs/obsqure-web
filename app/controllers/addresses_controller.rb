@@ -17,10 +17,8 @@ class AddressesController < ApplicationController
 
   def destroy
     redirect_to("/users/sign_in") unless user_signed_in?
-    redirect_to("/addresses") unless 
 
-    address = current_user.address(params[:id])
-    Address.find_by_id(address.id).destroy
+    current_user.address(params[:id]).destroy
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
@@ -29,24 +27,17 @@ class AddressesController < ApplicationController
     address = Address.find_by_token(token)
 
     if address.nil?
-      redirect_to :controller => 'addresses', :action => 'not_verified'
-    elsif address.verified
-      flash[:info] = "Your address '#{address.to}' was already verified"
-      redirect_to :controller => 'addresses', :action => 'index'
+      flash[:info] = "Your address was not found."
     else
       address.verified = true
-      address.save
+      address.save!
       flash[:info] = "Your address '#{address.to}' is now verified"
-      redirect_to :controller => 'addresses', :action => 'index'
     end
-  end
-
-  def not_verified
+    redirect_to :controller => 'addresses', :action => 'index'
   end
 
   def show
-    @address = Address.find_by_id(params[:id])
-    redirect_to("/") unless @address.user_id.to_i == params[:user_id].to_i
+    @address = current_user.address(params[:id])
   end
 
   def edit
@@ -54,15 +45,13 @@ class AddressesController < ApplicationController
   end
 
   def update
-    address = Address.find_by_id(params[:id])
+    address = current_user.address(params[:id])
     address.to = params[:address][:to]
-    address.verified = false
-    if address.save
+    if address.save!
       flash[:info] = "Address was updated."
     else
       flash[:error] = "Couldn't update the address."
     end
-
     redirect_to :controller => 'addresses'
   end
 
