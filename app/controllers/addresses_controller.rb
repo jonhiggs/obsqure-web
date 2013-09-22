@@ -1,8 +1,7 @@
 class AddressesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
-    @max_addresses = current_user.has_maximum_addresses?
-    @addresses = current_user.addresses
+    @user=current_user
     @address = Address.new
   end
 
@@ -56,7 +55,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.find_by_id(params[:id])
+    @address = current_user.address(params[:id])
   end
 
   def update

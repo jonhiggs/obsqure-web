@@ -1,5 +1,5 @@
 <h1>Addresses</h1>
-<% unless @max_addresses %>
+<% unless @user.has_maximum_addresses? %>
   <div class="pure-form">
     <%= form_for @address, url: {action: "create"} do |f| %>
       <fieldset>
@@ -13,7 +13,7 @@
   <div>__add an upgrade partial__</div>
 <% end %>
 
-<% unless @addresses.empty? %>
+<% unless @user.addresses.empty? %>
   # TODO: add a title here
   <div class="table">
     <table class="pure-table">
@@ -25,7 +25,7 @@
         </tr>
       </thead>
 
-      <% @addresses.each do |a| %>
+      <% @user.addresses.each do |a| %>
         <tbody>
           <tr>
             <td class="<%= "not_verified" unless a.verified %> <%= "default" if a.to == @user.email %>">
