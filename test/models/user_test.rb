@@ -48,4 +48,9 @@ class UserTest < ActiveSupport::TestCase
     assert !@user3.verified_aliases.empty?
   end
 
+  test "has_verified_address" do
+    assert @user1.has_verified_address?, "user1 does have verified addresses"
+    assert !@user2.has_verified_address?, "user2 does not have verified addresses"
+  end
+
 end

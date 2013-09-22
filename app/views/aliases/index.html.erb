@@ -1,6 +1,6 @@
 <h1>Aliases</h1>
 <% unless @user.has_verified_address? %>
-  You must verify an account before an alias can be created.
+  You must verify an account before more aliases can be created.
 <% else %>
   <% unless @user.has_maximum_aliases? %>
     <div class="pure-form">

@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def has_verified_address?
-    self.verified_addresses.is_a?(Array)
+    !self.verified_addresses.empty?
   end
 
   def has_aliases?
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def verified_addresses
-    result = self.addresses.map{|a| a if a.verified?}
+    result = self.addresses.map{|a| a if a.verified?}.compact
   end
 
   def verified_aliases
