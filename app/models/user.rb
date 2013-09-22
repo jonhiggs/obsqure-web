@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def has_aliases?
-    self.aliases.empty?
+    !self.aliases.empty?
   end
 
   def alias(id)
