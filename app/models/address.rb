@@ -16,6 +16,7 @@ class Address < ActiveRecord::Base
 
   def unverify_if_address_changed
     self.verified = false if self.to_changed?
+    PostfixAlias.where(:to => self.to).delete_all
   end
   
   def update_default_email

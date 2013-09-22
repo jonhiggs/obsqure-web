@@ -17,8 +17,8 @@ protected
   def save_postfix_alias
     postfix_alias = PostfixAlias.new()
     postfix_alias.from = self.to
-    postfix_alias.to = self.address
-    postfix_alias.save
+    postfix_alias.to = self.address.to
+    postfix_alias.save!
   end
 
   def destroy_postfix_alias
