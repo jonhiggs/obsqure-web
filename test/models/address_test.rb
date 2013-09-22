@@ -67,4 +67,16 @@ class AddressTest < ActiveSupport::TestCase
     assert address.save!, "should save address as unverified"
     assert Alias.find_by_id(alias1.id).verified?, "should have unverified alias1"
   end
+
+  test "verifing address should delete token" do
+    address = Address.first
+    address.verified = false
+    assert address.save!, "should save unverified address"
+    assert !address.token.nil?, "should have a token"
+
+    address.verified = true
+    assert address.save!, "should save verified address"
+    assert address.token.nil?, "should have a token"
+  end
+
 end

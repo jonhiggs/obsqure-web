@@ -3,7 +3,7 @@ class Address < ActiveRecord::Base
   has_many :aliases
   validates :to, :presence => true, :email => true
   before_destroy :check_for_aliases
-  after_create :generate_token
+  before_save :manage_token
   after_save :update_default_email
   after_save :unverify_if_address_changed
   after_save :verify_aliases_if_validated
@@ -40,11 +40,17 @@ class Address < ActiveRecord::Base
     end
   end
 
-  def generate_token
-    self.verified = false
-    chars = (0..9).to_a + ("A".."Z").to_a + ("a".."z").to_a
-    self.token = 32.times.map{ (chars[rand(chars.size)].to_s) }.join
-    self.save
+private
+  def manage_token
+    if self.verified? && self.token?
+      self.token = nil
+    end
+
+    if !self.verified?
+      self.verified = false
+      chars = (0..9).to_a + ("A".."Z").to_a + ("a".."z").to_a
+      self.token = 32.times.map{ (chars[rand(chars.size)].to_s) }.join
+    end
   end
 
 end
