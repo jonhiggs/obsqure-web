@@ -1,6 +1,6 @@
 <h1>Aliases</h1>
 <% unless @user.has_verified_address? %>
-  You must verify an account before more aliases can be created.
+  <div>You must verify an account before more aliases can be created.</div>
 <% else %>
   <% unless @user.has_maximum_aliases? %>
     <div class="pure-form">
@@ -17,41 +17,43 @@
   <% else %>
     <div>__add an upgrade partial__</div>
   <% end %>
+<% end %>
+<% if @user.has_aliases? %>
+  # TODO: add a title here
+  <div class="table">
+    <table class="pure-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Alias</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-  <% unless @user.has_aliases? %>
-    # TODO: add a title here
-    <div class="table">
-      <table class="pure-table">
-        <thead>
+      <% if @user.addresses.nil? %>
+        <tbody>
+          <td colspan="2">You have no aliases yet.</td>
+        </tbody>
+      <% end %>
+
+      <% @user.aliases_sorted.each do |a| %>
+        <tbody>
           <tr>
-            <th>Name</th>
-            <th>Alias</th>
-            <th>Address</th>
-            <th>Actions</th>
+            <td><%= a.name %></td>
+            <td class="<%= "not_verified" unless a.verified? %>">
+              <%= a.to %>
+            </td>
+            <td class="<%= "not_verified" unless a.verified? %> <%= "default" if a.address_id == @user.email %>">
+              <%= a.address.to %>
+            </td>
+            <td style="white-space:nowrap">
+              <%= button_to "Edit",   { :controller => "aliases", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
+              <%= button_to "Delete", { :controller => "aliases", :action => "destroy", :id => a.id }, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+            </td>
           </tr>
-        </thead>
-
-        <% if @user.addresses.nil? %>
-          <tbody>
-            <td colspan="2">You have no aliases yet.</td>
-          </tbody>
-        <% end %>
-
-        <% @user.aliases_sorted.each do |a| %>
-          <tbody>
-            <tr>
-              <td><%= a.name %></td>
-              <td><%= a.to %></td>
-              <td><%= @user.addresses.select{|add| add.id == a.address_id}.first.to %></td>
-              <td style="white-space:nowrap">
-                <%= button_to "Edit",   { :controller => "aliases", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
-                <%= button_to "Delete", { :controller => "aliases", :action => "destroy", :id => a.id }, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
-              </td>
-            </tr>
-          </tbody>
-        <% end %>
-      </table>
-    </div>
-  <% end %>
-
+        </tbody>
+      <% end %>
+    </table>
+  </div>
 <% end %>
