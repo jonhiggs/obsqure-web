@@ -26,4 +26,21 @@ class AddressTest < ActiveSupport::TestCase
     assert address.save!, "should save address"
     assert address.to == "changed@domain.com", "should have changed address"
   end
+
+  test "verifed address should become unverifed after changing" do
+    # create a verified address
+    address = Address.new
+    address.user_id = @user1.id
+    address.to = "sjfoseijf@blah.com"
+    assert address.save!, "should save new address"
+    assert !address.verified?, "should not be verified"
+
+    address.verified = true
+    assert address.save!, "should save new address"
+    assert address.verified?, "should be verified"
+
+    address.to = "changed@ojs.com"
+    assert address.save!, "should save changed address"
+    assert !address.verified?, "should not be verified"
+  end
 end

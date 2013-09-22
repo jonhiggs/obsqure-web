@@ -5,12 +5,17 @@ class Address < ActiveRecord::Base
   before_destroy :check_for_aliases
   after_create :generate_token
   after_save :update_default_email
+  after_save :unverify_if_address_changed
 
   def check_for_aliases
     if !aliases.count.zero?
       flash[:error] = "Cannot delete addresses that have aliases."
       false
     end
+  end
+
+  def unverify_if_address_changed
+    self.verified = false if self.to_changed?
   end
   
   def update_default_email
