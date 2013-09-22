@@ -11,8 +11,13 @@ class AddressesController < ApplicationController
     address = Address.new
     address.user_id = current_user.id
     address.to = params["address"]["to"]
-    address.default = !current_user.has_default_address?
     address.save!
+
+    if current_user.email.empty?
+      current_user.email = address.to
+      current_user.save!
+    end
+
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
@@ -68,7 +73,8 @@ class AddressesController < ApplicationController
   end
 
   def default
-    User.find_by_id(current_user.id).default_address=params[:address_id]
+    current_user.email = current_user.address(params[:address_id]).to
+    current_user.save!
     redirect_to :controller => 'addresses', :action => 'index'
   end
 

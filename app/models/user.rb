@@ -13,12 +13,8 @@ class User < ActiveRecord::Base
     false
   end
 
-  def default_address
-    self.has_default_address? ? self.addresses.default(self.id).first : nil
-  end
-
-  def has_default_address?
-    !self.default_address.nil?
+  def has_email?
+    !self.email.empty?
   end
 
   def has_verified_address?
@@ -35,11 +31,6 @@ class User < ActiveRecord::Base
 
   def address(id)
     self.addresses.select{|a| a.id.to_i == id.to_i }.first
-  end
-
-  def default_address
-    defaults = self.addresses.map{|a| a if a.default}
-    defaults.empty? ? nil : defaults.first
   end
 
   def aliases_sorted
@@ -74,12 +65,5 @@ class User < ActiveRecord::Base
 
   def has_maximum_aliases?
     self.used_aliases.to_s >= self.maximum_aliases
-  end
-
-protected
-  def unset_default_address(id)
-    address = Address.find_by_id(default_address.id)
-    address.default=false
-    address.save
   end
 end
