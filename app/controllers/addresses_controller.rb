@@ -29,7 +29,7 @@ class AddressesController < ApplicationController
     if address.nil?
       flash[:info] = "Your address was not found."
     else
-      address.verified = true
+      address.verify
       address.save!
       flash[:info] = "Your address '#{address.to}' is now verified"
     end

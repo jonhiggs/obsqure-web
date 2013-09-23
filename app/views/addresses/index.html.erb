@@ -28,7 +28,7 @@
       <% @user.addresses.each do |a| %>
         <tbody>
           <tr>
-            <td class="<%= "not_verified" unless a.verified %> <%= "default" if a.to == @user.email %>">
+            <td class="<%= "not_verified" unless a.verified? %> <%= "default" if a.to == @user.email %>">
               <%= a.to %>
             </td>
             <td>
