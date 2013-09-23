@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def has_email?
+    return false if self.email.nil?
     self.email != 0
   end
 

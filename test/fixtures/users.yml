@@ -14,3 +14,8 @@ three:
   id: 3
   username: three
   encrypted_password: xxx
+
+four:
+  id: 4
+  username: four
+  encrypted_password: xxx

@@ -73,4 +73,18 @@ class AddressTest < ActiveSupport::TestCase
     assert !alias1.verified?, "should not have a verified alias1"
   end
 
+  test "first address" do
+    address = Address.new
+    address.user_id = @user2.id
+    address.to = "brand@spanka.com"
+    assert address.save!, "should save new address"
+    assert !address.verified?, "should not have verified address"
+    assert !address.token.nil?, "should not have a nil token"
+    assert address.default?, "should set first address to default"
+    assert User.find_by_id(address.user_id).email == address.id, "should have email of new address"
+  end
+
+  test "prevent saving addresses if we are maxed out" do
+  end
+
 end

@@ -5,6 +5,7 @@ class UserTest < ActiveSupport::TestCase
     @user1 = User.find_by_id(1)
     @user2 = User.find_by_id(2)
     @user3 = User.find_by_id(3)
+    @user4 = User.find_by_id(4)
   end
 
   test "email_required? false for devise" do
@@ -32,6 +33,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "has_email?" do
     assert !@user1.has_email?, "user1 shouldn't have an email address"
+    assert !@user4.has_email?, "user2 should not have an email"
     assert @user1.email = @user1.addresses.first.id
     assert @user1.has_email?, "user1 should now have an email address"
   end
