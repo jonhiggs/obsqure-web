@@ -2,6 +2,7 @@ class Address < ActiveRecord::Base
   belongs_to :user
   has_many :aliases
   validates :to, :presence => true, :email => true
+  before_create :allowed_to_create?
   before_destroy :check_for_aliases
   after_save :update_default_email
   before_save :unverify_if_email_changed
@@ -11,6 +12,10 @@ class Address < ActiveRecord::Base
       flash[:error] = "Cannot delete addresses that have aliases."
       false
     end
+  end
+
+  def allowed_to_create?
+    !User.find_by_id(self.user_id).has_maximum_addresses?
   end
 
   def unverify_if_email_changed

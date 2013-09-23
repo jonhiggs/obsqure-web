@@ -5,6 +5,7 @@ class AddressTest < ActiveSupport::TestCase
     @user1 = User.find_by_id(1)
     @user2 = User.find_by_id(2)
     @user3 = User.find_by_id(3)
+    @user4 = User.find_by_id(4)
   end
 
   test "user1 shouldn't have email" do
@@ -84,7 +85,28 @@ class AddressTest < ActiveSupport::TestCase
     assert User.find_by_id(address.user_id).email == address.id, "should have email of new address"
   end
 
-  test "prevent saving addresses if we are maxed out" do
+  test "dont save too many addresses for free users" do
+    a1 = Address.new
+    a1.user_id = @user4.id
+    a1.to = "one@lsef.com"
+    assert a1.save, "should save first address"
+
+    a2 = Address.new
+    a2.user_id = @user4.id
+    a2.to = "two@lsef.com"
+    assert !a2.save, "should not save second address"
+  end
+
+  test "dont save too many addresses for basic users" do
+    a1 = Address.new
+    a1.user_id = @user1.id
+    a1.to = "one@lsef.com"
+    assert a1.save, "should save first address"
+
+    a2 = Address.new
+    a2.user_id = @user1.id
+    a2.to = "two@lsef.com"
+    assert a2.save, "should not save second address"
   end
 
 end
