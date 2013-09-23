@@ -4,7 +4,7 @@ class Address < ActiveRecord::Base
   validates :to, :presence => true, :email => true
   before_destroy :check_for_aliases
   after_save :update_default_email
-  after_save :unverify_if_email_changed
+  before_save :unverify_if_email_changed
 
   def check_for_aliases
     if !aliases.count.zero?
