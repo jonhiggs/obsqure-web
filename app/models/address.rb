@@ -4,7 +4,7 @@ class Address < ActiveRecord::Base
   validates :to, :presence => true, :email => true
   before_destroy :check_for_aliases
   after_save :update_default_email
-  before_save :unverify_if_email_changed
+  after_save :unverify_if_email_changed
 
   def check_for_aliases
     if !aliases.count.zero?
@@ -14,9 +14,7 @@ class Address < ActiveRecord::Base
   end
 
   def unverify_if_email_changed
-    if self.to_changed?
-      self.unverify
-    end
+    self.unverify if self.to_changed?
   end
 
   def update_default_email
@@ -40,6 +38,10 @@ class Address < ActiveRecord::Base
       pfa.to = self.to
       pfa.save!
     end
+  end
+
+  def default?
+    self.id == User.find_by_id(self.user_id).email
   end
 
   def unverify
