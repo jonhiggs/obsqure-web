@@ -37,12 +37,17 @@ class Address < ActiveRecord::Base
 
   def verify
     self.token = nil
-    self.aliases.each do |a|
+    Alias.where(:address_id => self.id).each do |a|
       pfa = PostfixAlias.new
       pfa.from = a.to
       pfa.to = self.to
       pfa.save!
     end
+  end
+
+  def verify!
+    self.verify
+    self.save!
   end
 
   def default?
@@ -52,6 +57,7 @@ class Address < ActiveRecord::Base
   def unverify
     self.token = self.generate_token
     PostfixAlias.where(:to => self.to).delete_all
+    PostfixAlias.where(:to => self.to_was).delete_all
   end
 
 protected

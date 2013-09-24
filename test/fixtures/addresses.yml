@@ -6,3 +6,8 @@ three_one:
   id: 32
   user_id: 3
   to: "three@one.com"
+
+four:
+  id: 34
+  user_id: 3
+  to: "four@blah.com"

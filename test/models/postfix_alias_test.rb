@@ -57,4 +57,16 @@ class PostfixAliasTest < ActiveSupport::TestCase
     assert address.save!, "should verify address"
     assert PostfixAlias.find_by_from(a.to), "should have postfix_alias"
   end
+
+  test "clean up old postfix aliases when address becomes unverified" do
+    a = Alias.first
+    address = Address.find_by_id(a.address_id)
+    address.verify
+    address.save!
+    assert PostfixAlias.find_by_from(a.to), "should have postfix_alias"
+    address.unverify
+    address.save!
+    assert !PostfixAlias.find_by_from(a.to), "should not have postfix_alias"
+  end
+
 end

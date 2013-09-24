@@ -108,5 +108,4 @@ class AddressTest < ActiveSupport::TestCase
     a2.to = "two@lsef.com"
     assert a2.save, "should not save second address"
   end
-
 end
