@@ -1,0 +1,3 @@
+[submodule "public/moztt"]
+	path = public/moztt
+	url = https://github.com/mozilla-b2g/moztt.git
