@@ -1,9 +1,8 @@
 <div class="header">
   <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
-    <a class="pure-menu-heading" href=""><b>obsqure</b>.net</a>
+    <a class="pure-menu-heading" href="/"><b>obsqure</b>.net</a>
   
     <ul>
-      <li><%= link_to "Home", "/" %></li>
       <li><%= link_to "FAQ", :faq_index %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Addresses", :controller => "addresses" %></li>
