@@ -1,4 +1,4 @@
-<h1>Addresses</h1>
+<h1>Your Real Addresses</h1>
 <% unless @user.has_maximum_addresses? %>
   <div class="pure-form">
     <%= form_for @address, url: {action: "create"} do |f| %>
