@@ -4,6 +4,11 @@ Obsqure::Application.routes.draw do
 
   get 'account', to: 'users#account'
 
+  devise_scope :user do
+    get 'register', to: 'devise/registrations#new'
+    get 'sign_in', to: 'devise/sessions#new'
+  end
+
   # verification
   get 'verify', to: 'addresses#verify'
   get 'not_verified', to: 'addresses#not_verified'
