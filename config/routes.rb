@@ -2,12 +2,18 @@ Obsqure::Application.routes.draw do
   devise_for :users
   root to: 'welcome#index'
 
-  get 'account', to: 'users#account'
-
   devise_scope :user do
     get 'register', to: 'devise/registrations#new'
     get 'sign_in', to: 'devise/sessions#new'
   end
+
+  get 'account', to: 'users#account'
+  get 'faq', to: 'pages#faq'
+  get 'privacy', to: 'pages#privacy'
+  get 'contact', to: 'pages#contact'
+  get 'support', to: 'pages#support'
+  get 'terms', to: 'pages#terms'
+
 
   # verification
   get 'verify', to: 'addresses#verify'
@@ -17,7 +23,6 @@ Obsqure::Application.routes.draw do
     root 'users#index'
   end
 
-  resources :faq
 
   resources :addresses do
     root 'addresses#index'
