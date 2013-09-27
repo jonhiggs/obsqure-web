@@ -29,4 +29,7 @@
 <h2>Reset Password</h3>
 <%= render :partial => "shared/update_password" %>
 
-<div>Reset Password</div>
+<h2>Cancel my account</h2>
+<p>If you like, you can terminate your account. Please be absolutaly sure that
+this is what you want because it cannot be undone.</p>
+<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
