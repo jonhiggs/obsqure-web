@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(user)
-    users_root_path
+    if user.verified_addresses.empty?
+      :addresses
+    else
+      :aliases
+    end
   end
 end
