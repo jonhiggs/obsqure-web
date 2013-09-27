@@ -1,6 +1,6 @@
 <h1>Obsqured Aliases Of Your Real Addresses</h1>
 <% unless @user.has_verified_address? %>
-  <div>You must verify an account before more aliases can be created.</div>
+  <div>You must verify an <%= link_to "address", :addresses %> before <%= @user.has_aliases? ? "more aliases" : "an alias" %> can be created.</div>
 <% else %>
   <% unless @user.has_maximum_aliases? %>
     <div class="pure-form">
