@@ -6,16 +6,20 @@ class User < ActiveRecord::Base
          :authentication_keys => [:username]
 
   validates :username, uniqueness: true, presence: true
+  validates :encrypted_password, presence: true
+  validates :address_id, uniqueness: true, :allow_nil => true, :numericality => { :greater_than_or_equal_to => 0 }
   has_many :addresses
   has_many :aliases, through: :addresses
+
+  def email_changed?
+  end
 
   def email_required?
     false
   end
 
   def has_email?
-    return false if self.email.nil?
-    self.email != 0
+    !self.address_id.to_i.zero?
   end
 
   def has_verified_address?
@@ -39,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def default_address
-    self.address(self.email) || ""
+    self.address(self.address_id) || ""
   end
 
   def aliases_sorted

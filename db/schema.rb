@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(version: 20130921164844) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "account_type",           default: 0
-    t.integer  "email"
+    t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["address_id"], name: "index_users_on_address_id", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 

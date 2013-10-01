@@ -26,7 +26,7 @@ class Address < ActiveRecord::Base
     user = User.find_by_id(self.user_id)
 
     if !user.has_email?
-      user.email = self.id
+      user.address_id = self.id
       user.save!
     end
   end
@@ -51,7 +51,7 @@ class Address < ActiveRecord::Base
   end
 
   def default?
-    self.id == User.find_by_id(self.user_id).email
+    self.id == User.find_by_id(self.user_id).address_id
   end
 
   def unverify

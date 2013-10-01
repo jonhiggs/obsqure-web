@@ -30,13 +30,13 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
       t.integer    :account_type, :default => 0
-      t.integer    :email
+      t.integer    :address_id
 
       t.timestamps
     end
 
-    add_index :users, :email,                :unique => false
-    add_index :users, :reset_password_token, :unique => true
+    add_index :users, :address_id,             :unique => true
+    add_index :users, :reset_password_token,   :unique => true
     # add_index :users, :confirmation_token,   :unique => true
     # add_index :users, :unlock_token,         :unique => true
   end

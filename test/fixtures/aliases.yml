@@ -1,9 +1,0 @@
-one:
-  to: "one0@obsqure.me"
-  name: "one"
-  address_id: "one"
-
-three:
-  address_id: 32
-  to: "user3alias@obsqure.me"
-  name: "blah"

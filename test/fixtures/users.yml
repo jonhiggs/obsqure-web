@@ -1,25 +1,4 @@
-one:
-  username: one
-  id: 1
-  account_type: 1
-  email: nil
-  encrypted_password: xxx
-
-two:
-  username: two
-  id: 2
-  account_type: 1
-  email: nil
-  encrypted_password: xxx
-
-three:
-  id: 3
-  account_type: 1
-  username: three
-  encrypted_password: xxx
-
-four:
-  id: 4
-  account_type: 0
-  username: four
-  encrypted_password: xxx
+frank:
+  id: 3462
+  username: "frank"
+  encrypted_password: "xxx"
