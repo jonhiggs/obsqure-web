@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     !self.aliases.empty?
   end
 
+  def has_addresses?
+    !self.addresses.empty?
+  end
+
   def alias(id)
     self.aliases.select{|a| a.id.to_i == id.to_i }.first
   end

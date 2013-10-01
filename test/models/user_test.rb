@@ -61,4 +61,12 @@ class UserTest < ActiveSupport::TestCase
     assert @user3.has_aliases?, "user3 does have aliases"
   end
 
+  test "deleted account gets completly cleaned up" do
+    assert @user3.has_addresses?, "should have addresses"
+    assert @user3.has_aliases?, "should have aliases"
+    # delete the user
+    # assert postfix_aliases are deleted
+    # assert addresses are deleted
+  end
+
 end
