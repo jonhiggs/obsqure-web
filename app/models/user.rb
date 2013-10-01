@@ -5,12 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :validatable, :rememberable,
          :authentication_keys => [:username]
 
-  validates :username, :uniqueness => {
-    :case_sensitive => false,
-    :allow_nil => false,
-    :allow_blank => false
-  }
-
+  validates :username, uniqueness: true, presence: true
   has_many :addresses
   has_many :aliases, through: :addresses
 

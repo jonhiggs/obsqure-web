@@ -8,6 +8,15 @@ class UserTest < ActiveSupport::TestCase
     @user4 = User.find_by_id(4)
   end
 
+  test "user attributes" do
+    user = User.new
+    assert user.invalid?, "user is invalid"
+    assert_equal "can't be blank", user.errors[:username].join("")
+    # assert user.errors[:encrypted_password].any?
+    # assert user.errors[:account_type].any?
+    # assert user.errors[:email].any?
+  end
+
   test "email_required? false for devise" do
     assert !@user1.email_required?
   end
