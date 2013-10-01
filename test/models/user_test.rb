@@ -39,23 +39,22 @@ class UserTest < ActiveSupport::TestCase
       :username => "lucy",
       :password => "abcdefg"
     )
-    lucy.save!
-
+    assert lucy.save!
     assert lucy.addresses.empty?, "should have no addresses"
 
     lucyatdomain = Address.new(
       :user_id => lucy.id,
       :to => "lucy@domain.com"
     )
-    lucyatdomain.save!
-
+    assert lucyatdomain.save!
     assert lucy.addresses.any?, "should have an address"
   end
 
-  #test "address" do
-  #  address_id = @user1.addresses.first.id
-  #  assert @user1.address(address_id).id == address_id, "should get address by id"
-  #end
+  test "address" do
+    assert @frank.addresses.any?, "should have an address"
+    address = @frank.addresses.first
+    assert @frank.address(address.id), "should get an address by id"
+  end
 
   #test "email" do
   #  assert @user1.email==0, "user1 should not have an email address"
