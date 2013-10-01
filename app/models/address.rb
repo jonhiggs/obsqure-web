@@ -6,6 +6,11 @@ class Address < ActiveRecord::Base
   before_destroy :check_for_aliases
   after_save :update_default_email
   before_save :unverify_if_email_changed
+  after_create :user_exists?
+
+  def user_exists?
+    !!User.find_by_id(self.user_id)
+  end
 
   def check_for_aliases
     if !aliases.count.zero?
@@ -15,6 +20,7 @@ class Address < ActiveRecord::Base
   end
 
   def allowed_to_create?
+    return false if self.user_id.nil?
     !User.find_by_id(self.user_id).has_maximum_addresses?
   end
 
@@ -25,6 +31,7 @@ class Address < ActiveRecord::Base
   def update_default_email
     user = User.find_by_id(self.user_id)
 
+    # TODO: change this to an ||=
     if !user.has_email?
       user.address_id = self.id
       user.save!
