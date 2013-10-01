@@ -5,6 +5,8 @@ class Alias < ActiveRecord::Base
   after_create :save_postfix_alias
   after_destroy :destroy_postfix_alias
 
+  before_save :verified?
+
   def address
     Address.find_by_id(self.address_id)
   end

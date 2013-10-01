@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
     self.addresses.select{|a| a.id.to_i == id.to_i }.first
   end
 
-  def default_address
-    self.address(self.address_id) || ""
+  def email
+    self.address(self.address_id).to || ""
   end
 
   def aliases_sorted
