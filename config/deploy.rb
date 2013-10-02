@@ -1,5 +1,5 @@
 set :application, "obsqure"
-set :repository,  "ssh://git.obsqure.net/srv/repos/obsqure.git"
+set :repository,  "ssh://git.obsqure.net:/srv/git/repos/obsqure.git"
 set :scm, :git
 set :user, "www-data"
 set :use_sudo, false
