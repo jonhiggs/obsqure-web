@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :application, "obsqure"
 set :repository,  "git@git.obsqure.net:/srv/git/repos/obsqure.git"
 set :scm, :git
