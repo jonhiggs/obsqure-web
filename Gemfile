@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '>= 3.0.1'
