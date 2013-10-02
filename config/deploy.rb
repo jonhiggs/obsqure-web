@@ -1,25 +1,15 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "obsqure"
+set :repository,  "ssh://git.obsqure.net/srv/repos/obsqure.git"
+set :scm, :git
+set :user, "www-data"
+set :use_sudo, false
+set :scm_username, "git"
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :deploy_to, "/srv/www/obsqure"
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+role :web, "www.obsqure.net"                          # Your HTTP server, Apache/etc
+role :app, "www.obsqure.net"                          # This may be the same as your `Web` server
+role :db,  "db1.obsqure.net", :primary => true        # This is where Rails migrations will run
 
 # if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+after "deploy:restart", "deploy:cleanup"
