@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'linguistics'
 gem 'rails', '4.0.0'
 gem 'sass-rails', '~> 4.0.0'
+gem 'single_test'
 gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
@@ -18,7 +19,6 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'single_test'
 end
 
 group :production do
