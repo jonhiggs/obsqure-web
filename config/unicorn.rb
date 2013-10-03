@@ -25,7 +25,7 @@ working_directory "/srv/www/obsqure/current" # available in 0.94.0+
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
-listen "/path/to/.unicorn.sock", :backlog => 64
+listen "/srv/www/obsqure/shared/system/unicorn.sock", :backlog => 64
 listen 8080, :tcp_nopush => true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
