@@ -7,7 +7,7 @@
       <%= form_for @alias, url: {action: "create"} do |f| %>
         <fieldset>
           <legend>Create A New Alias</legend>
-          <%= collection_select("address", "to", @user.verified_addresses, :id, :to, {:selected => @user.default_address } ) %>
+          <%= collection_select("address", "to", @user.verified_addresses, :id, :to, {:selected => @user.email } ) %>
           <%= f.label :name %>
           <%= f.text_field :name %>
           <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
