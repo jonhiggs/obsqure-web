@@ -2,7 +2,9 @@ class Address < ActiveRecord::Base
   belongs_to :user
   has_many :aliases
   validates :to, :presence => true, :email => true
+  validates :token, :presence => true
   before_create :allowed_to_create?
+  after_initialize :set_token
   before_destroy :check_for_aliases
   after_save :update_default_email
   before_save :unverify_if_email_changed
@@ -10,6 +12,10 @@ class Address < ActiveRecord::Base
 
   def user_exists?
     !!User.find_by_id(self.user_id)
+  end
+
+  def set_token
+    self.token = self.generate_token
   end
 
   def check_for_aliases
@@ -39,11 +45,11 @@ class Address < ActiveRecord::Base
   end
 
   def verified?
-    self.token.nil?
+    self.token == "verified"
   end
 
   def verify
-    self.token = nil
+    self.token = "verified"
     Alias.where(:address_id => self.id).each do |a|
       pfa = PostfixAlias.new
       pfa.from = a.to
@@ -57,6 +63,7 @@ class Address < ActiveRecord::Base
   end
 
   def unverify
+    self.token = nil
     self.token = self.generate_token
     PostfixAlias.where(:to => self.to).delete_all
     PostfixAlias.where(:to => self.to_was).delete_all
@@ -64,6 +71,7 @@ class Address < ActiveRecord::Base
 
 protected
   def generate_token
+    return self.token unless self.token.nil?
     chars = (0..9).to_a + ("A".."Z").to_a + ("a".."z").to_a
     32.times.map{ (chars[rand(chars.size)].to_s) }.join
   end

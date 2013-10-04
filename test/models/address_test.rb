@@ -13,20 +13,48 @@ class AddressTest < ActiveSupport::TestCase
   end
 
   test "update and address" do
-    address = @frank.addresses.first
-    facebook_alias = @frank.aliases.first
+    address = @frank.address(4564)
 
-    assert address.verified?, "address should start off verified"
-    assert address.token.nil?, "should have a nil token"
-    assert facebook_alias.verified?, "alias should start off verified"
+    assert !address.verified?, "address should start off unverified"
+    assert address.token.length == 32, "should have a token"
+    assert address.verify, "should verify address"
+    assert address.save, "should save verified address"
+    assert address.verified?, "should have verified address"
+    assert_equal address.token, "verified"
+
     assert_equal "frank@somewhere.com", address.to
     address.to = "changed@domain.com"
     assert address.save, "should save address"
-
     assert_equal "changed@domain.com", address.to
     assert !address.verified?, "address should become unverified after updated"
     assert !address.token.nil?, "should not have a nil token"
-    assert !facebook_alias.verified?, "alias should become unverified after addresses is updated"
+  end
+
+  test "token should not change once it's created" do
+    assert Address.find_by_id(4564).token != Address.find_by_id(4564).token 
+    address = Address.find_by_id(4564)
+    address.verify
+    address.save!
+    original_token = address.token
+    address.save!
+
+    assert_equal address.token, original_token
+    assert_equal Address.find_by_id(4564).token, original_token
+    
+    assert_equal Address.find_by_id(4564).token, Address.find_by_id(4564).token 
+  end
+
+  test "verifing an address" do
+    address = Address.new(:user_id => @frank.id, :to => "frank2@domain.com")
+    assert !address.verified?, "should not have verified address"
+    address.verify
+    assert address.verified?, "should have verified address"
+    address.unverify
+    assert !address.verified?, "should not have verified address"
+    address.verify
+    assert address.verified?, "should have verified address"
+    address.save
+    assert address.errors.empty?, "should not have any errors"
   end
 
   test "dont save too many addresses for free users" do
