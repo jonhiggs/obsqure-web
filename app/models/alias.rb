@@ -12,6 +12,7 @@ class Alias < ActiveRecord::Base
   end
 
   def verified?
+    errors.add(:address_id, "address must be verified") unless address.verified?
     address.verified?
   end
 
