@@ -2,15 +2,27 @@ require 'test_helper'
 
 class AliasTest < ActiveSupport::TestCase
   setup do
-    @user1 = User.find_by_id(1)
-    @user3 = User.find_by_id(3)
   end
 
   test "should create new alias" do
-    a = Alias.new
-    a.address_id = @user1.addresses.first.id
-    a.name = "new alias"
-    assert a.save!, "should save alias"
+    address = Address.first
+    address.unverify
+    address.save!
+
+    a = Alias.new(:address_id => address.id)
+
+    assert !a.save
+    assert_equal ["can't be blank"], a.errors[:name]
+
+    a.name = "alias1"
+
+    assert !a.save
+    assert_equal ["address must be verified"], a.errors[:address_id]
+
+    address.verify
+    address.save!
+
+    assert a.save
     assert !a.to.match(/[A-Z0-9]{6}@obsqure.me/).nil?, "should have valid address"
   end
 
