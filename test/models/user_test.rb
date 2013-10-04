@@ -34,6 +34,20 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 3462, @frank.id
   end
 
+  test "maximum_addresses" do
+    roger = User.new(:username => "roger", :password => "soeijfaofjapruf")
+    assert roger.save
+
+    assert roger.addresses.empty?, "should have no addresses"
+    assert !roger.has_maximum_addresses?, "should not have maximum addresses"
+    address1 = Address.new(:user_id => roger.id, :to => "roger@somewhere.com")
+    assert address1.save
+    assert !roger.addresses.empty?, "should have an addresses"
+    assert roger.has_maximum_addresses?, "should have maximum addresses"
+    address2 = Address.new(:user_id => roger.id, :to => "roger2@somewhere.com")
+    assert !address2.save
+  end
+
   test "addresses" do
     lucy = User.new(
       :username => "lucy",

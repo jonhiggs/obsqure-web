@@ -26,8 +26,10 @@ class Address < ActiveRecord::Base
   end
 
   def allowed_to_create?
-    return false if self.user_id.nil?
-    !User.find_by_id(self.user_id).has_maximum_addresses?
+    if User.find_by_id(self.user_id).has_maximum_addresses?
+      errors.add(:user_id, "you have created the maximum number of allowed addresses")
+      false
+    end
   end
 
   def unverify_if_email_changed
