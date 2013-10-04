@@ -33,7 +33,9 @@ class Address < ActiveRecord::Base
   end
 
   def unverify_if_email_changed
-    self.unverify if self.to_changed?
+    if self.to_changed? && !self.to_was.nil?
+      self.unverify 
+    end
   end
 
   def update_default_email

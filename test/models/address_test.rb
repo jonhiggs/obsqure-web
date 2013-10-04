@@ -45,7 +45,11 @@ class AddressTest < ActiveSupport::TestCase
   end
 
   test "verifing an address" do
-    address = Address.new(:user_id => @frank.id, :to => "frank2@domain.com")
+    @craig.addresses.each { |address| address.destroy! }
+    @craig.save!
+    assert @craig.addresses.empty?, "should not have any addresses"
+    assert !@craig.has_maximum_addresses?, "should not have maximum addresses"
+    address = Address.new(:user_id => @craig.id, :to => "frank2@domain.com")
     assert !address.verified?, "should not have verified address"
     address.verify
     assert address.verified?, "should have verified address"
@@ -54,11 +58,20 @@ class AddressTest < ActiveSupport::TestCase
     address.verify
     assert address.verified?, "should have verified address"
     address.save
+    assert address.verified?, "should remain verifyed after saving"
     assert address.errors.empty?, "should not have any errors"
+    assert address.save!, "should save address"
+    assert Address.find_by_id(address.id).verified?, "should have saved that we are verified"
   end
 
   test "dont save too many addresses for free users" do
     result = %w[ 1 2 3 4 5 ].map{|a| Address.new(:user_id => @craig.id, :to => "#{a}@d.com").save}
     assert_equal [ true, false, false, false, false ], result
+  end
+
+  test "don't create an address for an unknown user" do
+    address = Address.new(:user_id => 345543, :to => "user@blah.com")
+    address.save
+    assert_equal ["user does not exist"], address.errors[:user_id]
   end
 end
