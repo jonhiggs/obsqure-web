@@ -8,10 +8,13 @@ class Address < ActiveRecord::Base
   before_destroy :check_for_aliases
   after_save :update_default_email
   before_save :unverify_if_email_changed
-  after_create :user_exists?
+  before_save :user_exists?
 
   def user_exists?
-    !!User.find_by_id(self.user_id)
+    unless User.find_by_id(self.user_id)
+      errors.add(:user_id, "user does not exist")
+      false
+    end
   end
 
   def set_token
@@ -20,7 +23,7 @@ class Address < ActiveRecord::Base
 
   def check_for_aliases
     if !aliases.count.zero?
-      flash[:error] = "Cannot delete addresses that have aliases."
+      errors.add(:user_id, "cannot delete addresses that have aliases")
       false
     end
   end

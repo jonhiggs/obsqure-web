@@ -78,3 +78,5 @@ class AliasTest < ActiveSupport::TestCase
     assert address == a.address, "should have same address"
   end
 end
+
+# TODO: create a test if aliases' addresses have been verified.
