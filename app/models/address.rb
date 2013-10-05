@@ -6,7 +6,7 @@ class Address < ActiveRecord::Base
   before_create :allowed_to_create?
   after_initialize :set_token
   before_destroy :check_for_aliases
-  after_save :update_default_email
+  after_save :update_address_id
   before_save :unverify_if_email_changed
   after_destroy :delete_address_id_from_user
   before_save :user_exists?
@@ -48,14 +48,10 @@ class Address < ActiveRecord::Base
     end
   end
 
-  def update_default_email
+  def update_address_id
     user = User.find_by_id(self.user_id)
-
-    # TODO: change this to an ||=
-    if !user.has_email?
-      user.address_id = self.id
-      user.save!
-    end
+    user.address_id = self.id if self.verified?
+    user.save!
   end
 
   def verified?

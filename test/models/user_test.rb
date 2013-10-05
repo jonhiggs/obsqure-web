@@ -61,6 +61,7 @@ class UserTest < ActiveSupport::TestCase
       :user_id => lucy.id,
       :to => "lucy@domain.com"
     )
+    assert lucyatdomain.verify
     assert lucyatdomain.save
     assert lucy.addresses.any?, "should have an address"
 
@@ -119,6 +120,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "unverified address cannot be a users address" do
+    barry = User.new(:username => "barry", :password => "abceesoifg", :account_type => 2)
+    barry.save!
+    barrys_address = Address.new(:user_id => barry.id, :to => "barry@test.com")
+    barrys_address.save!
+    assert User.find_by_id(barry.id).address_id.nil?, "should not have saved address unverified address to barry"
+    barrys_address.verify
+    barrys_address.save!
+    assert_equal User.find_by_id(barry.id).address_id, barrys_address.id
+    barrys_other_address = Address.new(:user_id => barry.id, :to => "barry2@test.com")
+    barrys_other_address.save!
+    assert_equal User.find_by_id(barry.id).address_id, barrys_address.id
   end
 
 end
