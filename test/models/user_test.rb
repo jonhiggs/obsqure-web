@@ -96,36 +96,29 @@ class UserTest < ActiveSupport::TestCase
 
   test "deleted account gets completly cleaned up" do
     david = User.new(:username => "david", :password => "lskjoseijf")
-    assert david.save!
+    assert david.save!, "should save user"
+
     davids_address = Address.new(:user_id => david.id, :to => "david@domain.com")
     davids_address.verify
-    assert davids_address.verified?, "should have verified address"
-    davids_address.save
     assert davids_address.save!, "should save address"
-    assert Address.find_by_id(davids_address.id).verified?, "address should be verified after saving"
 
+    davids_alias = Alias.new(:address_id => davids_address.id, :name => "alias")
+    assert davids_alias.save!, "should save alias"
 
-    #davids_alias = Alias.new(:address_id => davids_address.id, :name => "alias")
-    #davids_alias.save
+    assert User.find_by_id(david.id), "should find user"
+    assert Address.find_by_id(davids_address.id), "should find address"
+    assert Alias.find_by_id(davids_alias.id), "should find alias"
 
-    #p Address.find_by_id(davids_alias.address_id).inspect
-    #p davids_alias.verified?.inspect
-    #p Address.find_by_id(davids_alias.address_id).inspect
-    #p davids_alias.errors.inspect
-    #assert davids_alias.save!, "should save alias"
+    assert_equal 1, david.addresses.count
+    assert_equal 1, david.aliases.count
 
-    #assert User.find_by_id(david.id), "should find user"
-    #assert Address.find_by_id(davids_address.id), "should find address"
-    #assert Alias.find_by_id(davids_alias.id), "should find alias"
-    #assert david.destroy!, "should delete frank"
+    assert david.destroy!, "should delete frank"
+    assert !Alias.find_by_id(davids_alias.id), "should not find david's alias"
+    assert !Address.find_by_id(davids_address.id), "should not find david's address"
+    assert !PostfixAlias.find_by_from(davids_alias.to), "should not have postfix_alias for david's alias"
+  end
 
-    #assert !User.find_by_id(david.id), "should not find user"
-    #assert !Address.find_by_id(davids_address.id), "should not find address"
-    #assert !Alias.find_by_id(davids_alias.id), "should not find alias"
-
-    # delete the user
-    # assert postfix_aliases are deleted
-    # assert addresses are deleted
+  test "unverified address cannot be a users address" do
   end
 
 end

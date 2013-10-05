@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
   validates :address_id, uniqueness: true, :allow_nil => true, :numericality => { :greater_than_or_equal_to => 0 }
   has_many :addresses
   has_many :aliases, through: :addresses
+  before_destroy :cleanup
+
+  def cleanup
+    self.aliases.each { |a| a.destroy! }
+    self.addresses.each { |address| address.destroy! }
+  end
 
   def email_changed?
   end
