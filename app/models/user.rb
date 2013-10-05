@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   def email_changed?
   end
 
+  # this is for devise \w usernames
   def email_required?
     false
   end

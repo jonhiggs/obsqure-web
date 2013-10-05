@@ -85,14 +85,12 @@ class UserTest < ActiveSupport::TestCase
     assert main_address.verify, "verify main_address"
     assert main_address.save
     assert facebook_alias.save, "should save alias to verified address"
-    # TODO: make sure there is nothing in the postfix_aliases table.
 
     wally = User.find_by_username("wally")   # reload the wally User object.
     assert facebook_alias.errors[:address_id].empty?, "should have no errors"
     assert wally.has_verified_address?, "should have verified address"
     assert wally.verified_aliases.any?
     assert wally.has_aliases?, "should have aliases"
-    # TODO: make sure there is something in the postfix_aliases table..
   end
 
   test "deleted account gets completly cleaned up" do
