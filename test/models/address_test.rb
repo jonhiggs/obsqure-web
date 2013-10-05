@@ -74,4 +74,27 @@ class AddressTest < ActiveSupport::TestCase
     address.save
     assert_equal ["user does not exist"], address.errors[:user_id]
   end
+
+  test "don't delete an address that has aliases" do
+    a = Alias.first
+    address = Address.find_by_id(a.address_id)
+    user = User.find_by_id(address.user_id)
+    address.destroy
+    assert_equal ["cannot delete addresses that have aliases"], address.errors[:user_id]
+  end
+
+  test "deleting an default address should delete the reference from a user" do
+    address = Address.first
+    user = User.find_by_id(address.user_id)
+
+    user.address_id = address.id
+    assert user.save, "should save new default email address"
+
+    # delete the aliases that the address has
+    user.aliases.each { |a| a.destroy! if a.address_id == address.id }
+    assert_equal 0, user.aliases.count
+
+    assert address.destroy!, "should destroy the address"
+    assert User.find_by_id(address.user_id).address_id.nil?, "should remove address_id from owner"
+  end
 end

@@ -43,7 +43,8 @@ class User < ActiveRecord::Base
   end
 
   def email
-    self.address(self.address_id).to || ""
+    return "" if self.address_id.nil?
+    self.address(self.address_id).to
   end
 
   def aliases_sorted

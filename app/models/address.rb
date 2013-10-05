@@ -8,6 +8,7 @@ class Address < ActiveRecord::Base
   before_destroy :check_for_aliases
   after_save :update_default_email
   before_save :unverify_if_email_changed
+  after_destroy :delete_address_id_from_user
   before_save :user_exists?
 
   def user_exists?
@@ -15,6 +16,12 @@ class Address < ActiveRecord::Base
       errors.add(:user_id, "user does not exist")
       false
     end
+  end
+
+  def delete_address_id_from_user
+    user = User.find_by_address_id(self.id)
+    user.address_id = nil
+    user.save!
   end
 
   def set_token
