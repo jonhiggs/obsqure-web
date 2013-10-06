@@ -38,7 +38,12 @@ class Address < ActiveRecord::Base
   def allowed_to_create?
     if User.find_by_id(self.user_id).has_maximum_addresses?
       errors.add(:user_id, "you have created the maximum number of allowed addresses")
-      false
+      return false
+    end
+
+    if self.to.match(/\@obsqure.me$/)
+      errors.add(:to, "address has an invalid domain")
+      return false
     end
   end
 

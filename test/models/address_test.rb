@@ -65,8 +65,14 @@ class AddressTest < ActiveSupport::TestCase
   end
 
   test "dont save too many addresses for free users" do
-    result = %w[ 1 2 3 4 5 ].map{|a| Address.new(:user_id => @craig.id, :to => "#{a}@d.com").save}
-    assert_equal [ true, false, false, false, false ], result
+    user = User.new(:username => "bruce", :password => "aoijfseoifj")
+    user.account_type = 0
+    user.save!
+    assert_equal "1", user.maximum_addresses.to_s
+    assert_equal 0, user.used_addresses
+    result = %w[ 1 2 3 4 5 6 7 ].map {|a| Address.new(:user_id => user.id, :to => "#{a}@d.com").save}
+    assert user.has_maximum_addresses?, "should now have maximum addresses"
+    assert_equal [ true, false, false, false, false, false, false ], result
   end
 
   test "don't create an address for an unknown user" do
@@ -96,5 +102,15 @@ class AddressTest < ActiveSupport::TestCase
 
     assert address.destroy!, "should destroy the address"
     assert User.find_by_id(address.user_id).address_id.nil?, "should remove address_id from owner"
+  end
+
+  test "address with an obsqure.me domain" do
+    user = User.first
+    user.account_type = 2
+    user.save!
+
+    address = Address.new(:user_id => user.id, :to => "whatever@obsqure.me" )
+    address.save
+    assert_equal ["address has an invalid domain"], address.errors[:to]
   end
 end
