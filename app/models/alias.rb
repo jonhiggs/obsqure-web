@@ -12,8 +12,17 @@ class Alias < ActiveRecord::Base
   end
 
   def verified?
+    return true if self.burnt? # needed to allow burning an unverified address.
     errors.add(:address_id, "address must be verified") unless address.verified?
     address.verified?
+  end
+
+  def burn
+    self.burnt = true
+  end
+
+  def burnt?
+    self.burnt
   end
 
 protected

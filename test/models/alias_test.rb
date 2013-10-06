@@ -45,6 +45,14 @@ class AliasTest < ActiveSupport::TestCase
     a.save
     assert_equal Alias.find_by_id(a.id).to, original_address
   end
+
+  test "burn an alias" do
+    a = Alias.first
+    assert !a.burnt?, "should not have burnt alias"
+    a.burn
+    a.save!
+    assert Alias.find_by_id(a.id).burnt?, "should have burnt alias"
+  end
 end
 
 # TODO: create a test if aliases' addresses have been verified.
