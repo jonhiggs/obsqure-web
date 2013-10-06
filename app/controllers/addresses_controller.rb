@@ -3,6 +3,7 @@ class AddressesController < ApplicationController
     redirect_to("/users/sign_in") unless user_signed_in?
     @user=current_user
     @address = Address.new
+    user_guide
   end
 
   def create
@@ -59,6 +60,17 @@ class AddressesController < ApplicationController
     current_user.email = current_user.address(params[:address_id]).to
     current_user.save!
     redirect_to :controller => 'addresses', :action => 'index'
+  end
+
+private
+  def user_guide
+    if current_user.addresses.count == 0
+      flash[:info] = "Next Step: Add an email address."
+    elsif current_user.verified_addresses.count == 0 
+      flash[:info] = "Next Step: Verify your email address."
+    elsif current_user.aliases.count == 0
+      flash[:info] = "Next Step: Create an alias."
+    end
   end
 
 end
