@@ -51,7 +51,10 @@ class AliasTest < ActiveSupport::TestCase
     assert !a.burnt?, "should not have burnt alias"
     a.burn
     a.save!
-    assert Alias.find_by_id(a.id).burnt?, "should have burnt alias"
+    assert a.burnt?, "should have burnt alias"
+    assert_equal "BURNT", a.name
+    assert_equal 0, a.address_id
+    assert !a.verified?, "alias should not be verified"
   end
 end
 

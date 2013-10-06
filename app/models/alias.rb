@@ -5,24 +5,26 @@ class Alias < ActiveRecord::Base
   after_create :save_postfix_alias
   after_destroy :destroy_postfix_alias
 
-  before_save :verified?
+  before_create :verified?
 
   def address
     Address.find_by_id(self.address_id)
   end
 
   def verified?
-    return true if self.burnt? # needed to allow burning an unverified address.
+    return false if self.burnt?
     errors.add(:address_id, "address must be verified") unless address.verified?
     address.verified?
   end
 
   def burn
     self.burnt = true
+    self.address_id = 0
+    self.name = "BURNT"
   end
 
   def burn!
-    self.burnt = true
+    self.burn
     self.save!
   end
 
