@@ -47,7 +47,7 @@
             </td>
             <td style="white-space:nowrap">
               <%= button_to "Edit",   { :controller => "aliases", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
-              <%= button_to "Delete", { :controller => "aliases", :action => "destroy", :id => a.id }, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+              <%= button_to "Burn", { :controller => "aliases", :action => "burn", :id => a.id }, :data => { :confirm => "Are you sure? This address cannot be recovered." }, :method => :post, :class => "pure-button" %>
             </td>
           </tr>
         </tbody>

@@ -21,6 +21,11 @@ class Alias < ActiveRecord::Base
     self.burnt = true
   end
 
+  def burn!
+    self.burnt = true
+    self.save!
+  end
+
   def burnt?
     self.burnt
   end

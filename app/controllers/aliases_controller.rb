@@ -10,7 +10,7 @@ class AliasesController < ApplicationController
     @addresses = current_user.verified_addresses
   end
 
-  def destroy
+  def burn
     redirect_to("/users/sign_in") unless user_signed_in?
     redirect_to("/aliases") unless 
 
@@ -19,8 +19,8 @@ class AliasesController < ApplicationController
     if a.nil?
       flash[:notice] = "Alias doesn't exist."
     else
-      Alias.destroy(a.id)
-      flash[:notice] = "Deleted alias '#{a.to}'"
+      current_user.alias(a.id).burn!
+      flash[:notice] = "Alias '#{a.to}' has been burnt."
     end
     redirect_to :controller => 'aliases', :action => 'index'
   end

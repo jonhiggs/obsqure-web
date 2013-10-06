@@ -31,6 +31,7 @@ Obsqure::Application.routes.draw do
 
   resource :aliases do
     root 'aliases#index'
-    get ':id/edit', to: 'aliases#edit'
+    get  ':id/edit', to: 'aliases#edit'
+    post ':id/burn', to: 'aliases#burn'
   end
 end
