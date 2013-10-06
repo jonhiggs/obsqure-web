@@ -21,6 +21,7 @@ class Alias < ActiveRecord::Base
     self.burnt = true
     self.address_id = 0
     self.name = "BURNT"
+    self.destroy_postfix_alias
   end
 
   def burn!

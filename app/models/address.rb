@@ -73,6 +73,11 @@ class Address < ActiveRecord::Base
     end
   end
 
+  def verify!
+    self.verify
+    self.save!
+  end
+
   def default?
     self.id == User.find_by_id(self.user_id).address_id
   end
