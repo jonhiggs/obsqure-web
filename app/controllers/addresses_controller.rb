@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   def index
+    @page = "Addresses"
     redirect_to("/users/sign_in") unless user_signed_in?
     @user=current_user
     @address = Address.new
@@ -41,6 +42,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    @page = %w[ Addresses Edit ]
     @address = current_user.address(params[:id])
   end
 

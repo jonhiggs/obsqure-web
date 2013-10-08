@@ -1,12 +1,14 @@
 class AliasesController < ApplicationController
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
+    @page = "Aliases"
     @user = current_user
     @alias = Alias.new
     user_guide
   end
 
   def edit
+    @page = %w[ Aliases Edit ]
     @alias = current_user.alias(params[:id])
     @addresses = current_user.verified_addresses
   end
