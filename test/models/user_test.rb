@@ -112,7 +112,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1, david.aliases.count
 
     assert david.destroy!, "should delete frank"
-    assert !Alias.find_by_id(davids_alias.id), "should not find david's alias"
+    assert Alias.find_by_id(davids_alias.id).burnt?, "should have burnt the alias"
     assert !Address.find_by_id(davids_address.id), "should not find david's address"
     assert !PostfixAlias.find_by_from(davids_alias.to), "should not have postfix_alias for david's alias"
   end

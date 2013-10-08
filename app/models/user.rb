@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   before_destroy :cleanup
 
   def cleanup
-    self.aliases.each { |a| a.destroy! }
+    self.aliases.each { |a| a.burn! }
     self.addresses.each { |address| address.destroy! }
   end
 
