@@ -28,11 +28,11 @@ class AddressesController < ApplicationController
     address = Address.find_by_token(token)
 
     if address.nil?
-      flash[:info] = "Your address was not found."
+      flash[:notice] = "Your address was not found."
     else
       address.verify
       address.save!
-      flash[:info] = "Your address '#{address.to}' is now verified"
+      flash[:notice] = "Your address '#{address.to}' is now verified"
     end
     redirect_to :controller => 'addresses', :action => 'index'
   end
@@ -49,7 +49,7 @@ class AddressesController < ApplicationController
     address = current_user.address(params[:id])
     address.to = params[:address][:to]
     if address.save!
-      flash[:info] = "Address was updated."
+      flash[:notice] = "Address was updated."
     else
       flash[:error] = "Couldn't update the address."
     end

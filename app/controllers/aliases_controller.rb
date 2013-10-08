@@ -43,7 +43,7 @@ class AliasesController < ApplicationController
     a.name = params[:alias][:name]
 
     if a.save
-      flash[:info] = "Address was updated."
+      flash[:notice] = "Address was updated."
     else
       flash[:error] = "Couldn't update the address."
     end
