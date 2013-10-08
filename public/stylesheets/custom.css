@@ -27,6 +27,43 @@ form.button_to div, form.button_to div input {
     display:inline;
 }
 
+#flash_guide {
+  background: #F6C851;
+  color: black;
+  font-size: 100%;
+  padding: .5em 1.5em;
+  border: 1px solid #999;
+  border: 0 rgba(0,0,0,0);
+  text-decoration: none;
+  border-radius: 2px;
+  margin: 2px;
+}
+
+#flash_error {
+  background: #F33636;
+  color: white;
+  font-size: 100%;
+  padding: .5em 1.5em;
+  border: 1px solid #999;
+  border: 0 rgba(0,0,0,0);
+  text-decoration: none;
+  border-radius: 2px;
+  margin: 2px;
+}
+
+#flash_notice {
+  background: #50AC3F;
+  color: white;
+  font-size: 100%;
+  padding: .5em 1.5em;
+  border: 1px solid #999;
+  border: 0 rgba(0,0,0,0);
+  text-decoration: none;
+  border-radius: 2px;
+  margin: 2px;
+}
+
+
 .inline div {
   display:inline;
 }
@@ -34,6 +71,7 @@ form.button_to div, form.button_to div input {
 .content {
   margin-top: 100px;
   margin: 50px;
+  max-width: 750px;
 }
 
 .content table {
