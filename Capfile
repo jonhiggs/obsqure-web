@@ -4,7 +4,7 @@ load 'deploy'
 load 'config/deploy' # remove this line to skip loading any of the default tasks
 
 set :rails_env, :production
-set :unicorn_binary, "/usr/local/bin/unicorn"
+set :unicorn_binary, "/usr/local/bin/unicorn_rails"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
  
