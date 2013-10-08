@@ -43,12 +43,17 @@ class AliasesController < ApplicationController
     a.address_id = params[:address][:to]
     a.name = params[:alias][:name]
 
+    if params[:alias][:name].empty?
+      flash[:error] = "The alias's name cannot be empty."
+      redirect_to :controller => 'aliases', :action => 'edit', :id => params[:alias][:id]
+      return true
+    end
+
     if a.save
       flash[:notice] = "Address was updated."
     else
-      flash[:error] = "Couldn't update the address."
+      flash[:error] = "Could not update the alias."
     end
-
     redirect_to :controller => 'aliases'
   end
 

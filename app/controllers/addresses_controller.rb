@@ -11,8 +11,7 @@ class AddressesController < ApplicationController
     address = Address.new
     address.user_id = current_user.id
     address.to = params["address"]["to"]
-    address.save!
-
+    address.save || flash[:error] = "The email address in invalid."
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
@@ -32,7 +31,7 @@ class AddressesController < ApplicationController
     else
       address.verify
       address.save!
-      flash[:notice] = "Your address '#{address.to}' is now verified"
+      flash[:notice] = "Your address '#{address.to}' is now verified."
     end
     redirect_to :controller => 'addresses', :action => 'index'
   end
@@ -48,12 +47,13 @@ class AddressesController < ApplicationController
   def update
     address = current_user.address(params[:id])
     address.to = params[:address][:to]
-    if address.save!
-      flash[:notice] = "Address was updated."
+    if address.save
+      flash[:notice] = "The email address was updated."
+      redirect_to :controller => 'addresses'
     else
-      flash[:error] = "Couldn't update the address."
+      flash[:error] = "The email address was invalid."
+      redirect_to :controller => 'addresses', :action => "edit", :id => params[:id]
     end
-    redirect_to :controller => 'addresses'
   end
 
   def default
