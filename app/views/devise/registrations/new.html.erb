@@ -20,6 +20,9 @@
         <%= f.password_field :password_confirmation %>
       </div>
 
+      <div>
+        By creating an account, you are agreeing to the <%= link_to "terms of service", :terms %>.
+      </div>
 
       <div class="pure-controls">
         <%= f.submit "Register", :class => "pure-button pure-button-primary" %>
