@@ -62,15 +62,4 @@ class AddressesController < ApplicationController
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
-private
-  def user_guide
-    if current_user.addresses.count == 0
-      flash[:info] = "Next Step: Add an email address."
-    elsif current_user.verified_addresses.count == 0 
-      flash[:info] = "Next Step: Verify your email address."
-    elsif current_user.aliases.count == 0
-      flash[:info] = "Next Step: Create an alias."
-    end
-  end
-
 end

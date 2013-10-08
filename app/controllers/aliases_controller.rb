@@ -3,6 +3,7 @@ class AliasesController < ApplicationController
     redirect_to("/users/sign_in") unless user_signed_in?
     @user = current_user
     @alias = Alias.new
+    user_guide
   end
 
   def edit

@@ -10,4 +10,21 @@ class ApplicationController < ActionController::Base
       :aliases
     end
   end
+
+  def user_guide
+    return true if current_user.guide_complete
+
+    if current_user.addresses.count == 0
+      flash[:guide] = "Next Step: Add an email address."
+    elsif current_user.verified_addresses.count == 0 
+      flash[:guide] = "Next Step: Verify your email address."
+    elsif current_user.aliases.count == 0
+      flash[:guide] = "Next Step: Create an alias."
+    end
+
+    if flash[:guide].nil?
+      current_user.guide_complete = true
+      current_user.save!
+    end
+  end
 end
