@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'capistrano'
+gem 'capistrano-foreman'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '>= 3.0.1'
 gem 'jbuilder', '~> 1.2'
