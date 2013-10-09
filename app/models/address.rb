@@ -6,13 +6,16 @@ class Address < ActiveRecord::Base
   validates :to, :presence => {:message => "You must supply an email address"}
   validates :to, :email => {:message => "Email address does not appear to be valid"}
   validates :token, :presence => true
-  before_create :allowed_to_create?
+
   after_initialize :set_token
+  before_create :allowed_to_create?
+
   before_destroy :check_for_aliases
-  after_save :update_address_id
-  before_save :unverify_if_email_changed
   after_destroy :delete_address_id_from_user
+
+  before_save :unverify_if_email_changed
   before_save :user_exists?
+  after_save :update_address_id
 
   def user_exists?
     unless User.find_by_id(self.user_id)
