@@ -20,8 +20,10 @@ class Address < ActiveRecord::Base
 
   def delete_address_id_from_user
     user = User.find_by_address_id(self.id)
-    user.address_id = nil
-    user.save!
+    unless user.nil?
+      user.address_id = nil
+      user.save!
+    end
   end
 
   def set_token

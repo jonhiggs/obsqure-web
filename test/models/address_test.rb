@@ -113,4 +113,12 @@ class AddressTest < ActiveSupport::TestCase
     address.save
     assert_equal ["address has an invalid domain"], address.errors[:to]
   end
+
+  test "delete an unverified address" do
+    steven = User.new(:username => "steven", :password => "soijefeosj")
+    steven.save
+    address = Address.new(:user_id => steven.id, :to => "steven@ljseoij.com")
+    address.save!
+    assert address.destroy, "should delete an unverified address"
+  end
 end
