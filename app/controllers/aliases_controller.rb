@@ -1,6 +1,7 @@
 class AliasesController < ApplicationController
   include ApplicationHelper
   before_filter :authenticate_user!
+  before_filter :mine?
 
   def index
     @page = "Aliases"
@@ -10,14 +11,12 @@ class AliasesController < ApplicationController
   end
 
   def edit
-    self.mine? params[:id]
     @page = %w[ Aliases Edit ]
     @alias = current_user.alias(params[:id])
     @addresses = current_user.verified_addresses
   end
 
   def burn
-    self.mine? params[:id]
     a = current_user.alias(params[:id])
     current_user.alias(a.id).burn!
     redirect_to :controller => 'aliases', :action => 'index'
@@ -34,13 +33,12 @@ class AliasesController < ApplicationController
   end
 
   def update
-    self.mine? params[:id]
     a = current_user.alias(params[:alias][:id])
     a.address_id = params[:address][:to]
     a.name = params[:alias][:name]
 
     a.save
-    unless flash_messages(a).empty?
+    unless flash_messages(a)[:error].empty?
       redirect_to :controller => 'aliases', :action => 'edit', :id => params[:alias][:id]
     else
       redirect_to :controller => 'aliases'
@@ -69,9 +67,11 @@ protected
     @alias.to
   end
 
-  def mine?(id)
-    if current_user.alias(id).nil?
-      flash[:error] = "Hey! That's not yours."
+  def mine?
+    return true if params[:id].nil?
+
+    if current_user.alias(params[:id]).nil?
+      flash_messages ["Hey! That's not yours."]
       redirect_to :controller => 'aliases'
     end
   end

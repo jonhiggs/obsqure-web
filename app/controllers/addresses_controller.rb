@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   include ApplicationHelper
   before_filter :authenticate_user!
+  before_filter :mine?
 
   def index
     @page = "Addresses"
@@ -20,7 +21,6 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    self.mine? params[:id]
     address = current_user.address(params[:id])
     current_user.address(params[:id]).destroy
     flash_messages(address)
@@ -42,18 +42,15 @@ class AddressesController < ApplicationController
   end
 
   def show
-    self.mine? params[:id]
     @address = current_user.address(params[:id])
   end
 
   def edit
-    self.mine? params[:id]
     @page = %w[ Addresses Edit ]
     @address = current_user.address(params[:id])
   end
 
   def update
-    self.mine? params[:id]
     address = current_user.address(params[:id])
     address.to = params[:address][:to]
     if address.save
@@ -66,15 +63,16 @@ class AddressesController < ApplicationController
   end
 
   def default
-    self.mine? params[:id]
     current_user.email = current_user.address(params[:address_id]).to
     current_user.save!
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
 protected
-  def mine?(id)
-    if current_user.address(id).nil?
+  def mine?
+    return true if params[:id].nil?
+
+    if current_user.address(params[:id]).nil?
       flash[:error] = "Hey! That's not yours."
       redirect_to :controller => 'addresses'
     end
