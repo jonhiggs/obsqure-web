@@ -1,4 +1,5 @@
 class Address < ActiveRecord::Base
+  include ApplicationHelper
   belongs_to :user
   has_many :aliases
   validates :to, :uniqueness => {:message => "Email address has already been taken"}
@@ -34,19 +35,19 @@ class Address < ActiveRecord::Base
 
   def check_for_aliases
     if !aliases.count.zero?
-      errors.add(:user_id, "cannot delete addresses that have aliases")
+      errors.add(:user_id, "You cannot delete addresses that still have aliases.")
       false
     end
   end
 
   def allowed_to_create?
     if User.find_by_id(self.user_id).has_maximum_addresses?
-      errors.add(:user_id, "you have created the maximum number of allowed addresses")
+      errors.add(:user_id, "You have created the maximum number of allowed addresses.")
       return false
     end
 
     if self.to.match(/\@obsqure.me$/)
-      errors.add(:to, "address has an invalid domain")
+      errors.add(:to, "The address has a disallowed domain.")
       return false
     end
   end

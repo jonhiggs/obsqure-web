@@ -86,7 +86,7 @@ class AddressTest < ActiveSupport::TestCase
     address = Address.find_by_id(a.address_id)
     user = User.find_by_id(address.user_id)
     address.destroy
-    assert_equal ["cannot delete addresses that have aliases"], address.errors[:user_id]
+    assert_equal ["You cannot delete addresses that still have aliases."], address.errors[:user_id]
   end
 
   test "deleting an default address should delete the reference from a user" do
@@ -111,7 +111,7 @@ class AddressTest < ActiveSupport::TestCase
 
     address = Address.new(:user_id => user.id, :to => "whatever@obsqure.me" )
     address.save
-    assert_equal ["address has an invalid domain"], address.errors[:to]
+    assert_equal ["The address has a disallowed domain."], address.errors[:to]
   end
 
   test "delete an unverified address" do

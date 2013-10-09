@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  include ApplicationHelper
   def index
     @page = "Addresses"
     redirect_to("/users/sign_in") unless user_signed_in?
@@ -13,17 +14,8 @@ class AddressesController < ApplicationController
       :user_id => current_user.id,
       :to => params["address"]["to"]
     )
-
     address.save
-
-    if address.save
-      flash[:notice] = "The email address '#{address.to}' has been created."
-    else
-      address.errors[:to].each do |error|
-        flash[:error] = error
-      end
-    end
-
+    flash_messages(address)
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
@@ -31,7 +23,10 @@ class AddressesController < ApplicationController
     redirect_to("/users/sign_in") unless user_signed_in?
     address = current_user.address(params[:id])
 
-    if current_user.address(params[:id]).destroy
+    current_user.address(params[:id]).destroy
+    flash_messages(address)
+
+    if 
       flash[:notice] = "The email address '#{address.to}' has been deleted."
     else
       flash[:error] = "The email address could not be deleted."
