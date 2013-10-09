@@ -9,17 +9,30 @@ class AddressesController < ApplicationController
 
   def create
     redirect_to("/users/sign_in") unless user_signed_in?
-    address = Address.new
-    address.user_id = current_user.id
-    address.to = params["address"]["to"]
-    address.save || flash[:error] = "The email address in invalid."
+    address = Address.new(
+      :user_id => current_user.id,
+      :to => params["address"]["to"]
+    )
+
+    if address.save
+      flash[:notice] = "The email address '#{current_user.address(params[:id]).to}' has been created."
+    else
+      # TODO: make this better
+      flash[:error] = "spit out the address.errors things"
+    end
+
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
   def destroy
     redirect_to("/users/sign_in") unless user_signed_in?
 
-    current_user.address(params[:id]).destroy
+    if current_user.address(params[:id]).destroy
+      flash[:notice] = "The email address '#{current_user.address(params[:id]).to}' has been deleted."
+    else
+      flash[:error] = "The email address could not be deleted."
+    end
+
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
