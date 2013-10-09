@@ -9,6 +9,7 @@ class AliasesController < ApplicationController
   end
 
   def edit
+    self.mine? params[:id]
     @page = %w[ Aliases Edit ]
     @alias = current_user.alias(params[:id])
     @addresses = current_user.verified_addresses
@@ -16,7 +17,7 @@ class AliasesController < ApplicationController
 
   def burn
     redirect_to("/users/sign_in") unless user_signed_in?
-    redirect_to("/aliases") unless 
+    self.mine? params[:id]
 
     a = current_user.alias(params[:id])
     current_user.alias(a.id).burn!
@@ -34,19 +35,17 @@ class AliasesController < ApplicationController
   end
 
   def update
+    self.mine? params[:id]
     a = current_user.alias(params[:alias][:id])
     a.address_id = params[:address][:to]
     a.name = params[:alias][:name]
 
-    if params[:alias][:name].empty?
-      flash[:error] = "The alias's name cannot be empty."
-      redirect_to :controller => 'aliases', :action => 'edit', :id => params[:alias][:id]
-      return true
-    end
-
     a.save
-    flash_notices(a)
-    redirect_to :controller => 'aliases'
+    unless flash_messages(a).empty?
+      redirect_to :controller => 'aliases', :action => 'edit', :id => params[:alias][:id]
+    else
+      redirect_to :controller => 'aliases'
+    end
   end
 
   def resource_name
@@ -69,5 +68,12 @@ protected
     @alias.address_id = @address.id
     @alias.save!
     @alias.to
+  end
+
+  def mine?(id)
+    if current_user.alias(id).nil?
+      flash[:error] = "Hey! That's not yours."
+      redirect_to :controller => 'aliases'
+    end
   end
 end
