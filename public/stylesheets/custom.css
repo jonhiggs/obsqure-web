@@ -39,7 +39,7 @@ form.button_to div, form.button_to div input {
   margin: 2px;
 }
 
-#flash_error {
+#flash_error, #flash_alert {
   background: #F33636;
   color: white;
   font-size: 100%;
