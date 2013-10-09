@@ -10,11 +10,11 @@ class ApplicationHelperTest < ActionView::TestCase
     address1.save
 
     flash_messages(address1)
-    assert flash[:errors].nil?
+    assert flash[:error].nil?
 
     address1.to = "abcd"
     address1.save
     flash_messages(address1)
-    assert_equal "Email address does not appear to be valid", flash[:errors]
+    assert_equal "Email address does not appear to be valid", flash[:error]
   end
 end

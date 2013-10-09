@@ -13,7 +13,7 @@ module ApplicationHelper
 
   def flash_messages(obj)
     obj.errors.messages.each do |key|
-      key.last.each{|m| flash[:errors] = m}
+      key.last.each{|m| flash[:error] = m}
 
       #obj.errors.messages[key.to_sym].each do |error|
       #  flash[key.to_sym] = error
