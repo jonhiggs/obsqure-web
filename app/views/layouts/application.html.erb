@@ -17,13 +17,12 @@
 </head>
 <body>
 
-<div class="content">
+<div id="main">
   <%= render :partial => "shared/links" %>
   <%= render :partial => "layouts/messages" %>
-  <%= yield %>
-</div>
-
-<div>
+  <div id="content">
+    <%= yield %>
+  </div>
   <%= render :partial => "shared/footer" %>
 </div>
 

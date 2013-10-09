@@ -7,19 +7,6 @@
   height: 70px;
 }
 
-#header_ob {
-  font-weight: 400;
-}
-
-#header_squre {
-  font-weight: 800;
-}
-
-#header_me {
-  position: absolute;
-  top: 48px;
-  left: 185px;
-  font-size: 26px;
-  letter-spacing: 0;
-  color: #666;
+#header h1 {
+  background: red;
 }

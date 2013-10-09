@@ -1,6 +1,40 @@
+html, body {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+
 @font-face {
   font-family: 'FiraSans-MediumItalic';
   src: url('mozttf/FiraSans-2.001/FiraSans-MediumItalic.otf')
+}
+
+#header {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid #999;
+}
+
+#header .title {
+  font-size: 50px;
+  text-decoration: none;
+  font-style:none; 
+  margin-bottom: 0px;
+}
+
+#header .title a {
+  text-decoration: none;
+  color: black;
+}
+
+#header .action-menu {
+  width: 50%;
+}
+
+#header .user-menu {
+  width:30%;
+  text-align: right;
+  float: right;
 }
 
 h1,h2 {
@@ -68,14 +102,40 @@ form.button_to div, form.button_to div input {
   display:inline;
 }
 
-.content {
-  margin-top: 100px;
-  margin: 50px;
+#main {
+  margin-left: 50px;
   max-width: 750px;
+  position: relative;
+  Min-height: 100%;  /* for all other browsers */
 }
 
-.content table {
+#content {
+  padding-bottom: 100px;
+}
+
+#content table {
   margin-bottom: 5px;
+}
+
+#footer {
+  border-top: 1px solid #999;
+  bottom: 0px;
+  height: 100px;  /* This value is the height of your footer */
+  margin-left: 50px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+#footer li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+  font-size: 70%;
+}
+
+#footer a { // a:link a:visited {
+  color: #999;
 }
 
 // BUTTONS
