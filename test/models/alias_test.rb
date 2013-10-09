@@ -12,7 +12,7 @@ class AliasTest < ActiveSupport::TestCase
     a = Alias.new(:address_id => address.id)
 
     assert !a.save
-    assert_equal ["can't be blank"], a.errors[:name]
+    assert_equal ["The name cannot be empty."], a.errors[:name]
 
     a.name = "alias1"
 

@@ -1,4 +1,5 @@
 class AliasesController < ApplicationController
+  include ApplicationHelper
   def index
     redirect_to("/users/sign_in") unless user_signed_in?
     @page = "Aliases"
@@ -18,26 +19,18 @@ class AliasesController < ApplicationController
     redirect_to("/aliases") unless 
 
     a = current_user.alias(params[:id])
-
-    if a.nil?
-      flash[:notice] = "Alias doesn't exist."
-    else
-      current_user.alias(a.id).burn!
-      flash[:notice] = "Alias '#{a.to}' has been burnt."
-    end
+    current_user.alias(a.id).burn!
     redirect_to :controller => 'aliases', :action => 'index'
   end
 
   def create
-    if params["alias"]["name"].empty?
-      flash[:error] = "You must provide a name for your alias."
-      redirect_to :controller => 'aliases'
-    else
-      address_id = params["address"]["to"]
-      name = params["alias"]["name"]
-      flash[:notice] = "Created Alias #{self.save_alias(address_id,name)}"
-      redirect_to :controller => 'aliases', :action => 'index'
-    end
+    a = Alias.new(
+      :name => params["alias"]["name"],
+      :address_id => params["address"]["to"]
+    )
+    a.save
+    flash_messages(a)
+    redirect_to :controller => 'aliases', :action => 'index'
   end
 
   def update
@@ -51,11 +44,8 @@ class AliasesController < ApplicationController
       return true
     end
 
-    if a.save
-      flash[:notice] = "Address was updated."
-    else
-      flash[:error] = "Could not update the alias."
-    end
+    a.save
+    flash_notices(a)
     redirect_to :controller => 'aliases'
   end
 

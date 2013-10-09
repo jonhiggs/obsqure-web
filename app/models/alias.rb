@@ -1,6 +1,6 @@
 class Alias < ActiveRecord::Base
   belongs_to :user
-  validates :name, :presence => true
+  validates :name, :presence => {:message => "The name cannot be empty."}
   before_save :generate_address
   after_create :save_postfix_alias
   after_destroy :destroy_postfix_alias
