@@ -1,7 +1,9 @@
 class Address < ActiveRecord::Base
   belongs_to :user
   has_many :aliases
-  validates :to, :presence => true, :email => true
+  validates :to, :uniqueness => {:message => "Email address has already been taken"}
+  validates :to, :presence => {:message => "You must supply an email address"}
+  validates :to, :email => {:message => "Email address does not appear to be valid"}
   validates :token, :presence => true
   before_create :allowed_to_create?
   after_initialize :set_token

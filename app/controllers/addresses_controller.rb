@@ -14,11 +14,14 @@ class AddressesController < ApplicationController
       :to => params["address"]["to"]
     )
 
+    address.save
+
     if address.save
-      flash[:notice] = "The email address '#{current_user.address(params[:id]).to}' has been created."
+      flash[:notice] = "The email address '#{address.to}' has been created."
     else
-      # TODO: make this better
-      flash[:error] = "spit out the address.errors things"
+      address.errors[:to].each do |error|
+        flash[:error] = error
+      end
     end
 
     redirect_to :controller => 'addresses', :action => 'index'
@@ -26,9 +29,10 @@ class AddressesController < ApplicationController
 
   def destroy
     redirect_to("/users/sign_in") unless user_signed_in?
+    address = current_user.address(params[:id])
 
     if current_user.address(params[:id]).destroy
-      flash[:notice] = "The email address '#{current_user.address(params[:id]).to}' has been deleted."
+      flash[:notice] = "The email address '#{address.to}' has been deleted."
     else
       flash[:error] = "The email address could not be deleted."
     end
