@@ -110,7 +110,8 @@ class AddressTest < ActiveSupport::TestCase
     user.save!
 
     address = Address.new(:user_id => user.id, :to => "whatever@obsqure.me" )
-    address.save
+    assert !user.has_maximum_addresses?
+    assert !address.save
     assert_equal ["The address has a disallowed domain."], address.errors[:to]
   end
 
