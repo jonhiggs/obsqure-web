@@ -4,7 +4,7 @@
     <%= form_for @address, url: {action: "create"} do |f| %>
       <fieldset>
         <legend>Add a new email address</legend>
-        <%= f.text_field :to, :placeholder => "Address" %>
+        <%= f.text_field :to, :autofocus => true, :placeholder => "Address" %>
         <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
       </fieldset>
     <% end %>
