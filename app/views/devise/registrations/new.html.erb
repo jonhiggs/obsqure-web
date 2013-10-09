@@ -1,10 +1,8 @@
 <h1>Register</h1>
 
 <div class="pure-form pure-form-aligned">
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     <fieldset>
-      <%= devise_error_messages! %>
-
       <div class="pure-control-group">
         <%= f.label :username %>
         <%= f.text_field :username, :autofocus => true %>
@@ -12,12 +10,12 @@
 
       <div class="pure-control-group">
         <%= f.label :password %>
-        <%= f.password_field :password %>
+        <%= f.password_field :password, :error => false %>
       </div>
 
       <div class="pure-control-group">
         <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
+        <%= f.password_field :password_confirmation, :error => false %>
       </div>
 
       <div>
