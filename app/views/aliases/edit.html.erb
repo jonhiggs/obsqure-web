@@ -1,6 +1,6 @@
 <div class="pure-form pure-form-aligned">
-  <%= form_for @alias, url: {action: "update"} do |f| %>
-    <%= f.label :id %>
+  <%= simple_form_for @alias, url: {action: "update"} do |f| %>
+    <%= f.label :id, :hidden => true %>
     <%= f.hidden_field :id %>
 
     <div class="pure-control-group">
