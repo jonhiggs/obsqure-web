@@ -4,6 +4,7 @@ load 'deploy'
 load 'config/deploy' # remove this line to skip loading any of the default tasks
 
 before "deploy", "deploy:web:disable"
+after "deploy", "deploy:web:enable"
 
 ### FOREMAN ############################
 require 'capistrano/foreman'
@@ -17,7 +18,25 @@ set :foreman_options, {
   user: user,
 }
 
-after "deploy", "deploy:web:enable"
+namespace :foreman do
+  namespace :nginx do
+    desc "Start Nginx"
+    task :start, :roles => :app do
+      sudo "start nginx"
+    end
+
+    desc "Stop Nginx"
+    task :stop, :roles => :app do
+      sudo "stop nginx"
+    end
+
+    desc "Restart Nginx"
+    task :restart, :roles => :app do
+      sudo "restart nginx"
+    end
+  end
+end
+ 
 ############################################
 
 desc "tail production log files" 
