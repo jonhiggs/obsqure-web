@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
   def account
-    redirect_to("/users/sign_in") unless user_signed_in?
     @page = %w[ Account ]
     @user = current_user
 

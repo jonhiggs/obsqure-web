@@ -1,7 +1,8 @@
 class AliasesController < ApplicationController
   include ApplicationHelper
+  before_filter :authenticate_user!
+
   def index
-    redirect_to("/users/sign_in") unless user_signed_in?
     @page = "Aliases"
     @user = current_user
     @alias = Alias.new
@@ -16,9 +17,7 @@ class AliasesController < ApplicationController
   end
 
   def burn
-    redirect_to("/users/sign_in") unless user_signed_in?
     self.mine? params[:id]
-
     a = current_user.alias(params[:id])
     current_user.alias(a.id).burn!
     redirect_to :controller => 'aliases', :action => 'index'

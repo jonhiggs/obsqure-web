@@ -1,15 +1,15 @@
 class AddressesController < ApplicationController
   include ApplicationHelper
+  before_filter :authenticate_user!
+
   def index
     @page = "Addresses"
-    redirect_to("/users/sign_in") unless user_signed_in?
     @user=current_user
     @address = Address.new
     user_guide
   end
 
   def create
-    redirect_to("/users/sign_in") unless user_signed_in?
     address = Address.new(
       :user_id => current_user.id,
       :to => params["address"]["to"]
@@ -20,19 +20,10 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    redirect_to("/users/sign_in") unless user_signed_in?
     self.mine? params[:id]
     address = current_user.address(params[:id])
-
     current_user.address(params[:id]).destroy
     flash_messages(address)
-
-    if 
-      flash[:notice] = "The email address '#{address.to}' has been deleted."
-    else
-      flash[:error] = "The email address could not be deleted."
-    end
-
     redirect_to :controller => 'addresses', :action => 'index'
   end
 
