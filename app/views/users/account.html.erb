@@ -1,37 +1,27 @@
 <h1>Your Account Details</h1>
 <div class="table">
-  <table class="pure-table">
+  <table>
     <tbody>
       <tr>
-        <td>Username:</td>
+        <td><b>Username:</b></td>
         <td><%= @user.username %></td>
       </tr>
       <tr>
-        <td>Account Type:</td>
+        <td><b>Account Type:</b></td>
         <td><%= @account_type %></td>
       </tr>
       <tr>
-        <td>Account Expiration:</td>
+        <td><b>Account Expiration:</b></td>
         <td>Never</td>
       </tr>
       <tr>
-        <td>Used Addresses:</td>
+        <td><b>Used Addresses:</b></td>
         <td><%= @user.used_addresses %> / <%= @user.maximum_addresses %></td>
       </tr>
       <tr>
-        <td>Used Aliases:</td>
+        <td><b>Used Aliases:</b></td>
         <td><%= @user.used_aliases %> / <%= @user.maximum_aliases %></td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<ul>
-  <li><%= "cancel account" '#link_to "Cancel Account", :user_cancel_account' %></li>
-  <li><%= link_to "Reset Password", { :controller => "users", :action => "change_password", :user_id => current_user.id} %></li>
-</ul>
-
-<h2>Cancel my account</h2>
-<p>If you like, you can terminate your account. Please be absolutaly sure that
-this is what you want because it cannot be undone.</p>
-<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
