@@ -27,13 +27,13 @@ html, body {
   color: black;
 }
 
-#header .action-menu {
+#header #action-menu {
   width: 50%;
 }
 
-#header .user-menu {
+#header #user-menu {
   width:30%;
-  text-align: right;
+  text-align: left;
   float: right;
 }
 

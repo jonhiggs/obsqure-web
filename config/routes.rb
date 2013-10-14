@@ -6,7 +6,6 @@ Obsqure::Application.routes.draw do
     get 'register', to: 'devise/registrations#new'
     get 'sign_in', to: 'devise/sessions#new'
     get 'sign_out', to: 'devise/sessions#destroy'
-    #get 'forgot_password', to: 'devise/passwords#new'
   end
 
   get 'account', to: 'users#account'
@@ -24,7 +23,6 @@ Obsqure::Application.routes.draw do
   resources :users do
     root 'users#index'
   end
-
 
   resources :addresses do
     root 'addresses#index'

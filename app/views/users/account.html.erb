@@ -26,8 +26,10 @@
   </table>
 </div>
 
-<h2>Reset Password</h3>
-<%= render :partial => "shared/update_password" %>
+<ul>
+  <li><%= "cancel account" '#link_to "Cancel Account", :user_cancel_account' %></li>
+  <li><%= link_to "Reset Password", { :controller => "users", :action => "change_password", :user_id => current_user.id} %></li>
+</ul>
 
 <h2>Cancel my account</h2>
 <p>If you like, you can terminate your account. Please be absolutaly sure that
