@@ -13,7 +13,7 @@
 
 <% unless @user.addresses.empty? %>
   <div class="table">
-    <table class="pure-table">
+    <table class="pure-table pure-table-horizontal pure-table-striped">
       <thead>
         <tr>
           <th>Address</th>
@@ -22,8 +22,8 @@
         </tr>
       </thead>
 
-      <% @user.addresses.each do |a| %>
-        <tbody>
+      <tbody>
+        <% @user.addresses.each do |a| %>
           <tr>
             <td class="<%= "not_verified" unless a.verified? %> <%= "default" if a.to == @user.email %>">
               <%= a.to %>
@@ -44,8 +44,8 @@
               <% end %>
             </td>
           </tr>
-        </tbody>
-      <% end %>
+        <% end %>
+      </tbody>
     </table>
   </div>
 <% end %>
