@@ -3,6 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   setup do
     @frank = User.find_by_username("frank")
+    @jon = User.find_by_username("jon")
   end
 
   test "user attributes" do
@@ -130,5 +131,4 @@ class UserTest < ActiveSupport::TestCase
     barrys_other_address.save!
     assert_equal User.find_by_id(barry.id).address_id, barrys_address.id
   end
-
 end

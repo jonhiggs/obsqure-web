@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
     if @user.account_type == 0
       @account_type = "Free"
+    elsif @user.account_type == 99
+      @account_type = "Admin"
     else
       @account_type = "Basic"
     end
