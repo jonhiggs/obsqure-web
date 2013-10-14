@@ -14,12 +14,13 @@
       </div>
 
       <div class="pure-controls">
-        <%= link_to "Don't have an account?", :register %>
+        <%= f.submit "Sign in", :class => "pure-button pure-button-primary" %>
       </div>
 
       <div class="pure-controls">
-        <%= f.submit "Sign in", :class => "pure-button pure-button-primary" %>
+        <%= link_to "Don't have an account?", :register %>
       </div>
+
     </fieldset>
   <% end %>
 </div>

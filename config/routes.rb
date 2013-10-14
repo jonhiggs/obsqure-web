@@ -6,6 +6,7 @@ Obsqure::Application.routes.draw do
     get 'register', to: 'devise/registrations#new'
     get 'sign_in', to: 'devise/sessions#new'
     get 'sign_out', to: 'devise/sessions#destroy'
+    #get 'forgot_password', to: 'devise/passwords#new'
   end
 
   get 'account', to: 'users#account'
