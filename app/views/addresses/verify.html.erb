@@ -1,0 +1,7 @@
+<% if @address.nil? %>
+  <h2>Your address was not found</h2>
+  <p>Either the address is already verified or the token is incorrect.</p>
+<% else %>
+  <h2>Your address is verified</h2>
+  <p>The address '<%= @address.to %>' is now verified.
+<% end %>

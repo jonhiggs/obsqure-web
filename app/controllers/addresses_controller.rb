@@ -29,16 +29,12 @@ class AddressesController < ApplicationController
 
   def verify
     token = params[:token]
-    address = Address.find_by_token(token)
+    @address = Address.find_by_token(token)
 
-    if address.nil?
-      flash[:notice] = "Your address was not found."
-    else
-      address.verify
-      address.save!
-      flash[:notice] = "Your address '#{address.to}' is now verified."
+    unless @address.nil?
+      @address.verify
+      @address.save!
     end
-    redirect_to :controller => 'addresses', :action => 'index'
   end
 
   def show
