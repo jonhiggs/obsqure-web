@@ -13,11 +13,11 @@
     },
     { 
       :question => "Do you plan to allow custom domains?",
-      :answer =>   "Yes, depending on the demand. If you want it, send an email telling me so."
+      :answer =>   "Yes, depending on the demand. If you want it, #{link_to "send an email telling me so", :contact}."
     },
     { 
       :question => "I have a great idea. Who do I tell?",
-      :answer =>   "Awesome. Send it to ideas@obsqure.net."
+      :answer =>   "Awesome. Get #{link_to "contact details here", :contact}."
     },
     { 
       :question => "How do I know that your secure?",
@@ -42,5 +42,5 @@
 %>
 
 <% questions.each do |q| %>
-  <p><b><%= q[:question] %></b><br /><%= q[:answer] %></p>
+  <p><b><%= q[:question].html_safe %></b><br /><%= q[:answer].html_safe %></p>
 <% end %>
