@@ -1,23 +1,5 @@
-<h1>Obsqured Aliases Of Your Real Addresses</h1>
-<% unless @user.has_verified_address? %>
-  <div>You must verify an <%= link_to "address", :addresses %> before <%= @user.has_aliases? ? "more aliases" : "an alias" %> can be created.</div>
-<% else %>
-  <% unless @user.has_maximum_aliases? %>
-    <div class="pure-form">
-      <%= form_for @alias, url: {action: "create"} do |f| %>
-        <fieldset>
-          <legend>Create A New Alias</legend>
-          <%= collection_select("address", "to", @user.verified_addresses, :id, :to, {:selected => @user.email } ) %>
-          <%= f.label :name %>
-          <%= f.text_field :name, :autofocus => true %>
-          <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
-        </fieldset>
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
-<% if @user.has_aliases? %>
-  <h2>Existing Aliases</h2>
+<% if @user.has_verified_address? || !@user.aliases.empty? %>
+  <h2>Aliases</h2>
   <div class="table">
     <table class="pure-table pure-table-horizontal pure-table-striped">
       <thead>
@@ -51,7 +33,21 @@
             </td>
           </tr>
         <% end %>
+        <% if !@user.has_maximum_aliases? && @user.has_verified_address? %>
+          <tr style="font-weight: 600;">
+            <%= simple_form_for @alias, url: {action: "create"} do |f| %>
+              <td><%= f.text_field :name, :autofocus => true, :placeholder => "Name", :size => "10" %></td>
+              <td>xxxxxx@obsqure.me</td>
+              <td><%= collection_select("address", "to", @user.verified_addresses, :id, :to, {:selected => @user.email } ) %></td>
+              <td><%= f.submit "Add", :class => "pure-button pure-button-primary" %></td>
+            <% end %>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
+
+<% else %>
+  <h2>You haven't got any verified email addresses</h2>
+  <p>You must verify an <%= link_to "address", :addresses %> before <%= @user.has_aliases? ? "more aliases" : "an alias" %> can be created.</p>
 <% end %>

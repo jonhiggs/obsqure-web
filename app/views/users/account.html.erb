@@ -11,6 +11,9 @@
         <td><%= @account_type %></td>
       </tr>
       <tr>
+        <td><b>Email Address:</b></td>
+        <td><%= @user.has_email? ? @user.email : "-" %></td>
+      <tr>
         <td><b>Account Expiration:</b></td>
         <td>Never</td>
       </tr>

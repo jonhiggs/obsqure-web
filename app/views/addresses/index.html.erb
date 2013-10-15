@@ -1,52 +1,46 @@
-<h1>Your Real Addresses</h1>
-<% unless @user.has_maximum_addresses? %>
-  <div class="pure-form">
-    <%= form_for @address, url: {action: "create"} do |f| %>
-      <fieldset>
-        <legend>Add a new email address</legend>
-        <%= f.text_field :to, :autofocus => true, :placeholder => "Address" %>
-        <%= f.submit "Add", :class => "pure-button pure-button-primary" %>
-      </fieldset>
-    <% end %>
-  </div>
-<% end %>
+<h2>Addresses</h2>
+<div class="table">
+  <table class="pure-table pure-table-horizontal pure-table-striped">
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th align="center">Aliases</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
 
-<% unless @user.addresses.empty? %>
-  <div class="table">
-    <table class="pure-table pure-table-horizontal pure-table-striped">
-      <thead>
+    <tbody>
+      <% @user.addresses.each do |a| %>
         <tr>
-          <th>Address</th>
-          <th>Aliases</th>
-          <th>Actions</th>
+          <td class="<%= "not_verified" unless a.verified? %> <%= "default" if a.to == @user.email %>">
+            <%= a.to %>
+          </td>
+          <td align="center">
+            <%= a.aliases.count %>
+          </td>
+          <td>
+            <%= button_to "Edit",   { :controller => "addresses", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
+            <% unless a.verified? %>
+              <%= link_to "Verify", { :controller => "addresses", :action => "verify", :token => a.token }, :method => :get, :class => "pure-button" %>
+            <% end %>
+            <% if a.aliases.count.zero? %>
+              <%= button_to "Delete", { :controller => "addresses", :action => "destroy", :id => a.id}, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
+            <% end %>
+            <% if !a.default? && a.verified? %>
+              <%= button_to "Make Default", { :controller => "addresses", :action => "default", :address_id => a.id}, :method => :post, :class => "pure-button" %>
+            <% end %>
+          </td>
         </tr>
-      </thead>
-
-      <tbody>
-        <% @user.addresses.each do |a| %>
-          <tr>
-            <td class="<%= "not_verified" unless a.verified? %> <%= "default" if a.to == @user.email %>">
-              <%= a.to %>
-            </td>
-            <td>
-              <%= a.aliases.count %>
-            </td>
-            <td>
-              <%= button_to "Edit",   { :controller => "addresses", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
-              <% unless a.verified? %>
-                <%= link_to "Verify", { :controller => "addresses", :action => "verify", :token => a.token }, :method => :get, :class => "pure-button" %>
-              <% end %>
-              <% if a.aliases.count.zero? %>
-                <%= button_to "Delete", { :controller => "addresses", :action => "destroy", :id => a.id}, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
-              <% end %>
-              <% if !a.default? && a.verified? %>
-                <%= button_to "Make Default", { :controller => "addresses", :action => "default", :address_id => a.id}, :method => :post, :class => "pure-button" %>
-              <% end %>
-            </td>
+      <% end %>
+      <% unless @user.has_maximum_addresses? %>
+        <tr>
+          <%= simple_form_for @address, url: {action: "create"} do |f| %>
+            <td><%= f.text_field :to, :autofocus => true, :placeholder => "Real Address", :size => 10 %></td>
+            <td align="center">0</td>
+            <td><%= f.submit "Add", :class => "pure-button pure-button-primary" %></td>
           </tr>
         <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-
+      <% end %>
+    </tbody>
+  </table>
+</div>

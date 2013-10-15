@@ -4,6 +4,10 @@ html, body {
   height: 100%;
 }
 
+select {
+  height: 30px;
+}
+
 @font-face {
   font-family: 'FiraSans-MediumItalic';
   src: url('mozttf/FiraSans-2.001/FiraSans-MediumItalic.otf')
