@@ -11,10 +11,6 @@ class PagesController < ApplicationController
     @page = "Privacy"
   end
 
-  def support
-    @page = "Support"
-  end
-
   def terms
     @page = "Terms Of Service"
   end
