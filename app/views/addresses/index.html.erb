@@ -32,14 +32,19 @@
           </td>
         </tr>
       <% end %>
+
       <% unless @user.has_maximum_addresses? %>
         <tr>
           <%= simple_form_for @address, url: {action: "create"} do |f| %>
             <td><%= f.text_field :to, :autofocus => true, :placeholder => "Real Address", :size => 10 %></td>
             <td align="center">0</td>
             <td><%= f.submit "Add", :class => "pure-button pure-button-primary" %></td>
-          </tr>
-        <% end %>
+          <% end %>
+        </tr>
+      <% else %>
+        <tr>
+          <td colspan=4 align=center><b>You have created all the addresses you are allowed on this account.</b></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

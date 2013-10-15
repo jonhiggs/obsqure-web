@@ -4,4 +4,5 @@
 <% else %>
   <h2>Your address is verified</h2>
   <p>The address '<%= @address.to %>' is now verified.
+  <p>You can now start creating <%= link_to "aliases", :aliases %>.
 <% end %>
