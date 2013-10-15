@@ -4,6 +4,11 @@ html, body {
   height: 100%;
 }
 
+p {
+  margin-top: 0px !important;
+  margin-bottom: 20px !important;
+}
+
 select {
   height: 30px;
 }
@@ -41,11 +46,15 @@ select {
   float: right;
 }
 
-h1,h2 {
+h2,h3 {
 	font-family: 'FiraSans';
+  margin: 0px !important;
+  margin-top: 30px !important;
+  margin-bottom: 15px !important;
 }
 
 h1 {
+	font-family: 'FiraSans';
 	font-size: 30pt; 
   font-style:italic;
 }
@@ -54,6 +63,11 @@ h2 {
 	font-size: 25pt; 
 }
 
+h3 {
+  font-size: 20px;
+  font-style:italic;
+  padding-left: 20px;
+}
 
 form.button_to {
     margin:0;
@@ -63,6 +77,10 @@ form.button_to {
 
 form.button_to div, form.button_to div input {
     display:inline;
+}
+
+li {
+  margin-bottom: 10px !important;
 }
 
 #flash_guide {
