@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'FiraSans-MediumItalic';
+  src: url('mozttf/FiraSans-2.001/FiraSans-MediumItalic.otf')
+}
+
 html, body {
   padding: 0px;
   margin: 0px;
@@ -11,39 +16,6 @@ p {
 
 select {
   height: 30px;
-}
-
-@font-face {
-  font-family: 'FiraSans-MediumItalic';
-  src: url('mozttf/FiraSans-2.001/FiraSans-MediumItalic.otf')
-}
-
-#header {
-  padding-left: 20px;
-  padding-right: 20px;
-  border-bottom: 1px solid #999;
-}
-
-#header .title {
-  font-size: 50px;
-  text-decoration: none;
-  font-style:none; 
-  margin-bottom: 0px;
-}
-
-#header .title a {
-  text-decoration: none;
-  color: black;
-}
-
-#header #action-menu {
-  width: 50%;
-}
-
-#header #user-menu {
-  width:30%;
-  text-align: left;
-  float: right;
 }
 
 h2,h3 {
@@ -83,6 +55,33 @@ li {
   margin-bottom: 10px !important;
 }
 
+#header {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid #999;
+}
+
+#header .title {
+  font-size: 50px;
+  text-decoration: none;
+  font-style:none; 
+  margin-bottom: 0px;
+}
+
+#header .title a {
+  text-decoration: none;
+  color: black;
+}
+
+#header #action-menu {
+  width: 50%;
+}
+
+#header #user-menu {
+  width:30%;
+  text-align: left;
+  float: right;
+}
 #flash_guide {
   background: #F6C851;
   color: black;
