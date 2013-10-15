@@ -1,37 +1,98 @@
-<h2>What we do</h2>
-<p>Obsqure is all about hiding your real email address behind aliases. We do
-that by offering an aliases which can forward email to your real email
-account.</p>
+<style>
+  .pure-g > div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
 
-<h2>What you get</h2>
-<ul>
-  <li>5 email aliases.
-  <li>1 forwarding address.
-  <li>Unlimited messages.
-  <li>Maximum email size of 50MB.
-</ul>
+  .grid-box {
+    padding: 30px;
 
-* More plans are coming soon.
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+  }
 
-<h2>Why</h2>
-<p>Your email address is a token that follows your online activities everywhere.
-Unfortunately most services require you to provide them with a valid email
-address to simply use their system.
+  .gray .notice {
+    color: #666;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+  }
 
-<p>We all use online services and those online services often use or share that
-information to third-parties. Our real identity can be tracked with just a
-single token that follows us around, the token that is being used is our email
-addresses.
+  .green {
+    background: #F6C851;
+  }
 
-<p>If we could disconnect ourselves from our email address as a unique
-identifier then any information gathered regarding that identity could not be
-updated with any new information that is later discovered.
+  .red {
+    background: red;
+  }
 
-<p>What was needed was a secure, private, permanent email solution that made it
-easy to create new addresses.
+  .gray {
+    margin: 10px;
+    background: #DDDDDD;
+  }
 
-<ul>
-  <li>Some email providers offer this service but require a fully, fledged email service.
-  <li>Some offer temporary email addresses but they are not private or permanent.
-  <li>All of them made you think up an address each time you wanted a new alias.
-</ul>
+  .gray h3 {
+    margin-top: 0px !important;
+  }
+
+  .gray li {
+    color: #666;
+  }
+
+</style>
+
+
+<div class="pure-g-r">
+  <div class="pure-u-1-2">
+    <div class="grid-box">
+      <p>Obsqure is all about hiding your real email address behind aliases.</p>
+      <p>Both your real address and the content of email sent to your aliases are
+      private and free.</p>
+    </div>
+  </div>
+
+  <div class="pure-u-1-2">
+    <div class="grid-box gray">
+      <h3>What you get</h3>
+      <ul>
+        <li>5 email aliases.
+        <li>1 forwarding address.
+        <li>Unlimited messages.
+        <li>Maximum email size of 50MB.
+      </ul>
+      <div class="pure-controls" style="text-align: center">
+        <%= button_to "Register For Free", :register, :class => "pure-button pure-button-primary", :method => :get %>
+      </div>
+      <div class="notice">* More plans are coming soon.</div>
+    </div>
+  </div>
+
+  <div class="pure-u-1">
+    <h2>Why</h2>
+    <p>Your email address is a token that follows your online activities everywhere.
+    Unfortunately most services require you to provide them with a valid email
+    address to simply use their system.</p>
+
+    <p>We all use online services and those online services often use or share that
+    information to third-parties. Our real identity can be tracked with just a
+    single token that follows us around, the token that is being used is our email
+    addresses.</p>
+
+    <p>If we could disconnect ourselves from our email address as a unique
+    identifier then any information gathered regarding that identity could not be
+    updated with any new information that is later discovered.
+
+    <p>What was needed was a secure, private, permanent email solution that made it
+    easy to create new addresses.</p>
+
+    <ul>
+      <li>Some email providers offer this service but require a fully, fledged email service.
+      <li>Some offer temporary email addresses but they are not private or permanent.
+      <li>All of them made you think up an address each time you wanted a new alias.
+    </ul>
+  </div>
+</div>

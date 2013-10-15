@@ -119,6 +119,7 @@ li {
 }
 
 
+
 .inline div {
   display:inline;
 }
@@ -165,27 +166,18 @@ li {
   color: #999;
 }
 
-// BUTTONS
-.pure-button-xsmall {
-  font-size: 70%;
-}
-
-.pure-button-small {
-  font-size: 85%;
-}
-
-.pure-button-large {
-  font-size: 110%;
-}
-
-.pure-button-xlarge {
-  font-size: 125%;
-}
-
 .default {
   font-weight: 600;
 }
 
 .not_verified {
   color: #E50009;
+}
+
+.grid-content {
+  padding: 100px;
+}
+
+.notice {
+  color: #CCC;
 }
