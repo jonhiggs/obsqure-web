@@ -14,7 +14,7 @@ Obsqure::Application.routes.draw do
   get 'contact', to: 'pages#contact'
   get 'support', to: 'pages#support'
   get 'terms', to: 'pages#terms'
-
+  get 'verify/:token', to: 'addresses#verify', as: :verify
 
   # verification
   get 'verify', to: 'addresses#verify'

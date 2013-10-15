@@ -86,6 +86,11 @@ class Address < ActiveRecord::Base
     self.save!
   end
 
+  def verify_link
+    url = "http://www.obsqure.net/verify"
+    self.verified? ? url : url + "/#{self.token}"
+  end
+
   def default?
     self.id == User.find_by_id(self.user_id).address_id
   end
@@ -95,6 +100,7 @@ class Address < ActiveRecord::Base
     self.token = self.generate_token
     PostfixAlias.where(:to => self.to).delete_all
     PostfixAlias.where(:to => self.to_was).delete_all
+    Notifier.verify(self).deliver
   end
 
 protected
