@@ -21,7 +21,7 @@
           <td>
             <%= button_to "Edit",   { :controller => "addresses", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
             <% unless a.verified? %>
-              <%= link_to "Verify", { :controller => "addresses", :action => "verify", :token => a.token }, :method => :get, :class => "pure-button" %>
+              <%= link_to("Verify", { :controller => "addresses", :action => "verify", :token => a.token }, :method => :get, :class => "pure-button") unless Rails.env == "production" %>
             <% end %>
             <% if a.aliases.count.zero? %>
               <%= button_to "Delete", { :controller => "addresses", :action => "destroy", :id => a.id}, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pure-button" %>
