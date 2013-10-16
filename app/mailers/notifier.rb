@@ -3,6 +3,6 @@ class Notifier < ActionMailer::Base
 
   def verify(address)
     @address = address
-    mail(to: @address.to)
+    mail(to: @address.to, subject: "Verify your email address for Obsqure.")
   end
 end
