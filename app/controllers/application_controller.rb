@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     end
 
     if flash[:guide].nil?
-      flash[:guide] = "Congradulations, your account is all set up."
+      flash[:guide] = "Congratulations, your account is all set up."
       current_user.guide_complete = true
       current_user.save!
     end
