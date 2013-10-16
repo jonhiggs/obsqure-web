@@ -16,11 +16,19 @@ class Address < ActiveRecord::Base
   before_save :unverify_if_email_changed
   before_save :user_exists?
   after_save :update_address_id
+  after_save :send_verification_email
 
   def user_exists?
     unless User.find_by_id(self.user_id)
       errors.add(:user_id, "user does not exist")
       false
+    end
+  end
+
+  def send_verification_email
+    return true if self.token.nil?
+    if self.to_changed?
+      Notifier.verify(self).deliver
     end
   end
 
@@ -34,7 +42,6 @@ class Address < ActiveRecord::Base
 
   def set_token
     self.token = self.generate_token
-    Notifier.verify(self).deliver
   end
 
   def check_for_aliases
@@ -101,7 +108,6 @@ class Address < ActiveRecord::Base
     self.token = self.generate_token
     PostfixAlias.where(:to => self.to).delete_all
     PostfixAlias.where(:to => self.to_was).delete_all
-    Notifier.verify(self).deliver
   end
 
 protected
