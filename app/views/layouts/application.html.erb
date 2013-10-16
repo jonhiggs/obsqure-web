@@ -19,6 +19,7 @@
 <body>
 
 <div id="main">
+  <%= render :partial => "shared/login" unless user_signed_in? %>
   <%= render :partial => "shared/links" %>
   <%= render :partial => "layouts/messages" %>
   <div id="content">

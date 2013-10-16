@@ -1,16 +1,16 @@
-<h1>Sign In</h1>
+<h2>Sign In</h2>
 
 <div class="pure-form pure-form-aligned">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <fieldset>
       <div class="pure-control-group">
-        <%= f.label :username %>
-        <%= f.text_field :username, :autofocus => true %>
+        <%= f.label :username, required: false %>
+        <%= f.text_field :username, autofocus: true, required: true %>
       </div>
 
       <div class="pure-control-group">
         <%= f.label :password %>
-        <%= f.password_field :password %>
+        <%= f.password_field :password, required: true %>
       </div>
 
       <div class="pure-controls">

@@ -36,7 +36,7 @@
         <% unless @user.has_maximum_aliases? %>
           <tr>
             <%= simple_form_for @alias, url: {action: "create"} do |f| %>
-              <td><%= f.text_field :name, :autofocus => true, :placeholder => "Name", :size => "10" %></td>
+              <td><%= f.text_field :name, autofocus: true, placeholder: "Name", size: "10", required: true %></td>
               <td>xxxxxx@obsqure.me</td>
               <td><%= collection_select("address", "to", @user.verified_addresses, :id, :to, {:selected => @user.email } ) %></td>
               <td><%= f.submit "Add", :class => "pure-button pure-button-primary" %></td>

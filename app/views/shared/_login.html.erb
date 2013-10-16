@@ -1,19 +1,11 @@
-<div class="pure-form pure-form-aligned">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <fieldset>
-      <div class="pure-control-group">
-        <%= f.label :username %>
-        <%= f.text_field :username, :autofocus => true %>
-      </div>
-
-      <div class="pure-control-group">
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-      </div>
-
-      <div class="pure-controls">
+<div id="login">
+  <div class="pure-form">
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <fieldset>
+        <%= f.text_field :username, autofocus: true, size: 10, placeholder: "Username", required: true %>
+        <%= f.password_field :password, :size => 10, :placeholder => "Password" %>
         <%= f.submit "Sign in", :class => "pure-button pure-button-primary" %>
-      </div>
-    </fieldset>
-  <% end %>
+      </fieldset>
+    <% end %>
+  </div>
 </div>

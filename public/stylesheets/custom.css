@@ -55,6 +55,18 @@ li {
   margin-bottom: 10px !important;
 }
 
+#login {
+  float: right;
+  padding-bottom: 0px;
+  padding-right: 10px;
+  text-align: right;
+  max-width: 750px;
+}
+
+#login .pure-button {
+  zoom: 0.85 !important
+}
+
 #header {
   padding-left: 20px;
   padding-right: 20px;
@@ -64,7 +76,7 @@ li {
 #header .title {
   font-size: 50px;
   text-decoration: none;
-  font-style:none; 
+  font-style: none; 
   margin-bottom: 0px;
 }
 
@@ -117,8 +129,6 @@ li {
   border-radius: 2px;
   margin: 2px;
 }
-
-
 
 .inline div {
   display:inline;
@@ -176,8 +186,4 @@ li {
 
 .grid-content {
   padding: 100px;
-}
-
-.notice {
-  color: #CCC;
 }

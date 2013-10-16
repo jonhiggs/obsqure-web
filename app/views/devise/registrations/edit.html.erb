@@ -7,17 +7,17 @@
     <fieldset>
       <div class="pure-control-group">
         <%= f.label :password %>
-        <%= f.password_field :password, :autocomplete => "off", :error => false %>
+        <%= f.password_field :password, :autocomplete => "off", :error => false, required: true; %>
       </div>
 
       <div class="pure-control-group">
         <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, :error => false %>
+        <%= f.password_field :password_confirmation, :error => false, required: true %>
       </div>
 
       <div class="pure-control-group">
         <%= f.label :current_password %>
-        <%= f.password_field :current_password, :error => false %>
+        <%= f.password_field :current_password, :error => false, required: true %>
       </div>
 
       <div class="pure-controls">
