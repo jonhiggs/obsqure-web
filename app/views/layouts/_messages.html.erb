@@ -1,0 +1,15 @@
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    </div>
+  <% elsif msg.is_a?(Array) %>
+    <% msg.each do |single| %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+        <%= content_tag :div, single, :id => "flash_#{name}" %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+<% flash[:error] = nil %>
+<% flash[:notice] = nil %>

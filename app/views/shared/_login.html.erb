@@ -1,0 +1,11 @@
+<div id="login">
+  <div class="pure-form">
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <fieldset>
+        <%= f.text_field :username, autofocus: true, size: 10, placeholder: "Username", required: true %>
+        <%= f.password_field :password, :size => 10, :placeholder => "Password" %>
+        <%= f.submit "Sign in", :class => "pure-button pure-button-primary" %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<% if @user.has_verified_address? || !@user.aliases.empty? %>
+  <h2>Aliases</h2>
+  <div class="table">
+    <table class="pure-table pure-table-horizontal pure-table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Alias</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <% if @user.addresses.nil? %>
+        <tbody>
+          <td colspan="2">You have no aliases yet.</td>
+        </tbody>
+      <% end %>
+
+      <tbody>
+        <% @user.aliases_sorted.each do |a| %>
+          <tr>
+            <td><%= a.name %></td>
+            <td class="<%= "not_verified" unless a.verified? %>">
+              <%= a.to %>
+            </td>
+            <td class="<%= "not_verified" unless a.verified? %> <%= "default" if a.address_id == @user.email %>">
+              <%= a.address.to %>
+            </td>
+            <td style="white-space:nowrap">
+              <%= button_to "Edit",   { :controller => "aliases", :action => "edit", :id => a.id }, :method => :get, :class => "pure-button" %>
+              <%= button_to "Burn", { :controller => "aliases", :action => "burn", :id => a.id }, :data => { :confirm => "Are you sure? This address cannot be recovered." }, :method => :post, :class => "pure-button" %>
+            </td>
+          </tr>
+        <% end %>
+        <% unless @user.has_maximum_aliases? %>
+          <tr>
+            <%= simple_form_for @alias, url: {action: "create"} do |f| %>
+              <td><%= f.text_field :name, autofocus: true, placeholder: "Name", size: "10", required: true %></td>
+              <td>xxxxxx@obsqure.me</td>
+              <td><%= collection_select("address", "to", @user.verified_addresses, :id, :to, {:selected => @user.email } ) %></td>
+              <td><%= f.submit "Add", :class => "pure-button pure-button-primary" %></td>
+            <% end %>
+          </tr>
+        <% else %>
+          <tr>
+            <td colspan=4 align=center><b>You have created all the aliases you are allowed on this account.</b></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% else %>
+  <h2>You haven't got any verified email addresses</h2>
+  <p>You must verify an <%= link_to "address", :addresses %> before <%= @user.has_aliases? ? "more aliases" : "an alias" %> can be created.</p>
+<% end %>

@@ -1,0 +1,30 @@
+<h2>Your Account Information</h2>
+<div class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td style="width: 200px;"><b>Username:</b></td>
+        <td><%= @user.username %></td>
+      </tr>
+      <tr>
+        <td><b>Account Type:</b></td>
+        <td><%= @account_type %></td>
+      </tr>
+      <tr>
+        <td><b>Email Address:</b></td>
+        <td><%= @user.has_email? ? @user.email : "-" %></td>
+      <tr>
+        <td><b>Account Expiration:</b></td>
+        <td>Never</td>
+      </tr>
+      <tr>
+        <td><b>Used Addresses:</b></td>
+        <td><%= @user.used_addresses %> / <%= @user.maximum_addresses %></td>
+      </tr>
+      <tr>
+        <td><b>Used Aliases:</b></td>
+        <td><%= @user.used_aliases %> / <%= @user.maximum_aliases %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,16 @@
+<%
+  pages = {
+    :contact => "Contact",
+    :faq => "Frequently Asked Questions",
+    :privacy => "Privacy Policy",
+    :terms => "Terms Of Service"
+  }
+%>
+
+<div id="footer">
+  <ul>
+    <% pages.each do |link,title| %>
+      <li><%= link_to title, link %></li>
+    <% end %>
+  </ul>
+</div>

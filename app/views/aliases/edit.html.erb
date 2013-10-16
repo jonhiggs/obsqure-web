@@ -1,0 +1,23 @@
+<h2>Edit Alias</h2>
+
+<div class="pure-form pure-form-aligned">
+  <%= simple_form_for @alias, url: {action: "update"} do |f| %>
+    <%= f.label :id, hidden: true %>
+    <%= f.hidden_field :id %>
+
+    <div class="pure-control-group">
+      <%= f.label :name, required: false %>
+      <%= f.text_field :name, autofocus: true, required: true %>
+    </div>
+
+    <div class="pure-control-group">
+      <%= f.label :address %>
+      <%= collection_select("address", "to", @addresses, :id, :to, {:selected => @alias.address_id } ) %>
+    </div>
+
+    <div class="pure-controls inline">
+      <%= f.submit "Edit", :class => "pure-button pure-button-primary" %>
+  <% end %>
+      <%= button_to "Cancel", { :controller => "aliases", :action => "index" }, :method => :get, :class => "pure-button" %>
+    </div>
+</div>

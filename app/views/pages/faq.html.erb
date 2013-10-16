@@ -1,0 +1,44 @@
+<h2>Frequently Asked Questions</h2>
+<% 
+  ::Linguistics.use(:en)
+
+  questions = [
+    { 
+      :question => "What happens when I delete an address?",
+      :answer =>   "It gets burned never to be used again."
+    },
+    { 
+      :question => "Do you plan to allow more aliases and addresses?",
+      :answer =>   "Yes, very soon. Unlimited aliases and addresses for around $10 a year."
+    },
+    { 
+      :question => "Do you plan to allow custom domains?",
+      :answer =>   "Yes, depending on the demand. If you want it, #{link_to "send an email telling me so", :contact}."
+    },
+    { 
+      :question => "I have a great idea. Who do I tell?",
+      :answer =>   "Awesome. Get #{link_to "contact details here", :contact}."
+    },
+    { 
+      :question => "How do I know that your secure?",
+      :answer =>   "The short answer... You can't. As with any service, you
+      best protection is to limit what you provide. We have a privacy policy
+      which states the data we keep, what we do with it and where it goes."
+    },
+    { 
+      :question => "How anonymous are my aliases internally?",
+      :answer =>   "While they exist, they are connected to your account. After
+      they are burnt, they are immediately anonymised on the servers. It will
+      take 14 days for all references to be completely removed from the
+      backups."
+    },
+    {
+      :question => "I accidentally burnt my alias. Can you restore it for me?",
+      :answer =>   "Nothing can be unburned. Aliases included."
+    }
+  ]
+%>
+
+<% questions.each do |q| %>
+  <p><b><%= q[:question].html_safe %></b><br /><%= q[:answer].html_safe %></p>
+<% end %>

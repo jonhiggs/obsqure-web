@@ -1,0 +1,36 @@
+<style>
+.notice {
+  color: #666;
+  font-size: 12px;
+}
+</style>
+
+<h2>Register</h2>
+
+<%= devise_error_messages! %>
+<div class="pure-form pure-form-aligned">
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <fieldset>
+      <div class="pure-control-group">
+        <%= f.label :username, required: false%>
+        <%= f.text_field :username, autofocus: true, required: true %>
+      </div>
+
+      <div class="pure-control-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, error: false, required: true %>
+      </div>
+
+      <div class="pure-control-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, :error => false, required: true %>
+      </div>
+
+      <span class="notice">By creating an account, you are agreeing to the <%= link_to "terms of service", :terms %>.</span>
+
+      <div class="pure-controls">
+        <%= f.submit "Register", :class => "pure-button pure-button-primary" %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

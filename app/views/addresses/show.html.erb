@@ -1,0 +1,16 @@
+<div class="pure-form pure-form-aligned">
+  <legend>Edit Email</legend>
+  <%= form_for @address, url: {action: "edit"} do |f| %>
+    <div class="pure-control-group">
+      <%= f.label :to %>
+      <%= f.text_field :to %>
+    </div>
+
+    <div class="pure-controls inline">
+      <%= f.submit "Edit", :class => "pure-button pure-button-primary" %>
+  <% end %>
+      <%= button_to "Cancel", addresses_path, :action => :get, :class => "pure-button" %>
+      <%= button_to "Make Default", { :controller => "users" }, :class => "pure-button" %>
+      <%= button_to "Verify Again", { :controller => "users" }, :class => "pure-button" %>
+    </div>
+</div>

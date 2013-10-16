@@ -1,0 +1,14 @@
+<h2>Edit Address</h2>
+<div class="pure-form pure-form-aligned">
+  <%= simple_form_for @address, url: {action: "update"} do |f| %>
+    <div class="pure-control-group">
+      <%= f.label :to, required: false %>
+      <%= f.text_field :to, :autofocus => true, required: true %>
+    </div>
+
+    <div class="pure-controls inline">
+      <%= f.submit "Edit", :class => "pure-button pure-button-primary" %>
+  <% end %>
+      <%= button_to "Cancel", { :controller => "addresses", :action => "index" }, :method => :get, :class => "pure-button" %>
+    </div>
+</div>
