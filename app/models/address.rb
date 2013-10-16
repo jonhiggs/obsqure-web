@@ -34,6 +34,7 @@ class Address < ActiveRecord::Base
 
   def set_token
     self.token = self.generate_token
+    Notifier.verify(self).deliver
   end
 
   def check_for_aliases
