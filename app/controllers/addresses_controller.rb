@@ -28,6 +28,7 @@ class AddressesController < ApplicationController
   end
 
   def verify
+    @page = "Verifying Address"
     token = params[:token]
     @address = Address.find_by_token(token)
 
