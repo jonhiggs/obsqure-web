@@ -18,6 +18,7 @@
       <% end %>
 
       <tbody>
+
         <% @user.aliases_sorted.each do |a| %>
           <tr>
             <td><%= a.name %></td>
@@ -33,7 +34,16 @@
             </td>
           </tr>
         <% end %>
-        <% unless @user.has_maximum_aliases? %>
+
+        <% if @user.has_maximum_aliases? %>
+          <tr>
+            <td colspan=4 align=center><b>You have created all the aliases you are allowed on this account.</b></td>
+          </tr>
+        <% elsif !@user.has_verified_address? %>
+          <tr>
+            <td colspan=4 align=center><b>You do not have any verified addresses.</b></td>
+          </tr>
+        <% else %>
           <tr>
             <%= simple_form_for @alias, url: {action: "create"} do |f| %>
               <td><%= f.text_field :name, autofocus: true, placeholder: "Name", size: "10", required: true %></td>
@@ -42,15 +52,10 @@
               <td><%= f.submit "Add", :class => "pure-button pure-button-primary" %></td>
             <% end %>
           </tr>
-        <% else %>
-          <tr>
-            <td colspan=4 align=center><b>You have created all the aliases you are allowed on this account.</b></td>
-          </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-
 <% else %>
   <h2>You haven't got any verified email addresses</h2>
   <p>You must verify an <%= link_to "address", :addresses %> before <%= @user.has_aliases? ? "more aliases" : "an alias" %> can be created.</p>
