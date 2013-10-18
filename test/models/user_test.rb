@@ -130,5 +130,8 @@ class UserTest < ActiveSupport::TestCase
     barrys_other_address = Address.new(:user_id => barry.id, :to => "barry2@test.com")
     barrys_other_address.save!
     assert_equal User.find_by_id(barry.id).address_id, barrys_address.id
+    barrys_address.unverify
+    barrys_address.save!
+    assert User.find_by_id(barry.id).address_id.nil?, "should have removed unverified address from barry's email"
   end
 end

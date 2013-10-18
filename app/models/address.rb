@@ -108,6 +108,12 @@ class Address < ActiveRecord::Base
     self.token = self.generate_token
     PostfixAlias.where(:to => self.to).delete_all
     PostfixAlias.where(:to => self.to_was).delete_all
+
+    user = User.find_by_id(self.user_id)
+    if user.address_id == self.id
+      user.address_id = nil
+      user.save!
+    end
   end
 
 protected
