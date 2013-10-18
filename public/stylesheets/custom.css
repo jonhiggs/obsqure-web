@@ -176,14 +176,6 @@ li {
   color: #999;
 }
 
-.default {
-  font-weight: 600;
-}
-
-.not_verified {
-  color: #E50009;
-}
-
 .grid-content {
   padding: 100px;
 }
