@@ -20,6 +20,10 @@
     margin-top: 0px !important;
   }
 
+  .grid-box h3 {
+    margin-top: 0px !important;
+  }
+
   .gray .notice {
     color: #666;
     text-align: center;
@@ -39,10 +43,6 @@
     background: #DDDDDD;
   }
 
-  .gray h3 {
-    margin-top: 0px !important;
-  }
-
   .gray li {
     color: #666;
   }
@@ -51,15 +51,27 @@
     background: #333;
   }
 
+  #news .date {
+    font-size: 12px;
+    color: #666;
+    min-width: 30px;
+  }
+
+  #news .headline {
+    font: #666;
+    font-weight: 600;
+  }
+
+  #news .notice {
+    color: #666;
+    font-size: 12px;
+    margin: 20px;
+  }
+
 </style>
 
 
 <div class="pure-g-r">
-  <div class="pure-u-1-2">
-    <div class="grid-box">
-    </div>
-  </div>
-
   <div class="pure-u-1-2">
     <div class="grid-box gray">
       <h3>What you get</h3>
@@ -75,31 +87,15 @@
       <div class="notice">* More plans are coming soon.</div>
     </div>
   </div>
-
-  <div class="pure-u-1">
-    <div class="grid-box">
-      <h2>Why</h2>
-      <p>Your email address is a token that follows your online activities everywhere.
-      Unfortunately most services require you to provide them with a valid email
-      address to simply use their system.</p>
-
-      <p>We all use online services and those online services often use or share that
-      information to third-parties. Our real identity can be tracked with just a
-      single token that follows us around, the token that is being used is our email
-      addresses.</p>
-
-      <p>If we could disconnect ourselves from our email address as a unique
-      identifier then any information gathered regarding that identity could not be
-      updated with any new information that is later discovered.
-
-      <p>What was needed was a secure, private, permanent email solution that made it
-      easy to create new addresses.</p>
-
-      <ul>
-        <li>Some email providers offer this service but require a fully, fledged email service.
-        <li>Some offer temporary email addresses but they are not private or permanent.
-        <li>All of them made you think up an address each time you wanted a new alias.
-      </ul>
-    </div>
-  </div>
 </div>
+
+<div id="news">
+  <h2>News</h2>
+  <div class="article">
+    <span class="date">18/10/2013</span>
+    <span class="headline"><a href="http://www.independent.co.uk/news/world/americas/nsa-snoops-on-email-contact-lists-edward-snowden-leaks-show-8882254.html">Don't store your obsqure addresses in any cloud-based address books.</a></span>
+  </div>
+
+  <div class="notice">If you have something relevant that you believe would be of interest to our users, please send a link to news@obsqure.net</div>
+</div>
+
