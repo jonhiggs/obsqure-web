@@ -3,7 +3,6 @@ Obsqure::Application.routes.draw do
   root to: 'welcome#index'
 
   devise_scope :user do
-    #get 'register', to: 'devise/registrations#new'
     get 'sign_in',  to: 'devise/sessions#new'
     get 'sign_out', to: 'devise/sessions#destroy'
   end
