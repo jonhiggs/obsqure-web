@@ -26,7 +26,9 @@
         <%= f.password_field :password_confirmation, :error => false, required: true %>
       </div>
 
-      <span class="notice">By creating an account, you are agreeing to the <%= link_to "terms of service", :terms %>.</span>
+      <div class="pure-controls">
+        <span class="notice">By creating an account, you are agreeing to the <%= link_to "terms of service", :terms %>.</span>
+      </div>
 
       <div class="pure-controls">
         <%= f.submit "Register", :class => "pure-button pure-button-primary" %>

@@ -1,3 +1,10 @@
+<style>
+.notice {
+  color: #666;
+  font-size: 12px;
+}
+</style>
+
 <h2>Sign In</h2>
 
 <div class="pure-form pure-form-aligned">
@@ -14,11 +21,11 @@
       </div>
 
       <div class="pure-controls">
-        <%= f.submit "Sign in", :class => "pure-button pure-button-primary" %>
+        <span class="notice">Don't have an account yet? <%= link_to "Create one here", :new_user_registration %>.</span>
       </div>
 
       <div class="pure-controls">
-        <%= link_to "Don't have an account?", :register %>
+        <%= f.submit "Sign in", :class => "pure-button pure-button-primary" %>
       </div>
 
     </fieldset>
