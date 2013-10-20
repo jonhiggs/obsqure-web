@@ -12,7 +12,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def destroy
-    raise "not for you" unless params[:user][:password] == "secret"
-    super
+    unless current_user.valid_password?(params[:user][:password])
+      flash[:error] = "The password you entered is incorrect."
+      redirect_to "/users/edit"
+    else
+      super
+    end
   end
 end 
