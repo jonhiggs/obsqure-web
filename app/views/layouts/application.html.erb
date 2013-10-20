@@ -4,7 +4,8 @@
   <title>
     <%= 
       # FIXME: this is super-hacky
-      @page = "Register" if params["controller"] == "devise/registrations"
+      @page = "Register" if params["controller"] == "devise/registrations" && params["action"] == "new"
+      @page = "Update Details" if params["controller"] == "devise/registrations" && params["action"] == "edit"
       @page = "Sign In" if params["controller"] == "devise/sessions"
       [ "Obsqure", @page ].compact.flatten.join(" - ")
     %>
