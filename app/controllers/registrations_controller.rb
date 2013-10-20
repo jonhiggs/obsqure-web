@@ -12,6 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def destroy
-    raise "does what now?"
+    raise "not for you" unless params[:user][:password] == "secret"
+    super
   end
 end 
