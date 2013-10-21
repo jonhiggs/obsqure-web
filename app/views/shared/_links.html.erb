@@ -1,31 +1,28 @@
 <div id="header">
   <h1 class="title"><a href="/">Obsqure.net</a></h1>
-    <span class="pure-menu pure-menu-open pure-menu-horizontal" id="action-menu">
-      <ul>
-        <% if user_signed_in? %>
-          <li><%= link_to "Addresses", :addresses %></li>
-          <li><%= link_to "Aliases", :aliases %></li>
-        <% else %>
-          <li class="pure-menu-disabled"><a href="#">Address</a></li>
-          <li class="pure-menu-disabled"><a href="#">Aliases</a></li>
-        <% end %>
-    </ul>
-  </span>
-  <span class="pure-menu pure-menu-open pure-menu-horizontal" id="user-menu">
-    <ul id="std-menu-items">
-    <% if user_signed_in? %>
-      <li style="text-align:right;"><a href="#">Account</a>
-        <ul>
-          <li><%= link_to "Information", :account %></li>
-          <li><%= link_to "Update Details", edit_user_registration_path %></li>
-          <li class="pure-menu-separator"></li>
-          <li><%= link_to "Log Out", :sign_out %></li>
-        </ul>
-      </li>
-    <% else %>
-      <li><%= link_to "Register", :new_user_registration %></li>
-    <% end %>
-    </ul>
-  </span>
-</div>
 
+  <span id="user-menu">
+    <ul>
+      <% if user_signed_in? %>
+        <li><%= link_to "Account Information", :account %></li>
+        <li><%= link_to "Update Details", edit_user_registration_path %></li>
+        <li class="pure-menu-separator"></li>
+        <li><%= link_to "Log Out", :sign_out %></li>
+      <% else %>
+        <li><%= link_to "Register", :new_user_registration %></li>
+      <% end %>
+    </ul>
+  </span>
+  <span id="menu">
+    <ul>
+      <% if user_signed_in? %>
+        <li><%= link_to "Addresses", :addresses %></li>
+        <li><%= link_to "Aliases", :aliases %></li>
+      <% else %>
+        <li class="disabled"><a href="#">Address</a></li>
+        <li class="disabled"><a href="#">Aliases</a></li>
+      <% end %>
+    </ul>
+  </span>
+
+</div>

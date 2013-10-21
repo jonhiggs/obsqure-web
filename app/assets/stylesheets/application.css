@@ -19,6 +19,7 @@
 }
 
 html, body {
+  font-family: sans-serif;
   padding: 0px;
   margin: 0px;
   height: 100%;
@@ -95,20 +96,72 @@ li {
   margin-bottom: 0px;
 }
 
-#header .title a {
+#header a {
   text-decoration: none;
   color: black;
 }
 
-#header #action-menu {
+#menu {
   width: 50%;
 }
 
-#header #user-menu {
-  width:30%;
-  text-align: left;
-  float: right;
+#menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
 }
+
+#menu span {
+  width: 400px;
+}
+
+#menu ul {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  margin: 0px;
+  list-style-type:none;
+}
+
+#menu li {
+  padding: 10px;
+  margin-bottom: 0px;
+  display:inline;
+  border: 1px solid #999;
+  border-bottom: 0 rgba(0,0,0,0);
+  text-decoration: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #ECECEC;
+  font-weight: 600;
+}
+
+#menu li:hover {
+  background-color:#ff3300;
+}
+
+#user-menu {
+  float:right;
+  margin-top: 10px;
+  text-align: right;
+}
+
+#user-menu a {
+  text-decoration: none;
+  color: black;
+}
+
+#user-menu ul {
+  margin: 0px;
+  list-style-type:none;
+}
+
+#user-menu li {
+  font-size: 75%;
+  padding-right: 10px;
+  display:inline;
+  text-decoration: none;
+}
+
 #flash_guide {
   background: #F6C851;
   color: black;

@@ -1,27 +1,6 @@
 <style>
-  .pure-g > div {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  .grid-box {
-    padding: 30px;
-
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-    margin: 10px;
-  }
-
-  .grid-box h2 {
-    margin-top: 0px !important;
-  }
-
-  .grid-box h3 {
-    margin-top: 0px !important;
+  #account-type {
+    float: right;
   }
 
   .gray .notice {
@@ -29,18 +8,6 @@
     text-align: center;
     font-size: 12px;
     margin-top: 20px;
-  }
-
-  .green {
-    background: #50AC3F;
-  }
-
-  .red {
-    background: red;
-  }
-
-  .gray {
-    background: #DDDDDD;
   }
 
   .gray li {
@@ -70,23 +37,18 @@
 
 </style>
 
-
-<div class="pure-g-r">
-  <div class="pure-u-1-2">
-    <div class="grid-box gray">
-      <h3>What you get</h3>
-      <ul>
-        <li>5 email aliases.
-        <li>1 forwarding address.
-        <li>Unlimited messages.
-        <li>Maximum email size of 50MB.
-      </ul>
-      <div class="pure-controls" style="text-align: center">
-        <%= button_to "Register For Free", :new_user_registration, :class => "pure-button pure-button-primary", :method => :get %>
-      </div>
-      <div class="notice">* More plans are coming soon.</div>
-    </div>
+<div id="account-type" class="gray">
+  <h3>What you get</h3>
+  <ul>
+    <li>5 email aliases.
+    <li>1 forwarding address.
+    <li>Unlimited messages.
+    <li>Maximum email size of 50MB.
+  </ul>
+  <div class="pure-controls" style="text-align: center">
+    <%= button_to "Register For Free", :new_user_registration, :class => "pure-button pure-button-primary", :method => :get %>
   </div>
+  <div class="notice">* More plans are coming soon.</div>
 </div>
 
 <div id="news">
