@@ -15,7 +15,7 @@
 //= require yui-min
 
 YUI({
-    base: '/assets/application-a89655ea2204cccb79f416c64c747e94.js'
+    base: '/assets/javascripts/yui-min.js'
     classNamePrefix: 'pure'
 }).use('gallery-sm-menu', function (Y) {
 
