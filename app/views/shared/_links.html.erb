@@ -6,7 +6,6 @@
       <% if user_signed_in? %>
         <li><%= link_to "Account Information", :account %></li>
         <li><%= link_to "Update Details", edit_user_registration_path %></li>
-        <li class="pure-menu-separator"></li>
         <li><%= link_to "Log Out", :sign_out %></li>
       <% end %>
     </ul>
@@ -14,7 +13,7 @@
   <span id="menu">
     <ul>
       <% if user_signed_in? %>
-        <li><%= link_to "Addresses", :addresses %></li>
+        <li class="selected"><%= link_to "Addresses", :addresses %></li>
         <li><%= link_to "Aliases", :aliases %></li>
       <% else %>
         <li><%= link_to "Sign In", :new_user_session %></li>

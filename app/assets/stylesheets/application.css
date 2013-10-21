@@ -71,6 +71,23 @@ li {
   margin-bottom: 10px !important;
 }
 
+a {
+  color: #0078E7;
+}
+
+a:link {
+  color: #0078E7;
+}
+
+a:visited {
+  color: #0078E7;
+}
+
+a:hover {
+  color: #F33636;
+  text-decoration: underline;
+}
+
 #login {
   float: right;
   padding-bottom: 0px;
@@ -136,7 +153,7 @@ li {
 }
 
 #menu li:hover {
-  background-color:#ff3300;
+  background-color: #CCCCCC;
 }
 
 #user-menu {
@@ -211,6 +228,7 @@ li {
 
 #content {
   padding-bottom: 150px;
+  min-height: 250px;
 }
 
 #content table {
