@@ -25,6 +25,7 @@ html, body {
 p {
   margin-top: 0px !important;
   margin-bottom: 20px !important;
+  width: 735px;
 }
 
 select {
@@ -67,6 +68,8 @@ form.button_to div, form.button_to div input {
 
 li {
   margin-bottom: 10px !important;
+  width: 650px;
+  color: #333333;
 }
 
 a {
@@ -84,10 +87,6 @@ a:visited {
 a:hover {
   color: #F33636;
   text-decoration: underline;
-}
-
-p {
-  width: 735px;
 }
 
 #login {
