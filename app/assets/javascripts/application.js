@@ -12,20 +12,3 @@
 //
 //= require turbolinks
 //= require_tree .
-
-YUI({
-    base: '/assets/javascripts/yui-min.js',
-    classNamePrefix: 'pure'
-}).use('gallery-sm-menu', function (Y) {
-
-    var horizontalMenu = new Y.Menu({
-        container         : '#user-menu',
-        sourceNode        : '#std-menu-items',
-        orientation       : 'horizontal',
-        hideOnOutsideClick: false,
-        hideOnClick       : false
-    });
-
-    horizontalMenu.render();
-    horizontalMenu.show();
-});
