@@ -95,7 +95,7 @@ class Address < ActiveRecord::Base
   end
 
   def verify_link
-    url = "http://www.obsqure.net/verify"
+    url = "https://www.obsqure.net/verify"
     self.verified? ? url : url + "/#{self.token}"
   end
 

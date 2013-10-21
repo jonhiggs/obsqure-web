@@ -127,8 +127,8 @@ class AddressTest < ActiveSupport::TestCase
     address = Address.first
     address.unverify
     address.token = "abcdefg"
-    assert_match "http://www.obsqure.net/verify/abcdefg", address.verify_link
+    assert_match "https://www.obsqure.net/verify/abcdefg", address.verify_link
     address.verify
-    assert_match "http://www.obsqure.net/verify", address.verify_link
+    assert_match "https://www.obsqure.net/verify", address.verify_link
   end
 end
