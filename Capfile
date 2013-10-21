@@ -5,6 +5,7 @@ load 'config/deploy' # remove this line to skip loading any of the default tasks
 
 before "deploy", "deploy:web:disable"
 after "deploy", "deploy:assets:precompile"
+after "deploy", "deploy:submodule:update"
 after "deploy", "deploy:web:enable"
 after "deploy", "foreman:restart"
 
@@ -14,6 +15,13 @@ namespace :deploy do
     desc "Compile the static assets"
     task :precompile, :roles => :app do
       run("cd #{deploy_to}/current; /usr/local/bin/rake assets:precompile RAILS_ENV=#{rails_env}")  
+    end
+  end
+
+  namespace :submodule do
+    desc "Update submodules"
+    task :update, :roles => :app do
+      run("cd #{deploy_to}/current; git submodule init && git submodule update")
     end
   end
 end
