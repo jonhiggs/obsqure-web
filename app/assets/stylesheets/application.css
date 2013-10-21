@@ -25,7 +25,7 @@ html, body {
 p {
   margin-top: 0px !important;
   margin-bottom: 20px !important;
-  width: 735px;
+  max-width: 735px;
 }
 
 select {
@@ -68,7 +68,7 @@ form.button_to div, form.button_to div input {
 
 li {
   margin-bottom: 10px !important;
-  width: 650px;
+  max-width: 650px;
   color: #333333;
 }
 
