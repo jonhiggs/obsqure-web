@@ -187,7 +187,6 @@ a:hover {
   padding: .5em 1.5em;
   border: 1px solid #999;
   border-top: 0px;
-  //border: 0 rgba(0,0,0,0);
   text-decoration: none;
   margin: 0px;
 }
@@ -198,10 +197,9 @@ a:hover {
   font-size: 100%;
   padding: .5em 1.5em;
   border: 1px solid #999;
-  border: 0 rgba(0,0,0,0);
+  border-top: 0px;
   text-decoration: none;
-  border-radius: 2px;
-  margin: 2px;
+  margin: 0px;
 }
 
 #flash_notice {
@@ -210,10 +208,9 @@ a:hover {
   font-size: 100%;
   padding: .5em 1.5em;
   border: 1px solid #999;
-  border: 0 rgba(0,0,0,0);
+  border-top: 0px;
   text-decoration: none;
-  border-radius: 2px;
-  margin: 2px;
+  margin: 0px;
 }
 
 .inline div {
