@@ -6,6 +6,7 @@ load 'config/deploy' # remove this line to skip loading any of the default tasks
 before "deploy", "deploy:web:disable"
 after "deploy", "deploy:assets:precompile"
 after "deploy", "deploy:web:enable"
+after "deploy", "foreman:restart"
 
 ### DEPLOY #############################
 namespace :deploy do
