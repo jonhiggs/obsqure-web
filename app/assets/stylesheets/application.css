@@ -110,7 +110,6 @@ a:hover {
 #header .title {
   font-size: 400%;
   text-decoration: none;
-  font-style: none; 
   margin-bottom: 0px;
 }
 
@@ -255,10 +254,6 @@ a:hover {
   list-style-type: none;
   padding-right: 20px;
   font-size: 75%;
-}
-
-#footer a { // a:link a:visited {
-  color: #999;
 }
 
 .grid-content {
