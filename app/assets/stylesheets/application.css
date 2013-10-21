@@ -8,15 +8,11 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require fira
  *= require pure
  *= require_self
  *= require_tree .
  */
-
-@font-face {
-  font-family: 'FiraSans-MediumItalic';
-  src: url('mozttf/FiraSans-2.001/FiraSans-MediumItalic.otf')
-}
 
 html, body {
   font-family: sans-serif;
@@ -35,14 +31,14 @@ select {
 }
 
 h2,h3 {
-	font-family: 'FiraSans';
+	font-family: 'Fira Sans';
   margin: 0px !important;
   margin-top: 30px !important;
   margin-bottom: 15px !important;
 }
 
 h1 {
-	font-family: 'FiraSans';
+	font-family: 'Fira Sans';
 	font-size: 30pt; 
   font-style:italic;
 }
