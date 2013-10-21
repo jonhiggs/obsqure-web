@@ -14,7 +14,7 @@
 //= require_tree .
 
 YUI({
-    base: '/assets/javascripts/yui-min.js'
+    base: '/assets/javascripts/yui-min.js',
     classNamePrefix: 'pure'
 }).use('gallery-sm-menu', function (Y) {
 
