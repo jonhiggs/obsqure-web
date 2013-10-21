@@ -12,7 +12,6 @@
 //
 //= require turbolinks
 //= require_tree .
-//= require yui-min
 
 YUI({
     base: '/assets/javascripts/yui-min.js'
