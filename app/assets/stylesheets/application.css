@@ -86,12 +86,16 @@ a:hover {
   text-decoration: underline;
 }
 
+p {
+  width: 735px;
+}
+
 #login {
   float: right;
   padding-bottom: 0px;
   padding-right: 10px;
   text-align: right;
-  max-width: 750px;
+  max-width: 735px;
 }
 
 #login .pure-button {
@@ -183,10 +187,10 @@ a:hover {
   font-size: 100%;
   padding: .5em 1.5em;
   border: 1px solid #999;
-  border: 0 rgba(0,0,0,0);
+  border-top: 0px;
+  //border: 0 rgba(0,0,0,0);
   text-decoration: none;
-  border-radius: 2px;
-  margin: 2px;
+  margin: 0px;
 }
 
 #flash_error, #flash_alert {
@@ -218,13 +222,16 @@ a:hover {
 }
 
 #main {
-  margin-left: 50px;
-  max-width: 750px;
+  margin: 0 auto;
+  max-width: 980px;
   position: relative;
   Min-height: 100%;  /* for all other browsers */
 }
 
 #content {
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 100%;
   padding-bottom: 150px;
   min-height: 250px;
 }
@@ -238,12 +245,10 @@ a:hover {
   padding: 5px;
 }
 
-
 #footer {
   border-top: 1px solid #999;
   bottom: 0px;
   height: 100px;  /* This value is the height of your footer */
-  margin-left: 50px;
   position: absolute;
   text-align: center;
   width: 100%;
