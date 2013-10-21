@@ -4,7 +4,18 @@ load 'deploy'
 load 'config/deploy' # remove this line to skip loading any of the default tasks
 
 before "deploy", "deploy:web:disable"
+after "deploy", "deploy:assets:precompile"
 after "deploy", "deploy:web:enable"
+
+### DEPLOY #############################
+namespace :deploy do
+  namespace :assets do
+    desc "Compile the static assets"
+    task :precompile, :roles => :app do
+      run("cd #{deploy_to}/current; /usr/local/bin/rake assets:precompile RAILS_ENV=#{rails_env}")  
+    end
+  end
+end
 
 ### FOREMAN ############################
 require 'capistrano/foreman'
