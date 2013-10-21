@@ -8,8 +8,8 @@
     font-weight: 400;
     font-style: normal;
     src:
-        url("FiraSans-Regular.eot?") format("eot"),
-        url("FiraSans-Regular.woff") format("woff");
+        url("/fonts/FiraWebfonts/FiraSans-Regular.eot?") format("eot"),
+        url("/fonts/FiraWebfonts/FiraSans-Regular.woff") format("woff");
 }
 
 @font-face {
@@ -17,8 +17,8 @@
     font-weight: 400;
     font-style: italic;
     src:
-        url("FiraSans-RegularItalic.eot?") format("eot"),
-        url("FiraSans-RegularItalic.woff") format("woff");
+        url("/fonts/FiraWebfonts/FiraSans-RegularItalic.eot?") format("eot"),
+        url("/fonts/FiraWebfonts/FiraSans-RegularItalic.woff") format("woff");
 }
 
 /*******************************************************************************
@@ -30,8 +30,8 @@
     font-weight: 700;
     font-style: normal;
     src:
-        url("FiraSans-Bold.eot?") format("eot"),
-        url("FiraSans-Bold.woff") format("woff");
+        url("/fonts/FiraWebfonts/FiraSans-Bold.eot?") format("eot"),
+        url("/fonts/FiraWebfonts/FiraSans-Bold.woff") format("woff");
 }
 
 @font-face {
@@ -39,8 +39,8 @@
     font-weight: 700;
     font-style: italic;
     src:
-        url("FiraSans-BoldItalic.eot?") format("eot"),
-        url("FiraSans-BoldItalic.woff") format("woff");
+        url("/fonts/FiraWebfonts/FiraSans-BoldItalic.eot?") format("eot"),
+        url("/fonts/FiraWebfonts/FiraSans-BoldItalic.woff") format("woff");
 }
 
 /*******************************************************************************
@@ -52,8 +52,8 @@
     font-weight: 300;
     font-style: normal;
     src:
-        url("FiraSans-Light.eot?") format("eot"),
-        url("FiraSans-Light.woff") format("woff");
+        url("/fonts/FiraWebfonts/FiraSans-Light.eot?") format("eot"),
+        url("/fonts/FiraWebfonts/FiraSans-Light.woff") format("woff");
 }
 
 @font-face {
@@ -61,8 +61,8 @@
     font-weight: 300;
     font-style: italic;
     src:
-        url("FiraSans-LightItalic.eot?") format("eot"),
-        url("FiraSans-LightItalic.woff") format("woff");
+        url("/fonts/FiraWebfonts/FiraSans-LightItalic.eot?") format("eot"),
+        url("/fonts/FiraWebfonts/FiraSans-LightItalic.woff") format("woff");
 }
 
 /*******************************************************************************
@@ -74,6 +74,6 @@
     font-weight: 400;
     font-style: normal;
     src:
-        url("FiraMono-Regular.eot?") format("eot"),
-        url("FiraMono-Regular.woff") format("woff");
+        url("/fonts/FiraWebfonts/FiraMono-Regular.eot?") format("eot"),
+        url("/fonts/FiraWebfonts/FiraMono-Regular.woff") format("woff");
 }
