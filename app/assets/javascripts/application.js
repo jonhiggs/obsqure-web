@@ -15,6 +15,7 @@
 //= require yui-min
 
 YUI({
+    base: '/assets/application-a89655ea2204cccb79f416c64c747e94.js'
     classNamePrefix: 'pure'
 }).use('gallery-sm-menu', function (Y) {
 
@@ -28,5 +29,4 @@ YUI({
 
     horizontalMenu.render();
     horizontalMenu.show();
-
 });
