@@ -17,7 +17,6 @@ gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'valid_email'
-gem 'yui-rails'
 
 group :doc do
   gem 'sdoc', require: false
