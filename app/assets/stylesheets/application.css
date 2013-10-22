@@ -18,6 +18,8 @@ html, body {
   font-family: sans-serif;
   padding: 0px;
   margin: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
   height: 100%;
   font-size: 100%;
 }
@@ -227,7 +229,6 @@ a:hover {
   padding-left: 20px;
   padding-right: 20px;
   max-width: 100%;
-  padding-bottom: 150px;
   min-height: 250px;
 }
 
@@ -244,9 +245,9 @@ a:hover {
   border-top: 1px solid #999;
   bottom: 0px;
   height: 100px;  /* This value is the height of your footer */
-  position: absolute;
   text-align: center;
   width: 100%;
+  margin-top: 50px;
 }
 
 #footer li {

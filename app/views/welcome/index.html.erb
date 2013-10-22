@@ -4,7 +4,7 @@
     padding: 20px;
     background: #DDD;
     float: right;
-    margin-left: 100px;
+    margin-left: 10px;
   }
 
   #account-type h3 {
@@ -29,9 +29,9 @@
   }
 
   #news .date {
-    font-size: 75%;
-    color: #666666;
-    min-width: 30px;
+    margin-left: 10px;
+    zoom: 70%;
+    float: right;
   }
 
   #news .headline {
@@ -42,7 +42,25 @@
   #news .notice {
     color: #666666;
     font-size: 75%;
-    margin: 20px;
+  }
+
+  #news .content {
+  }
+
+  #news blockquote {
+    border-left: 6px solid #CCC;
+    padding-left: 10px;
+    margin: 10px;
+    margin-left: 15px;
+    color: #666;
+    font-size: 85%;
+  }
+
+  #news .article {
+    padding: 5px;
+    max-width: 500px;
+    padding-left: 5px;
+    margin-bottom: 60px;
   }
 
 </style>
@@ -64,10 +82,23 @@
 <div id="news">
   <h2>News</h2>
   <div class="article">
-    <span class="date">18/10/2013</span>
+    <span class="date pure-button pure-button-primary">22/10/2013</span>
+    <span class="headline"><a href="https://privacy.cryptoseal.com/">CryptoSeal VPN closes it's doors.</a></span>
+    <div class="content">
+      The reason being:
+      <blockquote>...if a pen register order is made on a provider, and the provider's systems do not readily facilitate full monitoring of pen register information and delivery to the Government in realtime, the Government can compel production of cryptographic keys via a warrant to support a government-provided pen trap device.  Our system does not support recording any of the information commonly requested in a pen register order, and it would be technically infeasible for us to add this in a prompt manner.  The consequence, being forced to turn over cryptographic keys to our entire system on the strength of a pen register order...</blockquote>
+      But worry not, Obsqure is based in Australia. Fastmail wrote <a href="http://blog.fastmail.fm/2013/10/07/fastmails-servers-are-in-the-us-what-this-means-for-you/">a nice article</a> about the situation in Aus.
+    </div>
+  </div>
+
+  <div class="article">
+    <span class="date pure-button pure-button-primary">18/10/2013</span>
     <span class="headline"><a href="http://www.independent.co.uk/news/world/americas/nsa-snoops-on-email-contact-lists-edward-snowden-leaks-show-8882254.html">Don't store your obsqure addresses in any cloud-based address books.</a></span>
   </div>
 
-  <div class="notice">If you have something relevant that you believe would be of interest to our users, please send a link to news@obsqure.net</div>
+
+  <div class="article">
+    <span class="notice">If you have something relevant that you believe would be of interest to our users, please send a link to news@obsqure.net</div>
+  </div>
 </div>
 
