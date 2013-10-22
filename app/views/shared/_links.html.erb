@@ -2,13 +2,13 @@
   <h1 class="title"><a href="/">Obsqure.net</a></h1>
 
   <span id="user-menu">
-    <ul>
-      <% if user_signed_in? %>
-        <li><%= link_to "Account Information", :account %></li>
+    <% if user_signed_in? %>
+      <ul>
+        <li><b><%= link_to current_user.username, :account %>:</b></li>
         <li><%= link_to "Update Details", edit_user_registration_path %></li>
         <li><%= link_to "Log Out", :sign_out %></li>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
   </span>
   <span id="menu">
     <ul>
