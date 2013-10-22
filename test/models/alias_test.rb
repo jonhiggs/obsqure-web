@@ -23,7 +23,7 @@ class AliasTest < ActiveSupport::TestCase
     address.save!
 
     assert a.save
-    assert !a.to.match(/[A-Z0-9]{6}@obsqure.me/).nil?, "should have valid address"
+    assert !a.to.match(/[a-z0-9]{6}@obsqure.me/).nil?, "should have valid address"
   end
 
   test "verified?" do

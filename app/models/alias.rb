@@ -55,7 +55,7 @@ private
     while Alias.find_by_to(found_address) || found_address.nil?
       attempt += 1
       length = 6
-      chars = (0..9).to_a + ("A".."Z").to_a
+      chars = (0..9).to_a + ("a".."z").to_a
       name = length.times.map{ (chars[rand(chars.size)].to_s) }.join
       found_address = "#{name}@obsqure.me"
       raise "alias namespace is getting exhausted" if attempt > 20
