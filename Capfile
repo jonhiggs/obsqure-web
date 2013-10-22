@@ -15,6 +15,9 @@ namespace :deploy do
     desc "Compile the static assets"
     task :precompile, :roles => :app do
       run("cd #{deploy_to}/current; /usr/local/bin/rake assets:precompile RAILS_ENV=#{rails_env}")  
+      run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/access-denied > 422.html")
+      run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/file-not-found > 404.html")
+      run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/internal-server-error > 500.html")
     end
   end
 
