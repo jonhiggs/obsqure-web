@@ -33,6 +33,18 @@ namespace :deploy do
       run("cd #{deploy_to}/current; git submodule init && git submodule update")
     end
   end
+
+  namespace :web do
+    desc "Turn off Maintenance Mode"
+    task :enable, :roles => :app do
+      run ("rm /srv/www/obsqure/shared/system/maintenance.txt")
+    end
+
+    desc "Turn on Maintenance Mode"
+    task :disable, :roles => :app do
+      run ("touch /srv/www/obsqure/shared/system/maintenance.txt")
+    end
+  end
 end
 
 ### FOREMAN ############################
