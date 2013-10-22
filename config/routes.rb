@@ -20,6 +20,7 @@ Obsqure::Application.routes.draw do
   get 'file-not-found', to: 'pages#file_not_found'
   get 'internal-server-error', to: 'pages#internal_server_error'
   get 'access-denied', to: 'pages#access_denied'
+  get 'maintenance', to: 'pages#maintenance'
 
   # verification
   get 'verify', to: 'addresses#verify'

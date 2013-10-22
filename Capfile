@@ -23,6 +23,7 @@ namespace :deploy do
       run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/access-denied > 422.html")
       run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/file-not-found > 404.html")
       run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/internal-server-error > 500.html")
+      run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/maintenance > 503.html")
     end
   end
 
