@@ -17,6 +17,10 @@ Obsqure::Application.routes.draw do
   get 'terms', to: 'pages#terms'
   get 'verify/:token', to: 'addresses#verify', as: :verify
 
+  get 'file-not-found', to: 'pages#file_not_found'
+  get 'internal-server-error', to: 'pages#internal_server_error'
+  get 'access-denied', to: 'pages#access_denied'
+
   # verification
   get 'verify', to: 'addresses#verify'
   get 'not_verified', to: 'addresses#not_verified'

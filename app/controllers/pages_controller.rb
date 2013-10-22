@@ -14,4 +14,16 @@ class PagesController < ApplicationController
   def terms
     @page = "Terms Of Service"
   end
+
+  def file_not_found
+    @page = "File Not Found"
+  end
+
+  def internal_server_error
+    @page = "Internal Server Error"
+  end
+
+  def access_denied
+    @page = "Access Denied"
+  end
 end
