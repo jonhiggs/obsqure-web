@@ -8,6 +8,7 @@ after "deploy", "deploy:assets:precompile"
 after "deploy", "deploy:submodule:update"
 after "deploy", "deploy:web:enable"
 after "deploy", "foreman:restart"
+after "deploy", "deploy:assets:error_pages"
 
 ### DEPLOY #############################
 namespace :deploy do
@@ -15,6 +16,10 @@ namespace :deploy do
     desc "Compile the static assets"
     task :precompile, :roles => :app do
       run("cd #{deploy_to}/current; /usr/local/bin/rake assets:precompile RAILS_ENV=#{rails_env}")  
+    end
+
+    desc "Generate Error Pages"
+    task :error_pages, :roles => :app do
       run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/access-denied > 422.html")
       run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/file-not-found > 404.html")
       run("cd #{deploy_to}/current/public; curl https://www.obsqure.net/internal-server-error > 500.html")
