@@ -1,2 +1,5 @@
 User-agent: *
-Disallow: /
+Disallow: /addresses/
+Disallow: /aliases/
+Disallow: /sign_out
+Disallow: /users/edit/
