@@ -131,4 +131,16 @@ class AddressTest < ActiveSupport::TestCase
     address.verify
     assert_match "https://www.obsqure.net/verify", address.verify_link
   end
+
+  test "address with a prefix" do
+    user = User.first
+    user.account_type = 2
+    user.save!
+
+    address1 = Address.new(:user_id => user.id, :to => "whatever@wherever.com" )
+    address2 = Address.new(:user_id => user.id, :to => "prefix+whatever@wherever.com" )
+
+    assert address1.save, "should save an address"
+    assert address2.save, "should save an address"
+  end
 end
