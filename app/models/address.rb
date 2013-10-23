@@ -20,7 +20,7 @@ class Address < ActiveRecord::Base
 
   def user_exists?
     unless User.find_by_id(self.user_id)
-      errors.add(:user_id, "user does not exist")
+      errors.add(:user_id, "User does not exist.")
       false
     end
   end

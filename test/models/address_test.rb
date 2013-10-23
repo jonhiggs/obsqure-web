@@ -78,7 +78,7 @@ class AddressTest < ActiveSupport::TestCase
   test "don't create an address for an unknown user" do
     address = Address.new(:user_id => 345543, :to => "user@blah.com")
     address.save
-    assert_equal ["user does not exist"], address.errors[:user_id]
+    assert_equal ["User does not exist."], address.errors[:user_id]
   end
 
   test "don't delete an address that has aliases" do
