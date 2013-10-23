@@ -262,3 +262,7 @@ a:hover {
 .grid-content {
   padding: 100px;
 }
+
+.notice {
+  font-size: 75%;
+}
