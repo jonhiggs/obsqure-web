@@ -30,4 +30,8 @@ class PagesController < ApplicationController
   def manifesto
     @page = "The Obsqure Manifesto"
   end
+
+  def what_is_obsqure
+    @page = "What Is Obsqure"
+  end
 end

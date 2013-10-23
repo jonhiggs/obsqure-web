@@ -10,12 +10,14 @@ Obsqure::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get 'account', to: 'users#account'
+  get 'contact', to: 'pages#contact'
   get 'faq', to: 'pages#faq'
   get 'manifesto', to: "pages#manifesto"
   get 'privacy', to: 'pages#privacy'
-  get 'contact', to: 'pages#contact'
   get 'support', to: 'pages#support'
   get 'terms', to: 'pages#terms'
+  get 'what-is-obsqure', to: 'pages#what_is_obsqure'
+
   get 'verify/:token', to: 'addresses#verify', as: :verify
 
   get 'file-not-found', to: 'pages#file_not_found'
