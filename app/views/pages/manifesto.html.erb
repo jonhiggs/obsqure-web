@@ -1,0 +1,21 @@
+<h2>The Obsqure Manifesto</h2>
+
+<%
+  rules = [
+    "People have the right to privacy and it is their own choice as to what they deem to be private.",
+    "To maintain privacy, it is okay for users to manipulate the information they choose to share if they believe that their right to privacy may be violated.",
+    "Having a privacy model does not mean that user data is private. Users make mistakes. Kids will hack. Governments will manipulate.",
+    "Don't pretend that you are secure. Sooner or later, if someone considers you valuable enough, you will be hacked.",
+    "Because you are *not* secure, limit the user data that you hold.",
+    "Do not force users to share data that is not fundamentally required to fulfil the transaction asked by the user.",
+    "Any user data can be valuable.",
+    "Delete all user data that you can. Anonymous all remaining data where possible.",
+    "Do not generate new data by inferring information from the data you have already gathered."
+  ]
+%>
+
+<ul>
+  <% rules.each do |rule| %>
+    <li><%= rule %></li>
+  <% end %>
+</ul>

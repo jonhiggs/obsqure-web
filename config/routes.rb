@@ -11,6 +11,7 @@ Obsqure::Application.routes.draw do
 
   get 'account', to: 'users#account'
   get 'faq', to: 'pages#faq'
+  get 'manifesto', to: "pages#manifesto"
   get 'privacy', to: 'pages#privacy'
   get 'contact', to: 'pages#contact'
   get 'support', to: 'pages#support'

@@ -26,4 +26,8 @@ class PagesController < ApplicationController
   def access_denied
     @page = "Access Denied"
   end
+
+  def manifesto
+    @page = "The Obsqure Manifesto"
+  end
 end
