@@ -4,18 +4,21 @@
   rules = [
     "People have the right to privacy and it is their own choice as to what they deem to be private.",
     "To maintain privacy, it is okay for users to manipulate the information they choose to share if they believe that their right to privacy may be violated.",
-    "Having a privacy model does not mean that user data is private. Users make mistakes. Kids will hack. Governments will manipulate.",
-    "Don't pretend that you are secure. Sooner or later, if someone considers you valuable enough, you will be hacked.",
-    "Because you are *not* secure, limit the user data that you hold.",
-    "Do not force users to share data that is not fundamentally required to fulfil the transaction asked by the user.",
+    "For a service provider to have a privacy model does not mean that user data is private. Users will make mistakes. Kids will hack. Governments will manipulate.",
+    "Service providers cannot pretend they are secure. Sooner or later, if someone considers them a valuable enough target, they will be hacked.",
+    "Because service providers are <i>not</i> secure, they must limit the user data they hold.",
+    "Service providers must not force users to share data that is not fundamentally required to fulfil the transaction asked by the user.",
     "Any user data can be valuable.",
-    "Delete all user data that you can. Anonymous all remaining data where possible.",
-    "Do not generate new data by inferring information from the data you have already gathered."
+    "Service providers must delete all user data that you can. Anonymous all remaining data where possible.",
+    "Service providers must not generate new data by inferring information from the data users have already provided unless the generated data is anonymous.",
+    "Service providers must never share their users data. *"
   ]
 %>
 
 <ul>
   <% rules.each do |rule| %>
-    <li><%= rule %></li>
+    <li><%= rule.html_safe %></li>
   <% end %>
 </ul>
+
+<%= link_to "* We are not perfect. We share our web logs with NewRelic for performance monitoring.", :privacy, :class => "notice" %>
